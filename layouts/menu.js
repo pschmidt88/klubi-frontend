@@ -11,23 +11,42 @@ export default {
     },
     {
       title: true,
-      name: 'Theme',
+      name: 'Mitgliederverwaltung',
       class: '',
       wrapper: {
         element: '',
         attributes: {}
       }
+    },    
+    {
+      name: 'Mitglieder',
+      url: '#',
+      icon: 'icon-people'
     },
     {
-      name: 'Colors',
-      url: '/theme/colors',
-      icon: 'icon-drop'
+      name: 'Abteilungen',
+      url: '#',
+      icon: 'icon-layers'
     },
-    {
-      name: 'Typography',
-      url: '/theme/typography',
-      icon: 'icon-pencil'
-    },
+    // {
+    //   title: true,
+    //   name: 'Theme',
+    //   class: '',
+    //   wrapper: {
+    //     element: '',
+    //     attributes: {}
+    //   }
+    // },
+    // {
+    //   name: 'Colors',
+    //   url: '/theme/colors',
+    //   icon: 'icon-drop'
+    // },
+    // {
+    //   name: 'Typography',
+    //   url: '/theme/typography',
+    //   icon: 'icon-pencil'
+    // },
     {
       title: true,
       name: 'Components',

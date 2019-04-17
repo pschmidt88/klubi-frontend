@@ -9,6 +9,10 @@
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
                 <b-input-group class="mb-3">
+                  <b-input-group-prepend><b-input-group-text><i class="icon-briefcase"></i></b-input-group-text></b-input-group-prepend>
+                  <input type="text" class="form-control" placeholder="Club name">
+                </b-input-group>
+                <b-input-group class="mb-3">
                   <b-input-group-prepend><b-input-group-text><i class="icon-user"></i></b-input-group-text></b-input-group-prepend>
                   <input type="text" class="form-control" placeholder="Username">
                 </b-input-group>
