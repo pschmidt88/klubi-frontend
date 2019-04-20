@@ -20,7 +20,7 @@ export default {
     },    
     {
       name: 'Mitglieder',
-      url: '#',
+      url: '/members',
       icon: 'icon-people'
     },
     {
