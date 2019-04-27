@@ -1,30 +1,36 @@
 <template>
   <div class="animated fadeIn">
-    <b-row>
-      <b-col xs="12" xl="8">
-        <b-card header="Mitglieder">
-          <b-row class="form-group" align-h="end">
-            <b-col md="4">
-            <b-input-group>
-              <b-form-input></b-form-input>
-              <b-input-group-append>
-                <b-button variant="info">Suche</b-button>
-              </b-input-group-append>
-            </b-input-group>
-            </b-col>
-          </b-row>
-          <b-table
-            :busy="isBusy"
-            :items="items"
-            :fields="fields"
-            :primary-key="id"
-            :responsive="true"
-            hover
-            head-variant="dark"
-          ></b-table>
+    <b-row class="form-group justify-content-center">
+      <b-col cols="6">
+        <b-input-group>
+          <b-form-input size="lg"></b-form-input>
+          <b-input-group-append>
+            <b-button variant="info">Suche</b-button>
+          </b-input-group-append>
+        </b-input-group>
 
-          <b-pagination align="right" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
-        </b-card>
+        <b-list-group class="mt-1">
+          <b-list-group-item href="#" class="flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Paul Schmidt</h5>
+              <small>3 days ago</small>
+            </div>
+            <p class="mb-1">
+              Aschrottstraße 4, 34119 Kassel
+            </p>
+            <small>Fußball (Senioren)</small>
+          </b-list-group-item>
+          <b-list-group-item href="#" class="flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Daniel Matzdorf</h5>
+              <small class="text-muted">3 days ago</small>
+            </div>
+            <p class="mb-1">
+              Willi Allee irgendwo, 34117 Kassel
+            </p>
+            <small class="text-muted">Fußball (Senioren)</small>
+          </b-list-group-item>
+        </b-list-group>
       </b-col>
     </b-row>
   </div>
@@ -146,4 +152,3 @@ export default {
   }
 };
 </script>
-
