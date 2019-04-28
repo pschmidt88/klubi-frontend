@@ -2,6 +2,15 @@
   <div class="fadeIn animated">
     <b-form>
       <b-row>
+        <b-col class="sticky-top" style="top: 1rem; left; 1rem;">
+          <b-card>
+            <b-card-text>
+              <b-button variant="primary">Speichern</b-button>
+            </b-card-text>
+          </b-card>
+        </b-col>
+      </b-row>
+      <b-row>
         <b-col sm="8">
           <b-card
             title="Allgemein"
@@ -60,13 +69,21 @@
 
                       <b-col sm="4">
                         <b-form-group label="Monat" label-size="sm" label-align="center">
-                          <b-form-input v-model="birthday.month" placeholder="06" class="text-center"></b-form-input>
+                          <b-form-input
+                            v-model="birthday.month"
+                            placeholder="06"
+                            class="text-center"
+                          ></b-form-input>
                         </b-form-group>
                       </b-col>
 
                       <b-col sm="4">
                         <b-form-group label="Jahr" label-size="sm" label-align="center">
-                          <b-form-input v-model="birthday.year" placeholder="1988" class="text-center"></b-form-input>
+                          <b-form-input
+                            v-model="birthday.year"
+                            placeholder="1988"
+                            class="text-center"
+                          ></b-form-input>
                         </b-form-group>
                       </b-col>
                     </b-row>
@@ -76,41 +93,51 @@
             </b-card-text>
           </b-card>
 
-          <b-card title="Kontaktdaten" sub-title="Email, Telefon usw.">
+          <b-card title="Mitgliedschaft" sub-title="Erklärungstext zu Mitgliedschaft">
             <b-card-text class="mt-4">
               <b-row>
                 <b-col sm="6">
-                  <b-form-group label="Telefon / Mobil">
-                    <b-form-input placeholder="017176937196"></b-form-input>
+                  <b-form-group label="Mitglied seit">
+                    <b-form-input v-model="membership.since" type="date"></b-form-input>
                   </b-form-group>
                 </b-col>
+
                 <b-col sm="6">
-                  <b-form-group label="Email">
-                    <b-form-input placeholder="mustermann.m@example.com"></b-form-input>
+                  <b-form-group label="Status">
+                    <b-form-radio-group v-model="membership.status" class="mt-1">
+                      <b-form-radio value="active">Aktiv</b-form-radio>
+                      <b-form-radio value="Passive">Passiv</b-form-radio>
+                    </b-form-radio-group>
                   </b-form-group>
                 </b-col>
               </b-row>
             </b-card-text>
+
+            <b-card-title>Beiträge</b-card-title>
+            <b-card-sub-title>Beitragszuordnung</b-card-sub-title>
+
+            <b-card-text class="mt-4"></b-card-text>
           </b-card>
         </b-col>
         <b-col sm="4">
           <b-card title="Profilbild" sub-title="Hochladen eines Profilbilds">
             <b-card-text class="mt-4">
-              <b-img
-                src="/img/avatars/paul.jpg"
-                fluid
-                thumbnail
-                rounded
-                alt="admin@bootstrapmaster.com"
-              ></b-img>
+              <b-img src="/img/avatars/paul.jpg" fluid-grow thumbnail rounded></b-img>
             </b-card-text>
             <b-card-text>
-              <b-form-file
-                v-model="file"
-                :state="Boolean(file)"
-                placeholder="Neues Bild hochladen"
-                drop-placeholder="Drop file here..."
-              ></b-form-file>
+              <b-form-file placeholder="Neues Bild hochladen" drop-placeholder="Drop file here..."></b-form-file>
+            </b-card-text>
+          </b-card>
+
+          <b-card title="Kontaktdaten" sub-title="Email, Telefon usw.">
+            <b-card-text class="mt-4">
+              <b-form-group label="Telefon / Mobil">
+                <b-form-input placeholder="017176937196"></b-form-input>
+              </b-form-group>
+
+              <b-form-group label="Email">
+                <b-form-input placeholder="mustermann.m@example.com"></b-form-input>
+              </b-form-group>
             </b-card-text>
           </b-card>
         </b-col>
@@ -123,14 +150,19 @@
 export default {
   data() {
     return {
+      firstName: "Paul",
+      lastName: "Schmidt",
       address: {
-        street: null,
-        number: null
+        street: "Aschrottstraße",
+        number: "4",
+        postcode: "34119",
+        city: "Kassel"
       },
+      membership: {},
       birthday: {
-        day: null,
-        month: null,
-        year: null
+        day: "16",
+        month: "06",
+        year: "1988"
       }
     };
   }
