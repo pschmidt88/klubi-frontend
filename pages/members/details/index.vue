@@ -1,15 +1,6 @@
 <template>
-  <div class="fadeIn animated">
+  <div class="fadeIn animated">    
     <b-form>
-      <b-row>
-        <b-col class="sticky-top" style="top: 1rem; left; 1rem;">
-          <b-card>
-            <b-card-text>
-              <b-button variant="primary">Speichern</b-button>
-            </b-card-text>
-          </b-card>
-        </b-col>
-      </b-row>
       <b-row>
         <b-col sm="8">
           <b-card
@@ -32,13 +23,13 @@
               </b-row>
 
               <b-row>
-                <b-col sm="10">
+                <b-col sm="9">
                   <b-form-group label="Adresse">
                     <b-form-input v-model="address.street" placeholder="Musterstraße"></b-form-input>
                   </b-form-group>
                 </b-col>
-                <b-col sm="2">
-                  <b-form-group label="Hausnummer">
+                <b-col sm="3">
+                  <b-form-group label="Hausnr">
                     <b-form-input v-model="address.number" placeholder="5"></b-form-input>
                   </b-form-group>
                 </b-col>
@@ -58,16 +49,16 @@
               </b-row>
 
               <b-row>
-                <b-col sm="4">
+                <b-col cols="12" lg="6">
                   <b-form-group label="Geburtstag">
                     <b-row align-h="between">
-                      <b-col sm="4">
+                      <b-col>
                         <b-form-group label="Tag" label-size="sm" label-align="center">
                           <b-form-input v-model="birthday.day" placeholder="16" class="text-center"></b-form-input>
                         </b-form-group>
                       </b-col>
 
-                      <b-col sm="4">
+                      <b-col>
                         <b-form-group label="Monat" label-size="sm" label-align="center">
                           <b-form-input
                             v-model="birthday.month"
@@ -77,7 +68,7 @@
                         </b-form-group>
                       </b-col>
 
-                      <b-col sm="4">
+                      <b-col>
                         <b-form-group label="Jahr" label-size="sm" label-align="center">
                           <b-form-input
                             v-model="birthday.year"
@@ -112,11 +103,6 @@
                 </b-col>
               </b-row>
             </b-card-text>
-
-            <b-card-title>Beiträge</b-card-title>
-            <b-card-sub-title>Beitragszuordnung</b-card-sub-title>
-
-            <b-card-text class="mt-4"></b-card-text>
           </b-card>
         </b-col>
         <b-col sm="4">
@@ -142,6 +128,11 @@
           </b-card>
         </b-col>
       </b-row>
+      <b-card>
+        <b-card-text>
+          <b-button variant="primary">Speichern</b-button>
+        </b-card-text>
+      </b-card>
     </b-form>
   </div>
 </template>
@@ -168,3 +159,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.sticky-fix {
+  align-self: flex-start;
+}
+
+</style>
+
