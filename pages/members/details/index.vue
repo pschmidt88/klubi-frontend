@@ -1,5 +1,5 @@
 <template>
-  <div class="fadeIn animated">    
+  <div class="fadeIn animated">
     <b-form>
       <b-row>
         <b-col sm="8">
@@ -23,14 +23,20 @@
               </b-row>
 
               <b-row>
-                <b-col sm="9">
+                <b-col>
                   <b-form-group label="Adresse">
-                    <b-form-input v-model="address.street" placeholder="Musterstraße"></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col sm="3">
-                  <b-form-group label="Hausnr">
-                    <b-form-input v-model="address.number" placeholder="5"></b-form-input>
+                    <b-row>
+                      <b-col cols="9">
+                        <b-form-group label="Straße" label-size="sm">
+                          <b-form-input v-model="address.street" placeholder="Musterstraße"></b-form-input>
+                        </b-form-group>
+                      </b-col>
+                      <b-col cols="3">
+                        <b-form-group label="Hausnr." label-size="sm">
+                          <b-form-input v-model="address.number" placeholder="5"></b-form-input>
+                        </b-form-group>
+                      </b-col>
+                    </b-row>
                   </b-form-group>
                 </b-col>
               </b-row>
@@ -164,6 +170,5 @@ export default {
 .sticky-fix {
   align-self: flex-start;
 }
-
 </style>
 

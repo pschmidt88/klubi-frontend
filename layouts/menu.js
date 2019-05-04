@@ -21,7 +21,19 @@ export default {
     {
       name: 'Mitglieder',
       url: '/members',
-      icon: 'icon-people'
+      icon: 'icon-people',
+      children: [
+        {
+          name: "Mitgliedersuche",
+          url: '/members',
+          icon: 'icon-magnifier'
+        },
+        {
+          name: 'Neues Mitglied',
+          url: '/members/new',
+          icon: 'icon-user-follow'
+        }
+      ]
     },
     {
       name: 'Abteilungen',

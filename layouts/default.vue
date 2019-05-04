@@ -21,6 +21,11 @@ import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, B
 
 export default {
   name: 'full',
+  head: {
+    bodyAttrs: {
+      class: 'aside-menu-hidden'
+    }
+  },
   components: {
     AppHeader,
     Sidebar,
