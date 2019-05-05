@@ -1,15 +1,6 @@
 <template>
-  <div class="animated fadeIn">
-    <b-card header="Neues Mitglied hinzufügen">
-      <b-container>
-      <b-row class="mt-5">
-        <b-col>
-          <b-tabs v-model="tabIndex" pills justified content-class="border-transparent mt-5">
-            <b-tab title="Persönliche Daten" active>
-              <b-container fluid>
-                <b-row>
-                  <b-col>
-                    <b-card-title>Persönliche Daten</b-card-title>
+  <b-col>
+    <b-card-title>Persönliche Daten</b-card-title>
     <b-card-sub-title>Name, Anschrift und Kontaktdaten des neuen Mitglieds</b-card-sub-title>
 
     <b-card-text class="mt-5">
@@ -85,76 +76,12 @@
         </b-col>
       </b-row>
     </b-card-text>
-                  </b-col>
-                </b-row>
-
-                <b-row align-h="end">
-                  <b-button variant="primary" @click="nextTab">Weiter</b-button>
-                </b-row>
-              </b-container>
-            </b-tab>
-
-            <b-tab title="Abteilung">
-              <b-container>
-                <b-row>
-                  <Department/>
-                </b-row>
-                <b-row align-h="between">
-                  <b-button variant="outline-primary" @click="previousTab">Zurück</b-button>
-                  <b-button variant="primary" @click="nextTab">Weiter</b-button>
-                </b-row>
-              </b-container>
-            </b-tab>
-
-            <b-tab title="Mitgliedsbeitrag">
-              <b-container>
-                <b-row>
-                  <MembershipFee/>
-                </b-row>
-                <b-row align-h="between">
-                  <b-button variant="outline-primary" @click="previousTab">zurück</b-button>
-                  <b-button variant="primary" @click="createMember">Weiter</b-button>
-                </b-row>
-              </b-container>
-            </b-tab>
-          </b-tabs>
-        </b-col>
-      </b-row>
-      </b-container>
-    </b-card>
-  </div>
+  </b-col>
 </template>
 
 <script>
-import Department from "~/components/members/create/Department";
-import MembershipFee from "~/components/members/create/MembershipFee";
-import PersonalData from "~/components/members/create/PersonalData";
-
 export default {
-  components: {
-    Department,
-    MembershipFee,
-    PersonalData
-  },
-  data() {
-    return {
-      tabIndex: 0
-    };
-  },
-  methods: {
-    previousTab(event) {
-      this.tabIndex--;
-    },
-    nextTab(event) {
-      this.tabIndex++;
-    },
-    createMember() {}
-  }
+  name: "personal-data-tab-content"
 };
 </script>
 
-<style>
-.border-transparent {
-  border: 0;
-}
-</style>
