@@ -7,7 +7,7 @@
  */
 
 // Override Boostrap variables
-@import "bootstrap-variables";
+//@import "bootstrap-variables";
 
 // Import Bootstrap source files
 @import "node_modules/bootstrap/scss/bootstrap";
@@ -16,7 +16,7 @@
 @import "core-variables";
 
 // Import core styles
-@import "core/core";
+@import "elisyam/modern";
 
 // Custom styles
 @import "custom";

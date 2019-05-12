@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import nav from './menu'
-import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '~/components/'
+//import nav from './menu'
+//import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '~/components/'
 
 export default {
   name: 'full',
@@ -27,11 +27,11 @@ export default {
     }
   },
   components: {
-    AppHeader,
-    Sidebar,
-    AppAside,
-    AppFooter,
-    Breadcrumb
+    // AppHeader,
+    // Sidebar,
+    // AppAside,
+    // AppFooter,
+    // Breadcrumb
   },
   data () {
     return {

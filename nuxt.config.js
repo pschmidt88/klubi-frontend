@@ -22,7 +22,13 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Unofficial Nuxt + CoreUI project, free to use boilerplate for every need.' }
     ],
     link: [
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/img/apple-touch-icon.png' },
+      { rel: 'icon', sizes: '32x32', href: '/img/favicon-32x32.png' },
+      { rel: 'icon', sizes: '16x16', href: '/img/favicon-16x16.png' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: 'https://unpkg.com/ionicons@4.5.5/dist/ionicons.js', body: true }
     ]
   },
 
@@ -36,11 +42,14 @@ module.exports = {
    */
   css: [
     /* Import Font Awesome Icons Set */
-    '~/node_modules/flag-icon-css/css/flag-icon.min.css',
+    //'~/node_modules/flag-icon-css/css/flag-icon.min.css',
     /* Import Font Awesome Icons Set */
-    '~/node_modules/font-awesome/css/font-awesome.min.css',
+    //'~/node_modules/font-awesome/css/font-awesome.min.css',
+    '~/node_modules/line-awesome/dist/css/line-awesome.min.css',
+    '~/node_modules/ionicons/scss/ionicons',
+    //'~/node_modules/themify-icons/themify-icons/_themify-icons',
     /* Import Simple Line Icons Set */
-    '~/node_modules/simple-line-icons/css/simple-line-icons.css',
+    //'~/node_modules/simple-line-icons/css/simple-line-icons.css',
     /* Import Bootstrap Vue Styles */
     '~/node_modules/bootstrap-vue/dist/bootstrap-vue.css',
     /* Import Core SCSS */
@@ -61,13 +70,18 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     // Doc: https://github.com/bootstrap-vue/bootstrap-vue
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    'nuxt-webfontloader'
   ],
   /*
   ** Axios module configuration
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },
+
+  bootstrapVue: {
+    bootstrapCss: false
   },
 
   /*
@@ -77,6 +91,11 @@ module.exports = {
     scss: './assets/scss/style.scss'
   },
 
+  webfontloader: {
+    google: {
+      families: ["Montserrat:400,500,600,700","Noto+Sans:400,700"]
+    }
+  },
   /*
   ** Build configuration
   */
