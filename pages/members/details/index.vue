@@ -166,9 +166,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.sticky-fix {
-  align-self: flex-start;
-}
-</style>
-
