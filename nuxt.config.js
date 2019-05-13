@@ -26,9 +26,6 @@ module.exports = {
       { rel: 'icon', sizes: '32x32', href: '/img/favicon-32x32.png' },
       { rel: 'icon', sizes: '16x16', href: '/img/favicon-16x16.png' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ],
-    script: [
-      { src: 'https://unpkg.com/ionicons@4.5.5/dist/ionicons.js', body: true }
     ]
   },
 
@@ -41,17 +38,8 @@ module.exports = {
    * Import CSS
    */
   css: [
-    /* Import Font Awesome Icons Set */
-    //'~/node_modules/flag-icon-css/css/flag-icon.min.css',
-    /* Import Font Awesome Icons Set */
-    //'~/node_modules/font-awesome/css/font-awesome.min.css',
     '~/node_modules/line-awesome/dist/css/line-awesome.min.css',
-    '~/node_modules/ionicons/scss/ionicons',
-    //'~/node_modules/themify-icons/themify-icons/_themify-icons',
-    /* Import Simple Line Icons Set */
-    //'~/node_modules/simple-line-icons/css/simple-line-icons.css',
-    /* Import Bootstrap Vue Styles */
-    '~/node_modules/bootstrap-vue/dist/bootstrap-vue.css',
+    // '~/node_modules/ionicons/scss/ionicons',
     /* Import Core SCSS */
     { src: '~/assets/scss/style.scss', lang: 'scss' }
   ],
@@ -60,7 +48,6 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    
   ],
 
   /*
@@ -81,7 +68,8 @@ module.exports = {
   },
 
   bootstrapVue: {
-    bootstrapCss: false
+    bootstrapCss: false,
+    bootstrapVueCss: false
   },
 
   /*
@@ -96,6 +84,7 @@ module.exports = {
       families: ["Montserrat:400,500,600,700","Noto+Sans:400,700"]
     }
   },
+
   /*
   ** Build configuration
   */
