@@ -15,7 +15,7 @@
             <b-row class="flex-row" align-h="center">
               <b-col cols="10">
                 <form-wizard>
-                  <form-wizard-tab-content tabId="personal-data" title="Allgemeines zur Person">
+                  <form-wizard-tab-content tabId="personal-data" title="Persönliche Daten & Kontakt">
                     <PersonalData />
                   </form-wizard-tab-content>
                   <form-wizard-tab-content tabId="departments" title="Abteilungen">
