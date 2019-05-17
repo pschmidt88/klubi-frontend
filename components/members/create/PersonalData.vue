@@ -1,10 +1,5 @@
 <template>
 <div>
-
-  <div class="section-title mt-5 mb-5">
-    <h4>Allgemeines zur Person</h4>
-  </div>
-
   <b-row>
     <b-col>
       <b-form-group label-for="inputFirstName" label="Vorname" label-class="form-control-label">
@@ -34,39 +29,56 @@
   <b-row>
     <b-col sm="4">
       <b-form-group label-class="form-control-label" label-for="inputPostcode" label="Postleitzahl">
-
+        <b-form-input placeholder="12345" id="inputPostcode" />
       </b-form-group>
-      <label for="postcode" class="form-control-label">Postleitzahl</label>
-      <b-form-input placeholder="12345" id="postcode"></b-form-input>
     </b-col>
+
     <b-col sm="8">
-      <label for="town" class="form-control-label">Wohnort</label>
-      <b-form-input placeholder="Musterstadt" id="town"></b-form-input>
+      <b-form-group label-class="form-control-label" label-for="inputCity" label="Wohnort">
+        <b-form-input placeholder="Musterstadt" id="inputCity" />
+      </b-form-group>
+
     </b-col>
   </b-row>
 
   <b-row>
     <b-col cols="12" lg="6">
-      <b-form-group label="Geburtstag">
+      <b-form-group label="Geburtstag" label-class="form-control-label">
         <b-row align-h="between">
           <b-col>
-            <b-form-group label="Tag" label-size="sm" label-align="center">
-              <b-form-input placeholder="16" class="text-center"></b-form-input>
+            <b-form-group label-for="inputDateOfBirthDay" label="Tag" label-class="form-control-label" label-size="sm" label-align="center">
+              <b-form-input placeholder="16" class="text-center" id="inputDateOfBirthDay"></b-form-input>
             </b-form-group>
           </b-col>
 
           <b-col>
-            <b-form-group label="Monat" label-size="sm" label-align="center">
-              <b-form-input placeholder="06" class="text-center"></b-form-input>
+            <b-form-group label="Monat" label-for="inputDateOfBirhtMonth" label-size="sm" label-class="form-control-label" label-align="center">
+              <b-form-input placeholder="06" class="text-center" id="inputDateOfBirthMonth"/>
             </b-form-group>
           </b-col>
 
           <b-col>
-            <b-form-group label="Jahr" label-size="sm" label-align="center">
-              <b-form-input placeholder="1988" class="text-center"></b-form-input>
+            <b-form-group label="Jahr" label-size="sm" label-for="inputDateOfBirthYear" label-class="form-control-label" label-align="center">
+              <b-form-input placeholder="1988" class="text-center" id="inputDateOfBirthYear" />
             </b-form-group>
           </b-col>
         </b-row>
+      </b-form-group>
+    </b-col>
+  </b-row>
+
+  <b-row>
+    <b-col cols="6">
+      <b-form-group label="Telefon" label-class="form-control-label" label-for="inputPhoneNumber">
+          <b-form-input placeholder="0561123456" id="inputPhoneNumber"></b-form-input>
+      </b-form-group>
+    </b-col>
+  </b-row>
+
+  <b-row>
+    <b-col cols="6">
+      <b-form-group label="Email" label-class="form-control-label" label-for="inputEmail">
+        <b-form-input placeholder="me@example.com" id="inputEmail" />
       </b-form-group>
     </b-col>
   </b-row>
