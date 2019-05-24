@@ -35,9 +35,9 @@
 </template>
 
 <script>
-  import Department from "~/components/members/create/Department";
-  import MembershipFee from "~/components/members/create/MembershipFee";
-  import PersonalData from "~/components/members/create/PersonalData";
+  import Department from "~/components/members/create/DepartmentsTabContent";
+  import MembershipFee from "~/components/members/create/MembershipFeeTabContent";
+  import PersonalData from "~/components/members/create/PersonalDataTabContent";
   import FormWizard from '~/components/form/FormWizard';
   import FormWizardTabContent from '~/components/form/FormWizardTabContent';
 
