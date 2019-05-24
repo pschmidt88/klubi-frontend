@@ -1,7 +1,6 @@
 <template>
   <b-container fluid>
     <b-card
-      header="Zu Abteilung hinzufügen"
       class="mb-5"
       border-variant="light"
     >
@@ -12,7 +11,7 @@
       </department-row>
     </b-card>
 
-    <b-card header="Verfügbare Abteilungen" class="mt-5" border-variant="light">
+    <b-card header="Weitere Abteilungen" class="mt-5" border-variant="light">
       <department-row name="Gymnastik" action="add" action-label="Hinzufügen">
         <template v-slot:icon>
           <icon-gymnastics/>

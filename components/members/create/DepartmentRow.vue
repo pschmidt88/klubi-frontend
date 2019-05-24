@@ -17,6 +17,7 @@
         <b-col cols="12">
           <label class="form-control-label">Mitgliedstatus</label>
         </b-col>
+
         <b-col cols="6">
           <div class="custom-control custom-radio styled-radio mb-3">
             <input
@@ -64,7 +65,10 @@ export default {
   name: "DepartmentRow",
   props: {
     name: String,
-    action: String,
+    action: {
+      type: String,
+      default: 'add',
+    },
     'action-label': {
       type: String,
       default: 'Hinzufügen'
@@ -73,6 +77,7 @@ export default {
   data () {
     return {
       id: uuid4(),
+      memberStatus: this.action == 'remove' ? 'active' : null,
       entry_date: new Date().toISOString().split('T')[0]
     }
   },
