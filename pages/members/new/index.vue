@@ -15,7 +15,7 @@
             <b-row class="flex-row" align-h="center">
               <b-col cols="10">
                 <form-wizard>
-                  <form-wizard-tab-content tabId="personal-data" title="Persönliche Daten & Kontakt">
+                  <form-wizard-tab-content tabId="personal-data" title="Persönliche Daten &amp; Kontakt">
                     <PersonalData />
                   </form-wizard-tab-content>
                   <form-wizard-tab-content tabId="departments" title="Abteilungen">
@@ -23,6 +23,9 @@
                   </form-wizard-tab-content>
                   <form-wizard-tab-content tabId="membership-fee" title="Mitgliedsbeitrag / Zahlungsdaten">
                     <MembershipFee />
+                  </form-wizard-tab-content>
+                  <form-wizard-tab-content tabId="summary" title="Zusammenfassung">
+                    Zusammenfassung hier dann so, ne?!
                   </form-wizard-tab-content>
                 </form-wizard>
               </b-col>
