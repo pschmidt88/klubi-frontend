@@ -19,7 +19,7 @@ Author: SAEROX
   02.06) Tooltip
   02.07) Notifications
   02.08) Datepicker
-  02.09) Hover 
+  02.09) Hover
 03) Layout
   03.01) Dashboard
   03.02) Header
@@ -3593,11 +3593,10 @@ section.forms form span, section.forms form small {
 .step-wizard li {
   display: inline-block;
   text-align: center;
-  width: 30%;
+  width: 25%;
 }
 
 .step-wizard li .step {
-  position: absolute;
   display: inline-block;
   font-size: 1.2rem;
   line-height: 42px;
@@ -3613,7 +3612,7 @@ section.forms form span, section.forms form small {
 .step-wizard li .title {
   position: absolute;
   width: 100%;
-  left: 28px;
+  left: 0px;
   padding-top: 60px;
   color: rgba(52, 40, 104, 0.4);
   transition: color 0.6s ease;
@@ -6523,7 +6522,7 @@ section.forms form span, section.forms form small {
     .logo-big {
       width: 170px;
     }
-  
+
     .logo-small {
       width: 70px;
     }
@@ -6588,12 +6587,12 @@ section.forms form span, section.forms form small {
     border: none;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
   }
-  
+
   nav.navbar .dropdown-menu.notification .notifications-header {
     position: relative;
     padding: 0;
   }
-  
+
   nav.navbar .dropdown-menu.notification .notifications-header .notifications-overlay {
     background: rgba(93, 83, 134, 0.8);
     width: 100%;
@@ -6603,11 +6602,11 @@ section.forms form span, section.forms form small {
     left: 0;
     border-radius: 4px 4px 0 0;
   }
-  
+
   nav.navbar .dropdown-menu.notification .notifications-header img {
     border-radius: 4px 4px 0 0;
   }
-  
+
   nav.navbar .dropdown-menu.notification .notifications-header .title {
     color: #fff;
     font-size: 1.2rem;
@@ -6619,41 +6618,41 @@ section.forms form span, section.forms form small {
     left: 0;
     z-index: 1;
   }
-  
+
   nav.navbar .dropdown-menu.notification .notifications-header-2 {
     position: relative;
     padding: 1.2rem 0;
     border-bottom: 0.07rem solid #eee;
   }
-  
+
   nav.navbar .dropdown-menu.notification .notifications-header-2 .title {
     color: #5d5386;
     font-size: 1.2rem;
     text-align: center;
   }
-  
+
   nav.navbar .dropdown-menu.notification li a:hover i {
     color: #5d5386;
     transition: all 0.4s ease;
   }
-  
+
   .dropdown-menu.notification .message-icon {
     display: table-cell;
     vertical-align: bottom;
   }
-  
+
   .dropdown-menu.notification .message-icon i {
     color: #aea9c3;
     font-size: 2.8rem;
   }
-  
+
   .dropdown-menu.notification .message-body {
     display: table-cell;
     vertical-align: top;
     padding: 0.7rem 0 0 1rem;
     color:#98a8b4;
   }
-  
+
   .dropdown-menu.notification .message-body-heading {
     font-size: 0.85rem;
     font-weight: 600;
@@ -6661,7 +6660,7 @@ section.forms form span, section.forms form small {
     margin: 0;
     padding: 0;
   }
-  
+
   .dropdown-menu.notification .message-body span.date {
     color:#98a8b4;
     font-size: 0.7rem;
@@ -6669,7 +6668,7 @@ section.forms form span, section.forms form small {
     margin: 0;
     padding: 0;
   }
-  
+
   nav.navbar .dropdown-menu a {
     padding: 1rem 0 1rem 1rem;
     font-size: 0.85rem;
@@ -6678,11 +6677,11 @@ section.forms form span, section.forms form small {
     position: relative;
     z-index: 2;
   }
-  
+
   nav.navbar .dropdown-menu a:hover {
     color: #5d5386;
   }
-  
+
   nav.navbar .dropdown-menu a.all-notifications {
     color: #5d5386;
     font-size: 0.9rem;
@@ -6691,91 +6690,91 @@ section.forms form span, section.forms form small {
     border-top: 0.07rem solid rgba(0, 0, 0, 0.05);
     background: transparent;
   }
-  
+
   nav.navbar .dropdown-menu a.all-notifications:hover {
     color: #e76c90;
   }
-  
+
   nav.navbar .dropdown-menu a small {
     color: #98a8b4;
   }
-  
+
   nav.navbar .dropdown-menu h3 {
     font-weight: 500;
   }
-  
+
   nav.navbar .dropdown-menu.dropdown-grid {
     min-width: 300px;
   }
-  
+
   nav.navbar .dropdown-menu.dropdown-grid li {
     width: 50%;
     float: left;
     text-align: center;
   }
-  
+
   nav.navbar .dropdown-menu.dropdown-grid a {
     padding: 25px 15px;
     border-bottom: 0 none;
     position: relative;
   }
-  
+
   nav.navbar .dropdown-menu.dropdown-grid a:hover .icon {
     color: #5d5386;
   }
-  
+
   nav.navbar .dropdown-menu .dropdown-grid span {
     position: absolute;
     left: 10px;
     top: 9px;
     border: 3px solid #fff;
   }
-  
+
   nav.navbar .dropdown-menu.dropdown-grid .icon {
     font-size: 2.4rem;
     color: #98a8b4;
   }
-  
+
   nav.navbar .dropdown-menu.dropdown-grid .title {
     font-size: 1rem;
     margin-top: -5px;
   }
-  
+
   nav.navbar .avatar {
     width: 50px;
     height: 50px;
     margin: 0 auto;
     border: 0.2rem solid #fff;
   }
-  
+
   nav.navbar .user-size.dropdown-menu {
     min-width: 250px;
     overflow: hidden;
   }
-  
+
   nav.navbar .user-size.dropdown-menu a {
     font-weight: 600;
     padding: 0.5rem 1.4rem;
     border-bottom: 0 none;
     position: relative;
   }
-  
+
   nav.navbar .user-size.dropdown-menu a:hover {
     background: none;
   }
-  
+
   nav.navbar .user-size.dropdown-menu .separator {
     margin: 1.4rem 0;
     border-bottom: 0.07rem solid rgba(0, 0, 0, 0.05)!important;
   }
-  
+
   nav.navbar .user-size.dropdown-menu li.welcome {
     width: 150px;
     margin: 0 auto;
     padding: 1.4rem 0;
     position: relative;
   }
-  
+
   nav.navbar .user-size.dropdown-menu li.welcome a.edit-profil {
     position: absolute;
     background: #fff;
@@ -6790,14 +6789,14 @@ section.forms form span, section.forms form small {
     line-height: 50px;
     padding: 0;
   }
-  
+
   nav.navbar .user-size.dropdown-menu li.welcome img {
     display: block;
     width: 80px;
     height: 80px;
     margin: 0 auto 10px;
   }
-  
+
   nav.navbar .user-size.dropdown-menu h2 {
     color: #5d5386;
     font-size: 1.2rem;
@@ -6805,21 +6804,21 @@ section.forms form span, section.forms form small {
     text-align: center;
     margin: 0;
   }
-  
+
   nav.navbar .user-size.dropdown-menu a h6 {
     transition: all 0.4s ease;
   }
-  
+
   nav.navbar .user-size.dropdown-menu a:hover h6 {
     margin-left: 5px;
   }
-  
+
   nav.navbar .dropdown-menu .user-body h6 {
     font-size: 1rem;
     display: inline-block;
     margin-bottom: 0;
   }
-  
+
   nav.navbar .user-size.dropdown-menu a.logout {
     background: #5d5386;
     width: 70px;
@@ -6834,7 +6833,7 @@ section.forms form span, section.forms form small {
     font-size: 1.8rem;
     margin: 10px auto 0;
   }
-  
+
   nav.navbar .user-size.dropdown-menu a.logout:hover {
     background: #e76c90;
   }
@@ -6868,7 +6867,7 @@ section.forms form span, section.forms form small {
     position: relative;
     width: 30px;
   }
-  
+
   nav.navbar .menu-btn span:last-of-type {
     position: relative;
     width: 15px;
@@ -6879,21 +6878,21 @@ section.forms form span, section.forms form small {
     margin-top: 0;
     transition: all 0.6s;
   }
-  
+
   nav.navbar .menu-btn.active span:first-of-type {
     transform: translateX(10px);
     margin-top: 0;
   }
-  
+
   nav.navbar .menu-btn.active span:nth-of-type(2) {
     transform: none;
   }
-  
+
   nav.navbar .menu-btn span:last-of-type {
     margin-top: 0;
     transition: all 0.3s;
   }
-  
+
   nav.navbar .menu-btn.active span:last-of-type {
     transform: translateX(15px);
     margin-top: 0;
@@ -6902,7 +6901,7 @@ section.forms form span, section.forms form small {
   nav.navbar .nav-item > a.logout i {
     margin-left: 10px;
   }
-  
+
   nav.navbar .search-box {
     width: 100%;
     height: 100%;
@@ -6915,7 +6914,7 @@ section.forms form span, section.forms form small {
     border-radius: 0;
     display: none;
   }
-  
+
   nav.navbar .search-box .dismiss {
     position: absolute;
     top: 50%;
@@ -6927,18 +6926,18 @@ section.forms form span, section.forms form small {
     font-size: 1.2rem;
     color: #5d5386;
   }
-  
+
   nav.navbar .search-box form {
     height: 100%;
   }
-  
+
   nav.navbar .search-box form input {
     height: 100%;
     border: none;
     padding: 20px;
     color: #5d5386;
   }
-  
+
   nav.navbar .search-box form input::placeholder {
     color: #2a2c3d;
     font-weight: 500;
