@@ -17,12 +17,20 @@
         <template v-if="isDirectDebit">
           <b-row>
             <b-col>
-              <b-form-group label="Vorname" label-for="input-account-first-name" label-class="form-control-label">
+              <b-form-group
+                label="Vorname"
+                label-for="input-account-first-name"
+                label-class="form-control-label"
+              >
                 <b-form-input v-model="accountFirstName"></b-form-input>
               </b-form-group>
             </b-col>
             <b-col>
-              <b-form-group label="Nachname" label-for="input-account-last-name" label-class="form-control-label">
+              <b-form-group
+                label="Nachname"
+                label-for="input-account-last-name"
+                label-class="form-control-label"
+              >
                 <b-form-input v-model="accountLastName"></b-form-input>
               </b-form-group>
             </b-col>
@@ -33,6 +41,35 @@
                 <b-form-input v-model="iban" v-mask="'AA## #### #### #### #### ##'"></b-form-input>
               </b-form-group>
             </b-col>
+
+            <b-col>
+              <b-form-group label="BIC" label-for="input-bic" label-class="form-control-label">
+                <b-form-input v-model="bic"></b-form-input>
+              </b-form-group>
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col>
+              <b-form-group
+                label="Bankinstitut"
+                label-for="readonly-input-bankname"
+                label-class="form-control-label"
+              >
+                <b-form-input readonly></b-form-input>
+              </b-form-group>
+            </b-col>
+          </b-row>
+
+          <b-row>
+            <b-col>
+              <b-form-group
+                label="SEPA Lastschriftmandat"
+                label-for="file-input-sepa-direct-debit-mandate"
+                label-class="form-control-label"
+              >
+                <b-form-file placeholder="Dokument auswählen..."></b-form-file>
+              </b-form-group>
+            </b-col>
           </b-row>
         </template>
       </b-col>
@@ -41,7 +78,7 @@
 </template>
 
 <script>
-import {mask} from 'vue-the-mask'
+import { mask } from "vue-the-mask";
 
 export default {
   name: "membership-fee-tab-content",
