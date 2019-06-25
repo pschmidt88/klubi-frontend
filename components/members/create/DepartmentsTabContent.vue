@@ -2,8 +2,7 @@
   <b-container fluid>
     <b-card
       class="mb-5"
-      border-variant="light"
-    >
+      title="Abteilungsmitgliedschaften">
       <department-row name="Fußball (Senioren)" action="remove" action-label="Entfernen">
         <template v-slot:icon>
           <icon-football/>
@@ -11,7 +10,10 @@
       </department-row>
     </b-card>
 
-    <b-card header="Weitere Abteilungen" class="mt-5" border-variant="light">
+    <b-card
+      title="Weitere Abteilungen"
+      class="mt-5"
+      border-variant="light">
       <department-row name="Gymnastik" action="add" action-label="Hinzufügen">
         <template v-slot:icon>
           <icon-gymnastics/>
