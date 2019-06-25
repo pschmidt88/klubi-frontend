@@ -21,6 +21,7 @@
     "express": "^4.16.4",
     "ionicons": "^2.0.1",
     "line-awesome": "github:icons8/line-awesome",
+    "lodash": "^4.17.11",
     "nuxt": "^2.6.2",
     "nuxt-webfontloader": "^1.0.0",
     "themify-icons": "^1.0.0",

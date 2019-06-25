@@ -1,7 +1,7 @@
 <template>
   <b-container fluid>
     <b-row align-h="center">
-      <b-col cols="10">
+      <b-col cols="8">
         <b-row>
           <b-col>
             <b-form-group
@@ -25,6 +25,8 @@
                 <b-form-input v-model="accountFirstName"></b-form-input>
               </b-form-group>
             </b-col>
+          </b-row>
+          <b-row>
             <b-col>
               <b-form-group
                 label="Nachname"
@@ -41,7 +43,8 @@
                 <b-form-input v-model="iban" v-mask="'AA## #### #### #### #### ##'"></b-form-input>
               </b-form-group>
             </b-col>
-
+          </b-row>
+          <b-row>
             <b-col>
               <b-form-group label="BIC" label-for="input-bic" label-class="form-control-label">
                 <b-form-input v-model="bic"></b-form-input>
