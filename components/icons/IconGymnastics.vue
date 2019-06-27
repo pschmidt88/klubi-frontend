@@ -1,4 +1,5 @@
 <template>
+  <div style="width: 64px;">
   <svg
     version="1.1"
     id="Capa_1"
@@ -41,4 +42,5 @@
     <g></g>
     <g></g>
   </svg>
+  </div>
 </template>

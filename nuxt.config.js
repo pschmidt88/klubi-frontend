@@ -48,6 +48,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: "~/plugins/icons.js" }
   ],
 
   /*
@@ -104,7 +105,7 @@ module.exports = {
         const vueLoader = config.module.rules.find(
           ({loader}) => loader === 'vue-loader')
         const { options: {loaders} } = vueLoader || { options: {} }
-        
+
         if (loaders) {
           for (const loader of Object.values(loaders)) {
             changeLoaderOptions(Array.isArray(loader) ? loader : [loader])
