@@ -6,7 +6,11 @@
 
     <b-row align-h="center">
       <b-col cols="6">
-        <b-card title="Verfügbare Abteilungen" class="mt-5" border-variant="light">
+        <b-card
+          title="Verfügbare Abteilungen"
+          class="mt-5"
+          border-variant="light"
+        >
           <department-row
             v-for="department in available_departments"
             :key="department.name"
@@ -31,7 +35,7 @@ import IconRunning from "~/components/icons/IconRunning";
 import IconTaekwondo from "~/components/icons/IconTaekwondo";
 
 export default {
-  name: "department-tab-content",
+  name: "DepartmentTabContent",
   components: {
     DepartmentRow,
     IconGymnastics,

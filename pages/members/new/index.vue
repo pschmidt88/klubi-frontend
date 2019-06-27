@@ -15,16 +15,16 @@
             <b-row class="flex-row" align-h="center">
               <b-col cols="10">
                 <form-wizard>
-                  <form-wizard-tab-content tabId="personal-data" title="Persönliche Daten &amp; Kontakt">
+                  <form-wizard-tab-content tab-id="personal-data" title="Persönliche Daten &amp; Kontakt">
                     <PersonalData />
                   </form-wizard-tab-content>
-                  <form-wizard-tab-content tabId="departments" title="Abteilungen">
+                  <form-wizard-tab-content tab-id="departments" title="Abteilungen">
                     <Department />
                   </form-wizard-tab-content>
-                  <form-wizard-tab-content tabId="membership-fee" title="Mitgliedsbeitrag / Zahlungsdaten">
+                  <form-wizard-tab-content tab-id="membership-fee" title="Mitgliedsbeitrag / Zahlungsdaten">
                     <MembershipFee />
                   </form-wizard-tab-content>
-                  <form-wizard-tab-content tabId="summary" title="Zusammenfassung">
+                  <form-wizard-tab-content tab-id="summary" title="Zusammenfassung">
                     <Summary />
                   </form-wizard-tab-content>
                 </form-wizard>

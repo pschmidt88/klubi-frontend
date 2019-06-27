@@ -2,7 +2,7 @@
   <div class="app">
     <AppHeader/>
     <div class="app-body">
-      <Sidebar :navItems="nav"/>
+      <Sidebar :nav-items="nav"/>
       <main class="main">
         <breadcrumb :list="list"/>
         <div class="container-fluid">
@@ -20,7 +20,7 @@
 //import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '~/components/'
 
 export default {
-  name: 'full',
+  name: 'Full',
   head: {
     bodyAttrs: {
       class: 'aside-menu-hidden'
@@ -35,7 +35,7 @@ export default {
   },
   data () {
     return {
-      nav: nav.items
+      nav: []
     }
   },
   computed: {

@@ -3,16 +3,20 @@
     <div class="step-container">
       <div class="step-wizard">
         <div class="progress">
-          <div class="progressbar" :style="progressBarStyle"></div>
+          <div :style="progressBarStyle" class="progressbar"></div>
         </div>
         <ul class="nav">
-          <slot name="step" v-for="(tab, index) in tabs"
-                :tab="tab"
-                :index="index">
+          <slot
+            v-for="(tab, index) in tabs"
+            :tab="tab"
+            :index="index"
+            name="step"
+          >
             <form-wizard-step
               :tab="tab"
               :index="index"
-              @click.native="navigateToTab(index)">
+              @click.native="navigateToTab(index)"
+            >
             </form-wizard-step>
           </slot>
         </ul>
@@ -24,94 +28,97 @@
 
     <b-row class="wizard-footer">
       <b-col align-self="start" class="text-left">
-        <b-button v-if="displayPrevButton" @click="previousTab">Zurück</b-button>
+        <b-button v-if="displayPrevButton" @click="previousTab"
+          >Zurück</b-button
+        >
       </b-col>
 
       <b-col align-self="end" class="text-right">
-        <b-button right variant="primary" v-if="isLastStep">Fertig</b-button>
-        <b-button right variant="primary" v-else @click="nextTab">Nächster Schritt</b-button>
+        <b-button v-if="isLastStep" right variant="primary">Fertig</b-button>
+        <b-button v-else right variant="primary" @click="nextTab"
+          >Nächster Schritt</b-button
+        >
       </b-col>
     </b-row>
   </div>
 </template>
 
 <script>
-  import FormWizardStep from "./FormWizardStep";
+import FormWizardStep from "./FormWizardStep";
 
-  export default {
-    name: "FormWizard",
-    components: {
-      FormWizardStep
-    },
-    data() {
+export default {
+  name: "FormWizard",
+  components: {
+    FormWizardStep
+  },
+  data() {
+    return {
+      activeTabIndex: 0,
+      tabs: []
+    };
+  },
+  provide() {
+    return {
+      addTab: this.addTab,
+      removeTab: this.removeTab
+    };
+  },
+  computed: {
+    progressBarStyle() {
       return {
-        activeTabIndex: 0,
-        tabs: []
-      }
+        width: `${this.progress}%`
+      };
     },
-    provide() {
-      return {
-        addTab: this.addTab,
-        removeTab: this.removeTab
-      }
+    tabCount() {
+      return this.tabs.length;
     },
-    methods: {
-      addTab(item) {
-        let index = this.$slots.default.indexOf(item.$vnode)
-        this.tabs.splice(index, 0, item)
-      },
-      removeTab(item) {
-        console.log(`removing tab... ${item}`)
-      },
-      navigateToTab(index) {
-        this.changeTab(this.activeTabIndex, index)
-      },
-      changeTab(oldIndex, newIndex) {
-        let oldTab = this.tabs[oldIndex]
-        let newTab = this.tabs[newIndex]
+    maxTabSize() {
+      return this.tabs.length - 1;
+    },
+    progress() {
+      let stepPercentage = (1 / this.tabCount) * 100;
+      return (this.activeTabIndex + 1) * stepPercentage;
+    },
+    displayPrevButton() {
+      return this.activeTabIndex !== 0;
+    },
+    isLastStep() {
+      return this.activeTabIndex === this.maxTabSize;
+    }
+  },
+  mounted() {
+    this.navigateToTab(this.activeTabIndex);
+  },
+  methods: {
+    addTab(item) {
+      let index = this.$slots.default.indexOf(item.$vnode);
+      this.tabs.splice(index, 0, item);
+    },
+    removeTab() {
+    },
+    navigateToTab(index) {
+      this.changeTab(this.activeTabIndex, index);
+    },
+    changeTab(oldIndex, newIndex) {
+      let oldTab = this.tabs[oldIndex];
+      let newTab = this.tabs[newIndex];
 
-        if (oldTab) {
-          oldTab.active = false
-        }
-
-        if (newTab) {
-          newTab.active = true
-        }
-
-        this.activeTabIndex = newIndex
-      },
-      nextTab () {
-        this.changeTab(this.activeTabIndex, this.activeTabIndex + 1)
-      },
-      previousTab () {
-        this.changeTab(this.activeTabIndex, this.activeTabIndex - 1)
+      if (oldTab) {
+        oldTab.active = false;
       }
-    },
-    computed: {
-      progressBarStyle() {
-        return {
-          width: `${this.progress}%`
-        }
-      },
-      tabCount() {
-        return this.tabs.length
-      },
-      maxTabSize() {
-        return this.tabs.length - 1
-      },
-      progress() {
-        let stepPercentage = 1 / this.tabCount * 100
-        return (this.activeTabIndex+1) * stepPercentage
-      },
-      displayPrevButton () {
-        return this.activeTabIndex !== 0
-      },
-      isLastStep () {
-        return this.activeTabIndex === this.maxTabSize
+
+      if (newTab) {
+        newTab.active = true;
       }
+
+      this.activeTabIndex = newIndex;
     },
-    mounted () {
-      this.navigateToTab(this.activeTabIndex)
+    nextTab() {
+      this.changeTab(this.activeTabIndex, this.activeTabIndex + 1);
+    },
+    previousTab() {
+      this.changeTab(this.activeTabIndex, this.activeTabIndex - 1);
     }
   }
+};
 </script>

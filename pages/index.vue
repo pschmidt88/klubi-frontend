@@ -457,7 +457,7 @@
                   <tr>
                     <th>
                       <div class="styled-checkbox mt-2">
-                        <input type="checkbox" name="check-all" id="check-all">
+                        <input id="check-all" type="checkbox" name="check-all">
                         <label for="check-all"></label>
                       </div>
                     </th>
@@ -476,7 +476,7 @@
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input type="checkbox" name="cb1" id="cb1">
+                        <input id="cb1" type="checkbox" name="cb1">
                         <label for="cb1"></label>
                       </div>
                     </td>
@@ -504,7 +504,7 @@
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input type="checkbox" name="cb2" id="cb2">
+                        <input id="cb2" type="checkbox" name="cb2">
                         <label for="cb2"></label>
                       </div>
                     </td>
@@ -532,7 +532,7 @@
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input type="checkbox" name="cb3" id="cb3">
+                        <input id="cb3" type="checkbox" name="cb3">
                         <label for="cb3"></label>
                       </div>
                     </td>
@@ -560,7 +560,7 @@
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input type="checkbox" name="cb4" id="cb4">
+                        <input id="cb4" type="checkbox" name="cb4">
                         <label for="cb4"></label>
                       </div>
                     </td>
@@ -588,7 +588,7 @@
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input type="checkbox" name="cb5" id="cb5">
+                        <input id="cb5" type="checkbox" name="cb5">
                         <label for="cb5"></label>
                       </div>
                     </td>
@@ -616,7 +616,7 @@
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input type="checkbox" name="cb6" id="cb6">
+                        <input id="cb6" type="checkbox" name="cb6">
                         <label for="cb6"></label>
                       </div>
                     </td>
@@ -644,7 +644,7 @@
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input type="checkbox" name="cb7" id="cb7">
+                        <input id="cb7" type="checkbox" name="cb7">
                         <label for="cb7"></label>
                       </div>
                     </td>
@@ -672,7 +672,7 @@
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input type="checkbox" name="cb8" id="cb8">
+                        <input id="cb8" type="checkbox" name="cb8">
                         <label for="cb8"></label>
                       </div>
                     </td>
@@ -700,7 +700,7 @@
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input type="checkbox" name="cb9" id="cb9">
+                        <input id="cb9" type="checkbox" name="cb9">
                         <label for="cb9"></label>
                       </div>
                     </td>
@@ -728,7 +728,7 @@
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input type="checkbox" name="cb10" id="cb10">
+                        <input id="cb10" type="checkbox" name="cb10">
                         <label for="cb10"></label>
                       </div>
                     </td>
@@ -843,31 +843,31 @@
               <ul id="sortable" class="list">
                 <li class="task-color task-violet">
                   <div class="styled-checkbox">
-                    <input type="checkbox" id="task-1">
+                    <input id="task-1" type="checkbox">
                     <label class="text-primary" for="task-1">Play Rainbow Six</label>
                   </div>
                 </li>
                 <li>
                   <div class="styled-checkbox">
-                    <input type="checkbox" id="task-2">
+                    <input id="task-2" type="checkbox">
                     <label class="text-dark" for="task-2">Drink coffee with Megan</label>
                   </div>
                 </li>
                 <li class="task-color task-blue">
                   <div class="styled-checkbox">
-                    <input type="checkbox" id="task-3">
+                    <input id="task-3" type="checkbox">
                     <label class="text-info" for="task-3">Video conference</label>
                   </div>
                 </li>
                 <li class="task-color task-red">
                   <div class="styled-checkbox">
-                    <input type="checkbox" id="task-4">
+                    <input id="task-4" type="checkbox">
                     <label class="text-danger" for="task-4">Finish visual design</label>
                   </div>
                 </li>
                 <li>
                   <div class="styled-checkbox">
-                    <input type="checkbox" id="task-5">
+                    <input id="task-5" type="checkbox">
                     <label class="text-dark" for="task-5">Meeting with team</label>
                   </div>
                 </li>
