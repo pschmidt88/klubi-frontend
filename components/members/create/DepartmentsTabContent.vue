@@ -1,37 +1,25 @@
 <template>
   <b-container fluid>
-    <b-card
-      class="mb-5"
-      title="Abteilungsmitgliedschaften">
-      <department-row name="Fußball (Senioren)" action="remove" action-label="Entfernen">
-        <template v-slot:icon>
-          <icon-football/>
-        </template>
-      </department-row>
+    <b-card class="mb-5" title="Abteilungsmitgliedschaften">
+      <b-card-text>Noch keiner Abteilung zugewiesen</b-card-text>
     </b-card>
 
-    <b-card
-      title="Weitere Abteilungen"
-      class="mt-5"
-      border-variant="light">
-      <department-row name="Gymnastik" action="add" action-label="Hinzufügen">
-        <template v-slot:icon>
-          <icon-gymnastics/>
-        </template>
-      </department-row>
-
-      <department-row name="Laufen">
-        <template v-slot:icon>
-          <icon-running/>
-        </template>
-      </department-row>
-
-      <department-row name="Taekwondo">
-        <template v-slot:icon>
-          <icon-taekwondo/>
-        </template>
-      </department-row>
-    </b-card>
+    <b-row align-h="center">
+      <b-col cols="6">
+        <b-card title="Verfügbare Abteilungen" class="mt-5" border-variant="light">
+          <department-row
+            v-for="department in available_departments"
+            :key="department.name"
+            :name="department.name"
+            :icon="department.icon"
+          >
+            <template v-slot:icon>
+              <component :is="department.icon"></component>
+            </template>
+          </department-row>
+        </b-card>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
@@ -53,7 +41,25 @@ export default {
   },
   data() {
     return {
-      entry_date: "2019-05-24"
+      entry_date: "2019-05-24",
+      available_departments: [
+        {
+          name: "Fußball",
+          icon: "icon-football"
+        },
+        {
+          name: "Gymnastik",
+          icon: "icon-gymnastics"
+        },
+        {
+          name: "Laufen",
+          icon: "icon-running"
+        },
+        {
+          name: "Taekwondo",
+          icon: "icon-taekwondo"
+        }
+      ]
     };
   }
 };

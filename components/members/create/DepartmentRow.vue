@@ -1,18 +1,18 @@
 <template>
   <b-row align-v="center">
-    <b-col cols="1">
-      <slot name="icon">No icon provided</slot>
+    <b-col>
+      <component :is="icon"></component>
     </b-col>
 
     <b-col>{{ name }}</b-col>
 
-    <b-col>
+    <!-- <b-col>
       <b-form-group label="Eintrittsdatum" label-for="input-entry-date">
         <b-form-input id="input-entry-date" type="date" v-model="entry_date"></b-form-input>
       </b-form-group>
-    </b-col>
+    </b-col> -->
 
-    <b-col>
+    <!-- <b-col>
       <b-form-row>
         <b-col cols="12">
           <label class="form-control-label">Mitgliedstatus</label>
@@ -49,7 +49,7 @@
           </div>
         </b-col>
       </b-form-row>
-    </b-col>
+    </b-col> -->
 
     <b-col class="text-right">
       <b-button variant="outline-danger" v-if="action == 'remove'">{{ actionLabel }}</b-button>
@@ -69,9 +69,13 @@ export default {
       type: String,
       default: 'add',
     },
+    icon: {
+      type: String,
+      default: 'none'
+    },
     'action-label': {
       type: String,
-      default: 'Hinzufügen'
+      default: 'Zuweisen'
     }
   },
   data () {
