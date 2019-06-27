@@ -9,7 +9,13 @@
               label="Vorname"
               label-class="form-control-label"
             >
-              <b-form-input required trim placeholder="Max" id="inputFirstName" v-model="firstName"></b-form-input>
+              <b-form-input
+                id="inputFirstName"
+                v-model="firstName"
+                required
+                trim
+                placeholder="Max"
+              ></b-form-input>
             </b-form-group>
           </b-col>
         </b-row>
@@ -20,7 +26,12 @@
               label="Nachname"
               label-class="form-control-label"
             >
-              <b-form-input trim placeholder="Mustermann" id="inputLastName" v-model="lastName"></b-form-input>
+              <b-form-input
+                id="inputLastName"
+                v-model="lastName"
+                trim
+                placeholder="Mustermann"
+              ></b-form-input>
             </b-form-group>
           </b-col>
         </b-row>
@@ -34,14 +45,22 @@
             >
               <b-form-input
                 id="inputStreetAddress"
-                placeholder="Musterstraße"
                 v-model="streetAddress"
+                placeholder="Musterstraße"
               ></b-form-input>
             </b-form-group>
           </b-col>
           <b-col cols="3">
-            <b-form-group label-for="inputHouseNo" label-class="form-control-label" label="Hausnr.">
-              <b-form-input placeholder="5" id="inputHouseNo" v-model="houseNumber"></b-form-input>
+            <b-form-group
+              label-for="inputHouseNo"
+              label-class="form-control-label"
+              label="Hausnr."
+            >
+              <b-form-input
+                id="inputHouseNo"
+                v-model="houseNumber"
+                placeholder="5"
+              ></b-form-input>
             </b-form-group>
           </b-col>
         </b-row>
@@ -53,13 +72,25 @@
               label-for="inputPostcode"
               label="Postleitzahl"
             >
-              <b-form-input placeholder="12345" id="inputPostcode" v-model="postCode"/>
+              <b-form-input
+                id="inputPostcode"
+                v-model="postCode"
+                placeholder="12345"
+              />
             </b-form-group>
           </b-col>
 
           <b-col sm="8">
-            <b-form-group label-class="form-control-label" label-for="inputCity" label="Wohnort">
-              <b-form-input placeholder="Musterstadt" id="inputCity" v-model="city"/>
+            <b-form-group
+              label-class="form-control-label"
+              label-for="inputCity"
+              label="Wohnort"
+            >
+              <b-form-input
+                id="inputCity"
+                v-model="city"
+                placeholder="Musterstadt"
+              />
             </b-form-group>
           </b-col>
         </b-row>
@@ -76,7 +107,12 @@
                     label-size="sm"
                     label-align="center"
                   >
-                    <b-form-input placeholder="16" class="text-center" id="inputDateOfBirthDay" v-model="dateOfBirthDay"></b-form-input>
+                    <b-form-input
+                      id="inputDateOfBirthDay"
+                      v-model="dateOfBirthDay"
+                      placeholder="16"
+                      class="text-center"
+                    ></b-form-input>
                   </b-form-group>
                 </b-col>
 
@@ -88,7 +124,12 @@
                     label-class="form-control-label"
                     label-align="center"
                   >
-                    <b-form-input placeholder="06" class="text-center" id="inputDateOfBirthMonth" v-model="dateOfBirthMonth"></b-form-input>
+                    <b-form-input
+                      id="inputDateOfBirthMonth"
+                      v-model="dateOfBirthMonth"
+                      placeholder="06"
+                      class="text-center"
+                    ></b-form-input>
                   </b-form-group>
                 </b-col>
 
@@ -100,7 +141,12 @@
                     label-class="form-control-label"
                     label-align="center"
                   >
-                    <b-form-input placeholder="1988" class="text-center" id="inputDateOfBirthYear" v-model="dateOfBirthYear"></b-form-input>
+                    <b-form-input
+                      id="inputDateOfBirthYear"
+                      v-model="dateOfBirthYear"
+                      placeholder="1988"
+                      class="text-center"
+                    ></b-form-input>
                   </b-form-group>
                 </b-col>
               </b-row>
@@ -115,13 +161,25 @@
               label-class="form-control-label"
               label-for="inputPhoneNumber"
             >
-              <b-form-input placeholder="0561123456" id="inputPhoneNumber" v-model="phone"></b-form-input>
+              <b-form-input
+                id="inputPhoneNumber"
+                v-model="phone"
+                placeholder="0561123456"
+              ></b-form-input>
             </b-form-group>
           </b-col>
 
           <b-col cols="6">
-            <b-form-group label="Email" label-class="form-control-label" label-for="inputEmail">
-              <b-form-input placeholder="me@example.com" id="inputEmail" v-model="email"/>
+            <b-form-group
+              label="Email"
+              label-class="form-control-label"
+              label-for="inputEmail"
+            >
+              <b-form-input
+                id="inputEmail"
+                v-model="email"
+                placeholder="me@example.com"
+              />
             </b-form-group>
           </b-col>
         </b-row>
@@ -132,20 +190,13 @@
 
 <script>
 export default {
-  name: "personal-data-tab-content",
+  name: "PersonalDataTabContent",
   data() {
     return {
       dateOfBirthDay: null,
       dateOfBirthMonth: null,
       dateOfBirthYear: null
-    }
-  },
-  watch: {
-    birthday (newValue, oldValue) {
-      if (!isNaN(newValue) ) {
-        this.$store.commit('members/registration/updateBirthday', { birthday: newValue })
-      }
-    }
+    };
   },
   computed: {
     firstName: {
@@ -228,13 +279,27 @@ export default {
       }
     },
     birthday() {
-      if (this.dateOfBirthDay == null || this.dateOfBirthMonth == null || this.dateOfBirthYear == null) {
-        return null
+      if (
+        this.dateOfBirthDay == null ||
+        this.dateOfBirthMonth == null ||
+        this.dateOfBirthYear == null
+      ) {
+        return null;
       }
 
-      return Date.parse(`${this.dateOfBirthYear}-${this.dateOfBirthMonth}-${this.dateOfBirthDay}`)
+      return Date.parse(
+        `${this.dateOfBirthYear}-${this.dateOfBirthMonth}-${this.dateOfBirthDay}`
+      );
+    }
+  },
+  watch: {
+    birthday(newValue) {
+      if (!isNaN(newValue)) {
+        this.$store.commit("members/registration/updateBirthday", {
+          birthday: newValue
+        });
+      }
     }
   }
 };
 </script>
-

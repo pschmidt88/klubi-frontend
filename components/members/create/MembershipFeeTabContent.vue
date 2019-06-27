@@ -9,7 +9,10 @@
               label-for="select-payment-type"
               label-class="form-control-label"
             >
-              <b-form-select v-model="paymentType" :options="paymentTypeOptions"></b-form-select>
+              <b-form-select
+                v-model="paymentType"
+                :options="paymentTypeOptions"
+              ></b-form-select>
             </b-form-group>
           </b-col>
         </b-row>
@@ -39,14 +42,25 @@
           </b-row>
           <b-row>
             <b-col>
-              <b-form-group label="IBAN" label-for="input-iban" label-class="form-control-label">
-                <b-form-input v-model="iban" v-mask="'AA## #### #### #### #### ##'"></b-form-input>
+              <b-form-group
+                label="IBAN"
+                label-for="input-iban"
+                label-class="form-control-label"
+              >
+                <b-form-input
+                  v-mask="'AA## #### #### #### #### ##'"
+                  v-model="iban"
+                ></b-form-input>
               </b-form-group>
             </b-col>
           </b-row>
           <b-row>
             <b-col>
-              <b-form-group label="BIC" label-for="input-bic" label-class="form-control-label">
+              <b-form-group
+                label="BIC"
+                label-for="input-bic"
+                label-class="form-control-label"
+              >
                 <b-form-input v-model="bic"></b-form-input>
               </b-form-group>
             </b-col>
@@ -84,7 +98,7 @@
 import { mask } from "vue-the-mask";
 
 export default {
-  name: "membership-fee-tab-content",
+  name: "MembershipFeeTabContent",
   directives: { mask },
   data() {
     return {
@@ -106,4 +120,3 @@ export default {
   }
 };
 </script>
-

@@ -21,18 +21,18 @@
         <div class="off-sidebar from-right">
           <div class="off-sidebar-container">
             <header class="off-sidebar-header">
-              <ul class="button-nav nav nav-tabs mt-3 mb-3 ml-3" role="tablist" id="weather-tab">
+              <ul id="weather-tab" class="button-nav nav nav-tabs mt-3 mb-3 ml-3" role="tablist">
                 <li>
                   <a
+                    id="messenger-tab"
                     class="active"
                     data-toggle="tab"
                     href="#messenger"
                     role="tab"
-                    id="messenger-tab"
                   >Messages</a>
                 </li>
                 <li>
-                  <a data-toggle="tab" href="#today" role="tab" id="today-tab">Today</a>
+                  <a id="today-tab" data-toggle="tab" href="#today" role="tab">Today</a>
                 </li>
               </ul>
               <a href="#off-canvas" class="off-sidebar-close"></a>
@@ -41,9 +41,9 @@
               <div class="tab-content">
                 <!-- Begin Messenger -->
                 <div
+                  id="messenger"
                   role="tabpanel"
                   class="tab-pane show active fade"
-                  id="messenger"
                   aria-labelledby="messenger-tab"
                 >
                   <!-- Begin Chat Message -->
@@ -161,7 +161,7 @@
                 </div>
                 <!-- End Messenger -->
                 <!-- Begin Today -->
-                <div role="tabpanel" class="tab-pane fade" id="today" aria-labelledby="today-tab">
+                <div id="today" role="tabpanel" class="tab-pane fade" aria-labelledby="today-tab">
                   <!-- Begin Today Stats -->
                   <div class="sidebar-heading pt-0">Today</div>
                   <div class="today-stats mt-3 mb-3">
@@ -340,16 +340,17 @@
   import AppFooter from "~/components/layout/Footer"
 
   export default {
-    name: "modern",
+    name: "Modern",
+
+    components: {
+      AppHeader,
+      AppFooter,
+      Navigation
+    },
     computed: {
       name() {
         return this.$route.name;
       }
     },
-    components: {
-      AppHeader,
-      AppFooter,
-      Navigation
-    }
   };
 </script>
