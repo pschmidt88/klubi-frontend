@@ -12,7 +12,7 @@
               <b-form-select
                 v-model="paymentType"
                 :options="paymentTypeOptions"
-              ></b-form-select>
+              />
             </b-form-group>
           </b-col>
         </b-row>
@@ -25,7 +25,7 @@
                 label-for="input-account-first-name"
                 label-class="form-control-label"
               >
-                <b-form-input v-model="accountFirstName"></b-form-input>
+                <b-form-input v-model="accountFirstName"/>
               </b-form-group>
             </b-col>
           </b-row>
@@ -36,7 +36,7 @@
                 label-for="input-account-last-name"
                 label-class="form-control-label"
               >
-                <b-form-input v-model="accountLastName"></b-form-input>
+                <b-form-input v-model="accountLastName"/>
               </b-form-group>
             </b-col>
           </b-row>
@@ -50,7 +50,7 @@
                 <b-form-input
                   v-mask="'AA## #### #### #### #### ##'"
                   v-model="iban"
-                ></b-form-input>
+                />
               </b-form-group>
             </b-col>
           </b-row>
@@ -61,7 +61,7 @@
                 label-for="input-bic"
                 label-class="form-control-label"
               >
-                <b-form-input v-model="bic"></b-form-input>
+                <b-form-input v-model="bic"/>
               </b-form-group>
             </b-col>
           </b-row>
@@ -72,7 +72,7 @@
                 label-for="readonly-input-bankname"
                 label-class="form-control-label"
               >
-                <b-form-input readonly></b-form-input>
+                <b-form-input readonly/>
               </b-form-group>
             </b-col>
           </b-row>
@@ -84,7 +84,7 @@
                 label-for="file-input-sepa-direct-debit-mandate"
                 label-class="form-control-label"
               >
-                <b-form-file placeholder="Dokument auswählen..."></b-form-file>
+                <b-form-file placeholder="Dokument auswählen..."/>
               </b-form-group>
             </b-col>
           </b-row>
@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import { mask } from "vue-the-mask";
+import { mask } from "vue-the-mask"
 
 export default {
   name: "MembershipFeeTabContent",
@@ -111,12 +111,12 @@ export default {
         { value: "transfer", text: "Überweisung" },
         { value: "direct_debit", text: "Lastschrift" }
       ]
-    };
+    }
   },
   computed: {
     isDirectDebit() {
-      return this.paymentType === "direct_debit";
+      return this.paymentType === "direct_debit"
     }
   }
-};
+}
 </script>

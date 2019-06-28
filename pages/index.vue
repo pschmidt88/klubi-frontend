@@ -7,7 +7,9 @@
           <h2 class="page-header-title">Dashboard</h2>
           <div>
             <div class="page-header-tools">
-              <a class="btn btn-gradient-01" href="#">Add Widget</a>
+              <a
+                class="btn btn-gradient-01"
+                href="#">Add Widget</a>
             </div>
           </div>
         </div>
@@ -16,14 +18,16 @@
     <!-- End Page Header -->
     <!-- Begin Row -->
     <div class="row flex-row">
-      <div class="col-xl-6 col-md-6 os-animation" data-os-animation="fadeInUp">
+      <div
+        class="col-xl-6 col-md-6 os-animation"
+        data-os-animation="fadeInUp">
         <div class="widget widget-21 has-shadow">
           <div class="widget-body h-100 d-flex align-items-center">
             <div class="section-title">
               <h3>Hit Rate</h3>
             </div>
             <div class="hit-rate">
-              <div class="percent"></div>
+              <div class="percent"/>
             </div>
             <div class="value-progress text-green">+ 34%</div>
           </div>
@@ -34,13 +38,15 @@
               <h3>Happy Customers</h3>
             </div>
             <div class="happy-customers">
-              <div class="percent"></div>
+              <div class="percent"/>
             </div>
             <div class="value-progress">+ 54 Today</div>
           </div>
         </div>
       </div>
-      <div class="col-xl-6 col-md-6 os-animation" data-os-animation="fadeInUp">
+      <div
+        class="col-xl-6 col-md-6 os-animation"
+        data-os-animation="fadeInUp">
         <!-- Begin Widget 04 -->
         <div class="widget widget-04 has-shadow">
           <!-- Begin Widget Header -->
@@ -55,17 +61,23 @@
                   aria-expanded="false"
                   class="dropdown-toggle"
                 >
-                  <i class="la la-ellipsis-h"></i>
+                  <i class="la la-ellipsis-h"/>
                 </button>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">
-                    <i class="la la-check"></i>Valid Post
+                  <a
+                    href="#"
+                    class="dropdown-item">
+                    <i class="la la-check"/>Valid Post
                   </a>
-                  <a href="#" class="dropdown-item">
-                    <i class="la la-edit"></i>Edit Widget
+                  <a
+                    href="#"
+                    class="dropdown-item">
+                    <i class="la la-edit"/>Edit Widget
                   </a>
-                  <a href="faq.html" class="dropdown-item faq">
-                    <i class="la la-question-circle"></i>FAQ
+                  <a
+                    href="faq.html"
+                    class="dropdown-item faq">
+                    <i class="la la-question-circle"/>FAQ
                   </a>
                 </div>
               </div>
@@ -78,7 +90,10 @@
               <div class="media mb-3">
                 <div class="media-left align-self-center user">
                   <a href="pages-profile.html">
-                    <img src="img/avatar/avatar-07.jpg" class="rounded-circle" alt="...">
+                    <img
+                      src="img/avatar/avatar-07.jpg"
+                      class="rounded-circle"
+                      alt="...">
                   </a>
                 </div>
                 <div class="media-body align-self-center ml-3">
@@ -88,19 +103,22 @@
                   <div class="time">42 min ago</div>
                 </div>
               </div>
-              <img src="img/background/01.jpg" alt="..." class="img-fluid">
+              <img
+                src="img/background/01.jpg"
+                alt="..."
+                class="img-fluid">
               <div class="col no-padding d-flex justify-content-end mt-3">
                 <div class="meta">
                   <ul>
                     <li>
                       <a href="#">
-                        <i class="la la-comment"></i>
+                        <i class="la la-comment"/>
                         <span class="numb">38</span>
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <i class="la la-heart"></i>
+                        <i class="la la-heart"/>
                         <span class="numb">94</span>
                       </a>
                     </li>
@@ -110,15 +128,22 @@
             </div>
             <!-- Begin Write Comment -->
             <div class="input-group mt-5">
-              <input type="text" class="form-control pr-0" placeholder="Write a comment ...">
+              <input
+                type="text"
+                class="form-control pr-0"
+                placeholder="Write a comment ...">
               <span class="input-group-addon">
-                <button class="btn" type="button">
-                  <i class="la la-smile-o la-2x"></i>
+                <button
+                  class="btn"
+                  type="button">
+                  <i class="la la-smile-o la-2x"/>
                 </button>
               </span>
               <span class="input-group-addon">
-                <button class="btn pr-3" type="button">
-                  <i class="la la-pencil la-2x"></i>
+                <button
+                  class="btn pr-3"
+                  type="button">
+                  <i class="la la-pencil la-2x"/>
                 </button>
               </span>
             </div>
@@ -131,7 +156,9 @@
     </div>
     <!-- End Row -->
     <div class="row flex-row">
-      <div class="col-xl-6 col-md-6 os-animation" data-os-animation="fadeInUp">
+      <div
+        class="col-xl-6 col-md-6 os-animation"
+        data-os-animation="fadeInUp">
         <!-- Begin Widget 05 -->
         <div class="widget widget-05 has-shadow">
           <!-- Begin Widget Header -->
@@ -146,14 +173,18 @@
                   aria-expanded="false"
                   class="dropdown-toggle"
                 >
-                  <i class="la la-ellipsis-h"></i>
+                  <i class="la la-ellipsis-h"/>
                 </button>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">
-                    <i class="la la-edit"></i>Edit Widget
+                  <a
+                    href="#"
+                    class="dropdown-item">
+                    <i class="la la-edit"/>Edit Widget
                   </a>
-                  <a href="#" class="dropdown-item faq">
-                    <i class="la la-question-circle"></i>FAQ
+                  <a
+                    href="#"
+                    class="dropdown-item faq">
+                    <i class="la la-question-circle"/>FAQ
                   </a>
                 </div>
               </div>
@@ -163,8 +194,11 @@
           <!-- Begin Widget Body -->
           <div class="widget-body no-padding hidden">
             <div class="author-avatar">
-              <span class="badge-pulse-green"></span>
-              <img src="img/avatar/avatar-03.jpg" alt="..." class="img-fluid rounded-circle">
+              <span class="badge-pulse-green"/>
+              <img
+                src="img/avatar/avatar-03.jpg"
+                alt="..."
+                class="img-fluid rounded-circle">
             </div>
             <div class="author-name">
               Louis Henry
@@ -178,7 +212,7 @@
                     <div class="col-9 no-padding">
                       <div class="chart-graph">
                         <div class="chart">
-                          <canvas id="sales-stats"></canvas>
+                          <canvas id="sales-stats"/>
                         </div>
                       </div>
                     </div>
@@ -197,31 +231,35 @@
             <div class="social-stats">
               <div class="row d-flex justify-content-between">
                 <div class="col-4 text-center">
-                  <i class="la la-users followers"></i>
+                  <i class="la la-users followers"/>
                   <div class="counter">+124</div>
                   <div class="heading">Followers</div>
                 </div>
                 <div class="col-4 text-center">
-                  <i class="la la-dribbble dribbble"></i>
+                  <i class="la la-dribbble dribbble"/>
                   <div class="counter">+357</div>
                   <div class="heading">Likes</div>
                 </div>
                 <div class="col-4 text-center">
-                  <i class="la la-behance behance"></i>
+                  <i class="la la-behance behance"/>
                   <div class="counter">+98</div>
                   <div class="heading">Followers</div>
                 </div>
               </div>
             </div>
             <div class="actions text-center">
-              <a href="pages-profile.html" class="btn btn-gradient-01">View Profile</a>
+              <a
+                href="pages-profile.html"
+                class="btn btn-gradient-01">View Profile</a>
             </div>
           </div>
           <!-- End Widget Body -->
         </div>
         <!-- End Widget 05 -->
       </div>
-      <div class="col-xl-6 os-animation" data-os-animation="fadeInUp">
+      <div
+        class="col-xl-6 os-animation"
+        data-os-animation="fadeInUp">
         <!-- Begin Widget 06 -->
         <div class="widget widget-06 has-shadow">
           <!-- Begin Widget Header -->
@@ -236,14 +274,18 @@
                   aria-expanded="false"
                   class="dropdown-toggle"
                 >
-                  <i class="la la-ellipsis-h"></i>
+                  <i class="la la-ellipsis-h"/>
                 </button>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">
-                    <i class="la la-edit"></i>Edit Widget
+                  <a
+                    href="#"
+                    class="dropdown-item">
+                    <i class="la la-edit"/>Edit Widget
                   </a>
-                  <a href="#" class="dropdown-item faq">
-                    <i class="la la-question-circle"></i>FAQ
+                  <a
+                    href="#"
+                    class="dropdown-item faq">
+                    <i class="la la-question-circle"/>FAQ
                   </a>
                 </div>
               </div>
@@ -252,13 +294,19 @@
           <!-- End Widget Header -->
           <!-- Begin Widget Body -->
           <div class="widget-body p-0">
-            <div id="list-group" class="widget-scroll" style="max-height:490px;">
+            <div
+              id="list-group"
+              class="widget-scroll"
+              style="max-height:490px;">
               <ul class="reviews list-group w-100">
                 <!-- 01 -->
                 <li class="list-group-item">
                   <div class="media">
                     <div class="media-left align-self-start">
-                      <img src="img/avatar/avatar-02.jpg" class="user-img rounded-circle" alt="...">
+                      <img
+                        src="img/avatar/avatar-02.jpg"
+                        class="user-img rounded-circle"
+                        alt="...">
                     </div>
                     <div class="media-body align-self-center">
                       <div class="username">
@@ -266,11 +314,11 @@
                       </div>
                       <div class="msg">
                         <div class="stars">
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star-half-empty"></i>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star-half-empty"/>
                         </div>
                         <p>WoW! Amazing Work!</p>
                       </div>
@@ -281,7 +329,7 @@
                     </div>
                     <div class="media-right pr-3 align-self-center">
                       <div class="like text-center">
-                        <i class="ion-heart"></i>
+                        <i class="ion-heart"/>
                         <span>12</span>
                       </div>
                     </div>
@@ -292,7 +340,10 @@
                 <li class="list-group-item">
                   <div class="media">
                     <div class="media-left align-self-start">
-                      <img src="img/avatar/avatar-05.jpg" class="user-img rounded-circle" alt="...">
+                      <img
+                        src="img/avatar/avatar-05.jpg"
+                        class="user-img rounded-circle"
+                        alt="...">
                     </div>
                     <div class="media-body align-self-center">
                       <div class="username">
@@ -300,11 +351,11 @@
                       </div>
                       <div class="msg">
                         <div class="stars">
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
                         </div>
                         <p>Very nice! Keep up the beautiful work.</p>
                       </div>
@@ -315,7 +366,7 @@
                     </div>
                     <div class="media-right pr-3 align-self-center">
                       <div class="like text-center">
-                        <i class="ion-heart"></i>
+                        <i class="ion-heart"/>
                         <span>4</span>
                       </div>
                     </div>
@@ -326,7 +377,10 @@
                 <li class="list-group-item">
                   <div class="media">
                     <div class="media-left align-self-start">
-                      <img src="img/avatar/avatar-04.jpg" class="user-img rounded-circle" alt="...">
+                      <img
+                        src="img/avatar/avatar-04.jpg"
+                        class="user-img rounded-circle"
+                        alt="...">
                     </div>
                     <div class="media-body align-self-center">
                       <div class="username">
@@ -334,11 +388,11 @@
                       </div>
                       <div class="msg">
                         <div class="stars">
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
                         </div>
                         <p>Nice work, good design!</p>
                       </div>
@@ -349,7 +403,7 @@
                     </div>
                     <div class="media-right pr-3 align-self-center">
                       <div class="like text-center">
-                        <i class="ion-heart"></i>
+                        <i class="ion-heart"/>
                         <span>32</span>
                       </div>
                     </div>
@@ -360,7 +414,10 @@
                 <li class="list-group-item">
                   <div class="media">
                     <div class="media-left align-self-start">
-                      <img src="img/avatar/avatar-09.jpg" class="user-img rounded-circle" alt="...">
+                      <img
+                        src="img/avatar/avatar-09.jpg"
+                        class="user-img rounded-circle"
+                        alt="...">
                     </div>
                     <div class="media-body align-self-center">
                       <div class="username">
@@ -368,11 +425,11 @@
                       </div>
                       <div class="msg">
                         <div class="stars">
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star-half-empty"></i>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star-half-empty"/>
                         </div>
                         <p>Very nice! Keep up the beautiful work.</p>
                       </div>
@@ -383,7 +440,7 @@
                     </div>
                     <div class="media-right pr-3 align-self-center">
                       <div class="like text-center">
-                        <i class="ion-heart"></i>
+                        <i class="ion-heart"/>
                         <span>2</span>
                       </div>
                     </div>
@@ -394,7 +451,10 @@
                 <li class="list-group-item">
                   <div class="media">
                     <div class="media-left align-self-start">
-                      <img src="img/avatar/avatar-03.jpg" class="user-img rounded-circle" alt="...">
+                      <img
+                        src="img/avatar/avatar-03.jpg"
+                        class="user-img rounded-circle"
+                        alt="...">
                     </div>
                     <div class="media-body align-self-center">
                       <div class="username">
@@ -402,11 +462,11 @@
                       </div>
                       <div class="msg">
                         <div class="stars">
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star"></i>
-                          <i class="la la-star-half-empty"></i>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star"/>
+                          <i class="la la-star-half-empty"/>
                         </div>
                         <p>I like the color combination!</p>
                       </div>
@@ -417,7 +477,7 @@
                     </div>
                     <div class="media-right pr-3 align-self-center">
                       <div class="like text-center">
-                        <i class="ion-heart"></i>
+                        <i class="ion-heart"/>
                         <span>9</span>
                       </div>
                     </div>
@@ -435,30 +495,43 @@
     </div>
     <!-- End Row -->
     <div class="row flex-row">
-      <div class="col-xl-12 os-animation" data-os-animation="fadeInUp">
+      <div
+        class="col-xl-12 os-animation"
+        data-os-animation="fadeInUp">
         <!-- Begin Widget 07 -->
         <div class="widget widget-07 has-shadow">
           <!-- Begin Widget Header -->
           <div class="widget-header bordered d-flex align-items-center">
             <h2>Product Overview</h2>
             <div class="widget-options">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-primary ripple">Week</button>
-                <button type="button" class="btn btn-primary ripple">Month</button>
+              <div
+                class="btn-group"
+                role="group">
+                <button
+                  type="button"
+                  class="btn btn-primary ripple">Week</button>
+                <button
+                  type="button"
+                  class="btn btn-primary ripple">Month</button>
               </div>
             </div>
           </div>
           <!-- End Widget Header -->
           <!-- Begin Widget Body -->
           <div class="widget-body">
-            <div class="table-responsive table-scroll padding-right-10" style="max-height:520px;">
+            <div
+              class="table-responsive table-scroll padding-right-10"
+              style="max-height:520px;">
               <table class="table table-hover mb-0">
                 <thead>
                   <tr>
                     <th>
                       <div class="styled-checkbox mt-2">
-                        <input id="check-all" type="checkbox" name="check-all">
-                        <label for="check-all"></label>
+                        <input
+                          id="check-all"
+                          type="checkbox"
+                          name="check-all">
+                        <label for="check-all"/>
                       </div>
                     </th>
                     <th>Order ID</th>
@@ -476,8 +549,11 @@
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input id="cb1" type="checkbox" name="cb1">
-                        <label for="cb1"></label>
+                        <input
+                          id="cb1"
+                          type="checkbox"
+                          name="cb1">
+                        <label for="cb1"/>
                       </div>
                     </td>
                     <td>
@@ -494,18 +570,21 @@
                     <td>$139.45</td>
                     <td class="td-actions">
                       <a href="#">
-                        <i class="la la-edit edit"></i>
+                        <i class="la la-edit edit"/>
                       </a>
                       <a href="#">
-                        <i class="la la-close delete"></i>
+                        <i class="la la-close delete"/>
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input id="cb2" type="checkbox" name="cb2">
-                        <label for="cb2"></label>
+                        <input
+                          id="cb2"
+                          type="checkbox"
+                          name="cb2">
+                        <label for="cb2"/>
                       </div>
                     </td>
                     <td>
@@ -522,18 +601,21 @@
                     <td>$189.00</td>
                     <td class="td-actions">
                       <a href="#">
-                        <i class="la la-edit edit"></i>
+                        <i class="la la-edit edit"/>
                       </a>
                       <a href="#">
-                        <i class="la la-close delete"></i>
+                        <i class="la la-close delete"/>
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input id="cb3" type="checkbox" name="cb3">
-                        <label for="cb3"></label>
+                        <input
+                          id="cb3"
+                          type="checkbox"
+                          name="cb3">
+                        <label for="cb3"/>
                       </div>
                     </td>
                     <td>
@@ -550,18 +632,21 @@
                     <td>$107.55</td>
                     <td class="td-actions">
                       <a href="#">
-                        <i class="la la-edit edit"></i>
+                        <i class="la la-edit edit"/>
                       </a>
                       <a href="#">
-                        <i class="la la-close delete"></i>
+                        <i class="la la-close delete"/>
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input id="cb4" type="checkbox" name="cb4">
-                        <label for="cb4"></label>
+                        <input
+                          id="cb4"
+                          type="checkbox"
+                          name="cb4">
+                        <label for="cb4"/>
                       </div>
                     </td>
                     <td>
@@ -578,18 +663,21 @@
                     <td>$129.85</td>
                     <td class="td-actions">
                       <a href="#">
-                        <i class="la la-edit edit"></i>
+                        <i class="la la-edit edit"/>
                       </a>
                       <a href="#">
-                        <i class="la la-close delete"></i>
+                        <i class="la la-close delete"/>
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input id="cb5" type="checkbox" name="cb5">
-                        <label for="cb5"></label>
+                        <input
+                          id="cb5"
+                          type="checkbox"
+                          name="cb5">
+                        <label for="cb5"/>
                       </div>
                     </td>
                     <td>
@@ -606,18 +694,21 @@
                     <td>$199.95</td>
                     <td class="td-actions">
                       <a href="#">
-                        <i class="la la-edit edit"></i>
+                        <i class="la la-edit edit"/>
                       </a>
                       <a href="#">
-                        <i class="la la-close delete"></i>
+                        <i class="la la-close delete"/>
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input id="cb6" type="checkbox" name="cb6">
-                        <label for="cb6"></label>
+                        <input
+                          id="cb6"
+                          type="checkbox"
+                          name="cb6">
+                        <label for="cb6"/>
                       </div>
                     </td>
                     <td>
@@ -634,18 +725,21 @@
                     <td>$139.45</td>
                     <td class="td-actions">
                       <a href="#">
-                        <i class="la la-edit edit"></i>
+                        <i class="la la-edit edit"/>
                       </a>
                       <a href="#">
-                        <i class="la la-close delete"></i>
+                        <i class="la la-close delete"/>
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input id="cb7" type="checkbox" name="cb7">
-                        <label for="cb7"></label>
+                        <input
+                          id="cb7"
+                          type="checkbox"
+                          name="cb7">
+                        <label for="cb7"/>
                       </div>
                     </td>
                     <td>
@@ -662,18 +756,21 @@
                     <td>$189.00</td>
                     <td class="td-actions">
                       <a href="#">
-                        <i class="la la-edit edit"></i>
+                        <i class="la la-edit edit"/>
                       </a>
                       <a href="#">
-                        <i class="la la-close delete"></i>
+                        <i class="la la-close delete"/>
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input id="cb8" type="checkbox" name="cb8">
-                        <label for="cb8"></label>
+                        <input
+                          id="cb8"
+                          type="checkbox"
+                          name="cb8">
+                        <label for="cb8"/>
                       </div>
                     </td>
                     <td>
@@ -690,18 +787,21 @@
                     <td>$107.55</td>
                     <td class="td-actions">
                       <a href="#">
-                        <i class="la la-edit edit"></i>
+                        <i class="la la-edit edit"/>
                       </a>
                       <a href="#">
-                        <i class="la la-close delete"></i>
+                        <i class="la la-close delete"/>
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input id="cb9" type="checkbox" name="cb9">
-                        <label for="cb9"></label>
+                        <input
+                          id="cb9"
+                          type="checkbox"
+                          name="cb9">
+                        <label for="cb9"/>
                       </div>
                     </td>
                     <td>
@@ -718,18 +818,21 @@
                     <td>$129.85</td>
                     <td class="td-actions">
                       <a href="#">
-                        <i class="la la-edit edit"></i>
+                        <i class="la la-edit edit"/>
                       </a>
                       <a href="#">
-                        <i class="la la-close delete"></i>
+                        <i class="la la-close delete"/>
                       </a>
                     </td>
                   </tr>
                   <tr>
                     <td style="width:5%;">
                       <div class="styled-checkbox mt-2">
-                        <input id="cb10" type="checkbox" name="cb10">
-                        <label for="cb10"></label>
+                        <input
+                          id="cb10"
+                          type="checkbox"
+                          name="cb10">
+                        <label for="cb10"/>
                       </div>
                     </td>
                     <td>
@@ -746,10 +849,10 @@
                     <td>$199.95</td>
                     <td class="td-actions">
                       <a href="#">
-                        <i class="la la-edit edit"></i>
+                        <i class="la la-edit edit"/>
                       </a>
                       <a href="#">
-                        <i class="la la-close delete"></i>
+                        <i class="la la-close delete"/>
                       </a>
                     </td>
                   </tr>
@@ -768,11 +871,13 @@
                 <ul class="pagination justify-content-end">
                   <li class="page-item disabled">
                     <span class="page-link">
-                      <i class="ion-chevron-left"></i>
+                      <i class="ion-chevron-left"/>
                     </span>
                   </li>
                   <li class="page-item">
-                    <a class="page-link" href="#">1</a>
+                    <a
+                      class="page-link"
+                      href="#">1</a>
                   </li>
                   <li class="page-item active">
                     <span class="page-link">
@@ -781,11 +886,15 @@
                     </span>
                   </li>
                   <li class="page-item">
-                    <a class="page-link" href="#">3</a>
+                    <a
+                      class="page-link"
+                      href="#">3</a>
                   </li>
                   <li class="page-item">
-                    <a class="page-link" href="#">
-                      <i class="ion-chevron-right"></i>
+                    <a
+                      class="page-link"
+                      href="#">
+                      <i class="ion-chevron-right"/>
                     </a>
                   </li>
                 </ul>
@@ -798,7 +907,9 @@
       </div>
     </div>
     <div class="row flex-row">
-      <div class="col-xl-6 col-md-6 os-animation" data-os-animation="fadeInUp">
+      <div
+        class="col-xl-6 col-md-6 os-animation"
+        data-os-animation="fadeInUp">
         <!-- Begin Widget 08 -->
         <div class="widget widget-08 has-shadow">
           <!-- Begin Widget Header -->
@@ -813,17 +924,23 @@
                   aria-expanded="false"
                   class="dropdown-toggle"
                 >
-                  <i class="la la-ellipsis-h"></i>
+                  <i class="la la-ellipsis-h"/>
                 </button>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">
-                    <i class="la la-plus"></i>Add Task
+                  <a
+                    href="#"
+                    class="dropdown-item">
+                    <i class="la la-plus"/>Add Task
                   </a>
-                  <a href="#" class="dropdown-item">
-                    <i class="la la-edit"></i>Edit Widget
+                  <a
+                    href="#"
+                    class="dropdown-item">
+                    <i class="la la-edit"/>Edit Widget
                   </a>
-                  <a href="#" class="dropdown-item faq">
-                    <i class="la la-question-circle"></i>FAQ
+                  <a
+                    href="#"
+                    class="dropdown-item faq">
+                    <i class="la la-question-circle"/>FAQ
                   </a>
                 </div>
               </div>
@@ -840,35 +957,57 @@
             </div>
             <!-- Begin List -->
             <div class="todo-list">
-              <ul id="sortable" class="list">
+              <ul
+                id="sortable"
+                class="list">
                 <li class="task-color task-violet">
                   <div class="styled-checkbox">
-                    <input id="task-1" type="checkbox">
-                    <label class="text-primary" for="task-1">Play Rainbow Six</label>
+                    <input
+                      id="task-1"
+                      type="checkbox">
+                    <label
+                      class="text-primary"
+                      for="task-1">Play Rainbow Six</label>
                   </div>
                 </li>
                 <li>
                   <div class="styled-checkbox">
-                    <input id="task-2" type="checkbox">
-                    <label class="text-dark" for="task-2">Drink coffee with Megan</label>
+                    <input
+                      id="task-2"
+                      type="checkbox">
+                    <label
+                      class="text-dark"
+                      for="task-2">Drink coffee with Megan</label>
                   </div>
                 </li>
                 <li class="task-color task-blue">
                   <div class="styled-checkbox">
-                    <input id="task-3" type="checkbox">
-                    <label class="text-info" for="task-3">Video conference</label>
+                    <input
+                      id="task-3"
+                      type="checkbox">
+                    <label
+                      class="text-info"
+                      for="task-3">Video conference</label>
                   </div>
                 </li>
                 <li class="task-color task-red">
                   <div class="styled-checkbox">
-                    <input id="task-4" type="checkbox">
-                    <label class="text-danger" for="task-4">Finish visual design</label>
+                    <input
+                      id="task-4"
+                      type="checkbox">
+                    <label
+                      class="text-danger"
+                      for="task-4">Finish visual design</label>
                   </div>
                 </li>
                 <li>
                   <div class="styled-checkbox">
-                    <input id="task-5" type="checkbox">
-                    <label class="text-dark" for="task-5">Meeting with team</label>
+                    <input
+                      id="task-5"
+                      type="checkbox">
+                    <label
+                      class="text-dark"
+                      for="task-5">Meeting with team</label>
                   </div>
                 </li>
               </ul>
@@ -879,7 +1018,9 @@
         </div>
         <!-- End Widget 08 -->
       </div>
-      <div class="col-xl-6 col-md-6 os-animation" data-os-animation="fadeInUp">
+      <div
+        class="col-xl-6 col-md-6 os-animation"
+        data-os-animation="fadeInUp">
         <!-- Begin Widget 10 -->
         <div class="widget widget-10 has-shadow">
           <!-- Begin Widget Header -->
@@ -894,17 +1035,23 @@
                   aria-expanded="false"
                   class="dropdown-toggle"
                 >
-                  <i class="la la-ellipsis-h"></i>
+                  <i class="la la-ellipsis-h"/>
                 </button>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">
-                    <i class="la la-bell-slash"></i>Disable Alerts
+                  <a
+                    href="#"
+                    class="dropdown-item">
+                    <i class="la la-bell-slash"/>Disable Alerts
                   </a>
-                  <a href="#" class="dropdown-item">
-                    <i class="la la-edit"></i>Edit Widget
+                  <a
+                    href="#"
+                    class="dropdown-item">
+                    <i class="la la-edit"/>Edit Widget
                   </a>
-                  <a href="#" class="dropdown-item faq">
-                    <i class="la la-question-circle"></i>FAQ
+                  <a
+                    href="#"
+                    class="dropdown-item faq">
+                    <i class="la la-question-circle"/>FAQ
                   </a>
                 </div>
               </div>
@@ -918,7 +1065,10 @@
               <li class="list-group-item">
                 <div class="media">
                   <div class="media-left align-self-center pr-4">
-                    <img src="img/avatar/avatar-02.jpg" class="user-img rounded-circle" alt="...">
+                    <img
+                      src="img/avatar/avatar-02.jpg"
+                      class="user-img rounded-circle"
+                      alt="...">
                   </div>
                   <div class="media-body align-self-center">
                     <div class="username">
@@ -938,7 +1088,10 @@
               <li class="list-group-item">
                 <div class="media">
                   <div class="media-left align-self-center pr-4">
-                    <img src="img/avatar/avatar-04.jpg" class="user-img rounded-circle" alt="...">
+                    <img
+                      src="img/avatar/avatar-04.jpg"
+                      class="user-img rounded-circle"
+                      alt="...">
                   </div>
                   <div class="media-body align-self-center">
                     <div class="username">
@@ -958,7 +1111,10 @@
               <li class="list-group-item">
                 <div class="media">
                   <div class="media-left align-self-center pr-4">
-                    <img src="img/avatar/avatar-05.jpg" class="user-img rounded-circle" alt="...">
+                    <img
+                      src="img/avatar/avatar-05.jpg"
+                      class="user-img rounded-circle"
+                      alt="...">
                   </div>
                   <div class="media-body align-self-center">
                     <div class="username">

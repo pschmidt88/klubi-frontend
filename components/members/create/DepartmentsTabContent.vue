@@ -1,6 +1,8 @@
 <template>
   <b-container fluid>
-    <b-card class="mb-5" title="Abteilungsmitgliedschaften">
+    <b-card
+      class="mb-5"
+      title="Abteilungsmitgliedschaften">
       <b-card-text>Noch keiner Abteilung zugewiesen</b-card-text>
     </b-card>
 
@@ -18,7 +20,7 @@
             :icon="department.icon"
           >
             <template v-slot:icon>
-              <component :is="department.icon"></component>
+              <component :is="department.icon"/>
             </template>
           </department-row>
         </b-card>
@@ -28,11 +30,11 @@
 </template>
 
 <script>
-import DepartmentRow from "./DepartmentRow";
-import IconGymnastics from "~/components/icons/IconGymnastics";
-import IconFootball from "~/components/icons/IconFootball";
-import IconRunning from "~/components/icons/IconRunning";
-import IconTaekwondo from "~/components/icons/IconTaekwondo";
+import DepartmentRow from "./DepartmentRow"
+import IconGymnastics from "~/components/icons/IconGymnastics"
+import IconFootball from "~/components/icons/IconFootball"
+import IconRunning from "~/components/icons/IconRunning"
+import IconTaekwondo from "~/components/icons/IconTaekwondo"
 
 export default {
   name: "DepartmentTabContent",
@@ -64,7 +66,7 @@ export default {
           icon: "icon-taekwondo"
         }
       ]
-    };
+    }
   }
-};
+}
 </script>

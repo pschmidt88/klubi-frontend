@@ -6,7 +6,7 @@
       <main class="main">
         <breadcrumb :list="list"/>
         <div class="container-fluid">
-          <nuxt />
+          <nuxt/>
         </div>
       </main>
       <AppAside/>
@@ -20,10 +20,10 @@
 //import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '~/components/'
 
 export default {
-  name: 'Full',
+  name: "Full",
   head: {
     bodyAttrs: {
-      class: 'aside-menu-hidden'
+      class: "aside-menu-hidden"
     }
   },
   components: {
@@ -33,16 +33,16 @@ export default {
     // AppFooter,
     // Breadcrumb
   },
-  data () {
+  data() {
     return {
       nav: []
     }
   },
   computed: {
-    name () {
+    name() {
       return this.$route.name
     },
-    list () {
+    list() {
       return this.$route.matched
     }
   }

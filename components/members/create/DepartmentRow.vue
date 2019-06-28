@@ -1,7 +1,9 @@
 <template>
   <b-row align-v="center">
     <b-col>
-      <component :is="icon"></component>
+      <div style="max-width: 48px;">
+        <component :is="icon"/>
+      </div>
     </b-col>
 
     <b-col>{{ name }}</b-col>
@@ -52,16 +54,20 @@
     </b-col>-->
 
     <b-col class="text-right">
-      <b-button v-if="action == 'remove'" variant="outline-danger">
+      <b-button
+        v-if="action == 'remove'"
+        variant="outline-danger">
         {{ actionLabel }}
       </b-button>
-      <b-button v-else variant="outline-success">{{ actionLabel }}</b-button>
+      <b-button
+        v-else
+        variant="outline-success">{{ actionLabel }}</b-button>
     </b-col>
   </b-row>
 </template>
 
 <script>
-import uuid4 from "uuid/v4";
+import uuid4 from "uuid/v4"
 
 export default {
   name: "DepartmentRow",
@@ -88,21 +94,21 @@ export default {
       id: uuid4(),
       memberStatus: this.action == "remove" ? "active" : null,
       entry_date: new Date().toISOString().split("T")[0]
-    };
+    }
   },
   computed: {
     activeOptionIdentifier() {
-      return "member-status-opt-active-" + this.id;
+      return "member-status-opt-active-" + this.id
     },
     passiveOptionIdentifier() {
-      return "member-status-opt-passive" + this.id;
+      return "member-status-opt-passive" + this.id
     },
     memberStatusIdentifier() {
-      return "member-status-" + this.id;
+      return "member-status-" + this.id
     },
     today() {
-      return new Date().toISOString().split("T")[0];
+      return new Date().toISOString().split("T")[0]
     }
   }
-};
+}
 </script>

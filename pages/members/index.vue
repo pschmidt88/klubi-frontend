@@ -1,15 +1,19 @@
 <template>
   <div class="animated fadeIn">
-    <b-row class="form-group" align-h="center">
+    <b-row
+      class="form-group"
+      align-h="center">
       <b-col cols="6">
         <b-input-group>
-          <b-form-input></b-form-input>
+          <b-form-input/>
           <b-input-group-append>
             <b-button variant="primary">Suche</b-button>
           </b-input-group-append>
         </b-input-group>
         <b-list-group class="mt-1">
-          <b-list-group-item href="/members/details" class="flex-column align-items-start">
+          <b-list-group-item
+            href="/members/details"
+            class="flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">Paul Schmidt</h5>
               <small>16.06.1988</small>
@@ -19,7 +23,9 @@
             </p>
             <small>Fußball (Senioren)</small>
           </b-list-group-item>
-          <b-list-group-item href="/members/details" class="flex-column align-items-start">
+          <b-list-group-item
+            href="/members/details"
+            class="flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">Daniel Matzdorf</h5>
               <small class="text-muted">15.12.1986</small>
@@ -147,7 +153,7 @@ export default {
           contact: "Tel.: 02689 49 33 67"
         }
       ]
-    };
+    }
   }
-};
+}
 </script>

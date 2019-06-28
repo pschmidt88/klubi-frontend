@@ -12,20 +12,32 @@
             <h4>Mitglied anlegen</h4>
           </div>
           <div class="widget-body">
-            <b-row class="flex-row" align-h="center">
+            <b-row
+              class="flex-row"
+              align-h="center">
               <b-col cols="10">
                 <form-wizard>
-                  <form-wizard-tab-content tab-id="personal-data" title="Persönliche Daten &amp; Kontakt">
-                    <PersonalData />
+                  <form-wizard-tab-content
+                    tab-id="personal-data"
+                    title="Persönliche Daten &amp; Kontakt"
+                  >
+                    <PersonalData/>
                   </form-wizard-tab-content>
-                  <form-wizard-tab-content tab-id="departments" title="Abteilungen">
-                    <Department />
+                  <form-wizard-tab-content
+                    tab-id="departments"
+                    title="Abteilungen">
+                    <Department/>
                   </form-wizard-tab-content>
-                  <form-wizard-tab-content tab-id="membership-fee" title="Mitgliedsbeitrag / Zahlungsdaten">
-                    <MembershipFee />
+                  <form-wizard-tab-content
+                    tab-id="membership-fee"
+                    title="Mitgliedsbeitrag / Zahlungsdaten"
+                  >
+                    <MembershipFee/>
                   </form-wizard-tab-content>
-                  <form-wizard-tab-content tab-id="summary" title="Zusammenfassung">
-                    <Summary />
+                  <form-wizard-tab-content
+                    tab-id="summary"
+                    title="Zusammenfassung">
+                    <Summary/>
                   </form-wizard-tab-content>
                 </form-wizard>
               </b-col>
@@ -38,32 +50,31 @@
 </template>
 
 <script>
-  import Department from "~/components/members/create/DepartmentsTabContent";
-  import MembershipFee from "~/components/members/create/MembershipFeeTabContent";
-  import PersonalData from "~/components/members/create/PersonalDataTabContent";
-  import Summary from "~/components/members/create/SummaryTabContent";
-  import FormWizard from '~/components/form/FormWizard';
-  import FormWizardTabContent from '~/components/form/FormWizardTabContent';
+import Department from "~/components/members/create/DepartmentsTabContent"
+import MembershipFee from "~/components/members/create/MembershipFeeTabContent"
+import PersonalData from "~/components/members/create/PersonalDataTabContent"
+import Summary from "~/components/members/create/SummaryTabContent"
+import FormWizard from "~/components/form/FormWizard"
+import FormWizardTabContent from "~/components/form/FormWizardTabContent"
 
-  export default {
-    components: {
-      Department,
-      MembershipFee,
-      PersonalData,
-      Summary,
-      FormWizard,
-      FormWizardTabContent
-    },
-    data() {
-      return {
-        tabIndex: 0
-      };
-    },
-    methods: {
-      createMember() {
-      }
+export default {
+  components: {
+    Department,
+    MembershipFee,
+    PersonalData,
+    Summary,
+    FormWizard,
+    FormWizardTabContent
+  },
+  data() {
+    return {
+      tabIndex: 0
     }
-  };
+  },
+  methods: {
+    createMember() {}
+  }
+}
 </script>
 
 <style>
