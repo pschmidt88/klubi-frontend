@@ -2,8 +2,21 @@
   <b-container fluid>
     <b-card
       class="mb-5"
-      title="Abteilungsmitgliedschaften">
-      <b-card-text>Noch keiner Abteilung zugewiesen</b-card-text>
+      title="Abteilungsmitgliedschaften"
+    >
+      <template v-if="assigned_departments.length > 0">
+        <department-row
+          v-for="department in assigned_departments"
+          :key="department.name"
+          :name="department.name"
+          :icon="department.icon"
+          :assigned="true"
+          @action-button-pressed="unassignFromDepartment"
+        />
+
+      </template>
+
+      <b-card-text v-else>Noch keiner Abteilung zugewiesen</b-card-text>
     </b-card>
 
     <b-row align-h="center">
@@ -18,11 +31,8 @@
             :key="department.name"
             :name="department.name"
             :icon="department.icon"
-          >
-            <template v-slot:icon>
-              <component :is="department.icon"/>
-            </template>
-          </department-row>
+            @action-button-pressed="assignToDepartment"
+          />
         </b-card>
       </b-col>
     </b-row>
@@ -48,6 +58,7 @@ export default {
   data() {
     return {
       entry_date: "2019-05-24",
+      assigned_departments: [],
       available_departments: [
         {
           name: "Fußball",
@@ -66,6 +77,26 @@ export default {
           icon: "icon-taekwondo"
         }
       ]
+    }
+  },
+  methods: {
+    assignToDepartment(department) {
+      this.available_departments.splice(
+        this.available_departments.findIndex(element => {
+          return element.name === department.name
+        }),
+        1
+      )
+      this.assigned_departments.push(department)
+    },
+    unassignFromDepartment(department) {
+      this.assigned_departments.splice(
+        this.assigned_departments.findIndex(element => {
+          return element.name === department.name
+        }),
+        1
+      )
+      this.available_departments.push(department)
     }
   }
 }
