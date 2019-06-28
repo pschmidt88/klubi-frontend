@@ -1,20 +1,27 @@
 <template>
   <b-row align-v="center">
     <b-col>
-      <div style="max-width: 48px;">
-        <component :is="icon"/>
+      <div style="max-width: 52px;">
+        <component :is="icon" />
       </div>
     </b-col>
 
     <b-col>{{ name }}</b-col>
 
-    <!-- <b-col>
-      <b-form-group label="Eintrittsdatum" label-for="input-entry-date">
-        <b-form-input id="input-entry-date" type="date" v-model="entry_date"></b-form-input>
+    <b-col v-if="assigned">
+      <b-form-group
+        label="Eintrittsdatum"
+        label-for="input-entry-date"
+      >
+        <b-form-input
+          id="input-entry-date"
+          v-model="entry_date"
+          type="date"
+        />
       </b-form-group>
-    </b-col>-->
+    </b-col>
 
-    <!-- <b-col>
+    <b-col v-if="assigned">
       <b-form-row>
         <b-col cols="12">
           <label class="form-control-label">Mitgliedstatus</label>
@@ -23,52 +30,55 @@
         <b-col cols="6">
           <div class="custom-control custom-radio styled-radio mb-3">
             <input
-              class="custom-control-input"
-              type="radio"
               :name="memberStatusIdentifier"
               v-model="memberStatus"
-              value="active"
               :id="activeOptionIdentifier"
+              class="custom-control-input"
+              type="radio"
+              value="active"
               required
             >
-            <label class="custom-control-descfeedback" :for="activeOptionIdentifier">Aktiv</label>
+            <label
+              :for="activeOptionIdentifier"
+              class="custom-control-descfeedback"
+            >Aktiv</label>
             <div class="invalid-feedback">Toggle this custom radio</div>
           </div>
         </b-col>
         <b-col cols="6">
           <div class="custom-control custom-radio styled-radio mb-3">
             <input
-              class="custom-control-input"
-              type="radio"
               :name="memberStatusIdentifier"
               v-model="memberStatus"
-              value="passive"
               :id="passiveOptionIdentifier"
+              class="custom-control-input"
+              type="radio"
+              value="passive"
               required
             >
-            <label class="custom-control-descfeedback" :for="passiveOptionIdentifier">Passiv</label>
+            <label
+              :for="passiveOptionIdentifier"
+              class="custom-control-descfeedback"
+            >Passiv</label>
             <div class="invalid-feedback">Or toggle this other custom radio</div>
           </div>
         </b-col>
       </b-form-row>
-    </b-col>-->
+    </b-col>
 
     <b-col class="text-right">
       <b-button
-        v-if="action == 'remove'"
-        variant="outline-danger">
-        {{ actionLabel }}
+        :variant="buttonVariant "
+        @click="emitActionButtonPressed"
+      >
+        {{ actionButtonLabel }}
       </b-button>
-      <b-button
-        v-else
-        variant="outline-success">{{ actionLabel }}</b-button>
     </b-col>
   </b-row>
 </template>
 
 <script>
 import uuid4 from "uuid/v4"
-
 export default {
   name: "DepartmentRow",
   props: {
@@ -76,17 +86,13 @@ export default {
       type: String,
       required: true
     },
-    action: {
-      type: String,
-      default: "add"
-    },
     icon: {
       type: String,
       default: "none"
     },
-    "action-label": {
-      type: String,
-      default: "Zuweisen"
+    assigned: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -97,6 +103,12 @@ export default {
     }
   },
   computed: {
+    buttonVariant() {
+      return this.assigned ? "outline-danger" : "outline-success"
+    },
+    actionButtonLabel() {
+      return this.assigned ? "Entfernen" : "Zuweisen"
+    },
     activeOptionIdentifier() {
       return "member-status-opt-active-" + this.id
     },
@@ -108,6 +120,12 @@ export default {
     },
     today() {
       return new Date().toISOString().split("T")[0]
+    }
+  },
+  methods: {
+    emitActionButtonPressed() {
+      console.log("emitting the fucking event")
+      this.$emit("action-button-pressed", { name: this.name, icon: this.icon })
     }
   }
 }

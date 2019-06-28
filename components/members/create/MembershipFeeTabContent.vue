@@ -25,7 +25,7 @@
                 label-for="input-account-first-name"
                 label-class="form-control-label"
               >
-                <b-form-input v-model="accountFirstName"/>
+                <b-form-input v-model="accountFirstName" />
               </b-form-group>
             </b-col>
           </b-row>
@@ -36,7 +36,7 @@
                 label-for="input-account-last-name"
                 label-class="form-control-label"
               >
-                <b-form-input v-model="accountLastName"/>
+                <b-form-input v-model="accountLastName" />
               </b-form-group>
             </b-col>
           </b-row>
@@ -61,7 +61,7 @@
                 label-for="input-bic"
                 label-class="form-control-label"
               >
-                <b-form-input v-model="bic"/>
+                <b-form-input v-model="bic" />
               </b-form-group>
             </b-col>
           </b-row>
@@ -72,7 +72,7 @@
                 label-for="readonly-input-bankname"
                 label-class="form-control-label"
               >
-                <b-form-input readonly/>
+                <b-form-input readonly />
               </b-form-group>
             </b-col>
           </b-row>
@@ -84,7 +84,7 @@
                 label-for="file-input-sepa-direct-debit-mandate"
                 label-class="form-control-label"
               >
-                <b-form-file placeholder="Dokument auswählen..."/>
+                <b-form-file placeholder="Dokument auswählen..." />
               </b-form-group>
             </b-col>
           </b-row>
