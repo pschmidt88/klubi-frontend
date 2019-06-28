@@ -2,14 +2,21 @@
   <div class="horizontal-menu">
     <b-container>
       <b-row>
-        <b-navbar type="light" toggleable="lg" class="main-menu">
-          <b-navbar-toggle target="main-navigation" data-toggle="collapse">
-            <span></span>
-            <span></span>
-            <span></span>
+        <b-navbar
+          type="light"
+          toggleable="lg"
+          class="main-menu">
+          <b-navbar-toggle
+            target="main-navigation"
+            data-toggle="collapse">
+            <span/>
+            <span/>
+            <span/>
           </b-navbar-toggle>
 
-          <b-collapse id="main-navigation" is-nav>
+          <b-collapse
+            id="main-navigation"
+            is-nav>
             <b-navbar-nav class="mr-auto">
               <b-nav-item>Dashboard</b-nav-item>
               <b-nav-item-dropdown text="Mitgliederverwaltung">
@@ -26,6 +33,6 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 

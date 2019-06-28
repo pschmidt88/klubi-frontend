@@ -14,14 +14,19 @@
         <!-- Begin Page Footer-->
         <AppFooter />
         <!-- End Page Footer -->
-        <a href="#" class="go-top">
-          <i class="la la-arrow-up"></i>
+        <a
+          href="#"
+          class="go-top">
+          <i class="la la-arrow-up"/>
         </a>
         <!-- Offcanvas Sidebar -->
         <div class="off-sidebar from-right">
           <div class="off-sidebar-container">
             <header class="off-sidebar-header">
-              <ul id="weather-tab" class="button-nav nav nav-tabs mt-3 mb-3 ml-3" role="tablist">
+              <ul
+                id="weather-tab"
+                class="button-nav nav nav-tabs mt-3 mb-3 ml-3"
+                role="tablist">
                 <li>
                   <a
                     id="messenger-tab"
@@ -32,10 +37,16 @@
                   >Messages</a>
                 </li>
                 <li>
-                  <a id="today-tab" data-toggle="tab" href="#today" role="tab">Today</a>
+                  <a
+                    id="today-tab"
+                    data-toggle="tab"
+                    href="#today"
+                    role="tab">Today</a>
                 </li>
               </ul>
-              <a href="#off-canvas" class="off-sidebar-close"></a>
+              <a
+                href="#off-canvas"
+                class="off-sidebar-close"/>
             </header>
             <div class="off-sidebar-content offcanvas-scroll auto-scroll">
               <div class="tab-content">
@@ -149,11 +160,15 @@
                   <!-- Begin Message Form -->
                   <div class="enter-message">
                     <div class="enter-message-form">
-                      <input type="text" placeholder="Enter your message...">
+                      <input
+                        type="text"
+                        placeholder="Enter your message...">
                     </div>
                     <div class="enter-message-button">
-                      <a href="#" class="send">
-                        <i class="ion-paper-airplane"></i>
+                      <a
+                        href="#"
+                        class="send">
+                        <i class="ion-paper-airplane"/>
                       </a>
                     </div>
                   </div>
@@ -161,23 +176,27 @@
                 </div>
                 <!-- End Messenger -->
                 <!-- Begin Today -->
-                <div id="today" role="tabpanel" class="tab-pane fade" aria-labelledby="today-tab">
+                <div
+                  id="today"
+                  role="tabpanel"
+                  class="tab-pane fade"
+                  aria-labelledby="today-tab">
                   <!-- Begin Today Stats -->
                   <div class="sidebar-heading pt-0">Today</div>
                   <div class="today-stats mt-3 mb-3">
                     <div class="row">
                       <div class="col-4 text-center">
-                        <i class="la la-users"></i>
+                        <i class="la la-users"/>
                         <div class="counter">264</div>
                         <div class="heading">Clients</div>
                       </div>
                       <div class="col-4 text-center">
-                        <i class="la la-cart-arrow-down"></i>
+                        <i class="la la-cart-arrow-down"/>
                         <div class="counter">360</div>
                         <div class="heading">Sales</div>
                       </div>
                       <div class="col-4 text-center">
-                        <i class="la la-money"></i>
+                        <i class="la la-money"/>
                         <div class="counter">$ 4,565</div>
                         <div class="heading">Earnings</div>
                       </div>
@@ -277,9 +296,12 @@
                           </div>
                           <div class="media-right align-self-center">
                             <label>
-                              <input class="toggle-checkbox" type="checkbox" checked>
+                              <input
+                                class="toggle-checkbox"
+                                type="checkbox"
+                                checked>
                               <span>
-                                <span></span>
+                                <span/>
                               </span>
                             </label>
                           </div>
@@ -292,9 +314,11 @@
                           </div>
                           <div class="media-right align-self-center">
                             <label>
-                              <input class="toggle-checkbox" type="checkbox">
+                              <input
+                                class="toggle-checkbox"
+                                type="checkbox">
                               <span>
-                                <span></span>
+                                <span/>
                               </span>
                             </label>
                           </div>
@@ -307,9 +331,12 @@
                           </div>
                           <div class="media-right align-self-center">
                             <label>
-                              <input class="toggle-checkbox" type="checkbox" checked>
+                              <input
+                                class="toggle-checkbox"
+                                type="checkbox"
+                                checked>
                               <span>
-                                <span></span>
+                                <span/>
                               </span>
                             </label>
                           </div>
@@ -349,8 +376,8 @@
     },
     computed: {
       name() {
-        return this.$route.name;
+        return this.$route.name
       }
     },
-  };
+  }
 </script>

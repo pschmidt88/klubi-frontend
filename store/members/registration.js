@@ -13,39 +13,39 @@ export const state = () => ({
 })
 
 export const mutations = {
-  updateFirstName (state, payload) {
+  updateFirstName(state, payload) {
     state.first_name = payload.first_name
   },
 
-  updateLastName (state, payload) {
+  updateLastName(state, payload) {
     state.last_name = payload.last_name
   },
 
-  updateStreetAddress (state, payload) {
+  updateStreetAddress(state, payload) {
     state.street_address = payload.street_address
   },
 
-  updateStreetNumber (state, payload) {
+  updateStreetNumber(state, payload) {
     state.street_number = payload.street_number
   },
 
-  updatePostCode (state, payload) {
+  updatePostCode(state, payload) {
     state.post_code = payload.post_code
   },
 
-  updateCity (state, payload) {
+  updateCity(state, payload) {
     state.city = payload.city
   },
 
-  updateBirthday (state, payload) {
+  updateBirthday(state, payload) {
     state.birthday = payload.birthday
   },
 
-  updatePhone (state, payload) {
+  updatePhone(state, payload) {
     state.phone = payload.phone
   },
 
-  updateEmail (state, payload) {
+  updateEmail(state, payload) {
     state.email = payload.email
   }
 }

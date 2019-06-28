@@ -82,7 +82,7 @@ module.exports = {
 
   webfontloader: {
     google: {
-      families: ["Montserrat:400,500,600,700","Noto+Sans:400,700"]
+      families: ["Montserrat:400,500,600,700", "Noto+Sans:400,700"]
     }
   },
 
@@ -93,7 +93,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, { isDev, isClient }) {
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -103,8 +103,8 @@ module.exports = {
         })
 
         const vueLoader = config.module.rules.find(
-          ({loader}) => loader === 'vue-loader')
-        const { options: {loaders} } = vueLoader || { options: {} }
+          ({ loader }) => loader === 'vue-loader')
+        const { options: { loaders } } = vueLoader || { options: {} }
 
         if (loaders) {
           for (const loader of Object.values(loaders)) {

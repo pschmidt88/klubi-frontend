@@ -15,7 +15,7 @@
                 required
                 trim
                 placeholder="Max"
-              ></b-form-input>
+              />
             </b-form-group>
           </b-col>
         </b-row>
@@ -31,7 +31,7 @@
                 v-model="lastName"
                 trim
                 placeholder="Mustermann"
-              ></b-form-input>
+              />
             </b-form-group>
           </b-col>
         </b-row>
@@ -47,7 +47,7 @@
                 id="inputStreetAddress"
                 v-model="streetAddress"
                 placeholder="Musterstraße"
-              ></b-form-input>
+              />
             </b-form-group>
           </b-col>
           <b-col cols="3">
@@ -60,7 +60,7 @@
                 id="inputHouseNo"
                 v-model="houseNumber"
                 placeholder="5"
-              ></b-form-input>
+              />
             </b-form-group>
           </b-col>
         </b-row>
@@ -96,8 +96,12 @@
         </b-row>
 
         <b-row>
-          <b-col cols="12" lg="12">
-            <b-form-group label="Geburtstag" label-class="form-control-label">
+          <b-col
+            cols="12"
+            lg="12">
+            <b-form-group
+              label="Geburtstag"
+              label-class="form-control-label">
               <b-row align-h="between">
                 <b-col>
                   <b-form-group
@@ -112,7 +116,7 @@
                       v-model="dateOfBirthDay"
                       placeholder="16"
                       class="text-center"
-                    ></b-form-input>
+                    />
                   </b-form-group>
                 </b-col>
 
@@ -129,7 +133,7 @@
                       v-model="dateOfBirthMonth"
                       placeholder="06"
                       class="text-center"
-                    ></b-form-input>
+                    />
                   </b-form-group>
                 </b-col>
 
@@ -146,7 +150,7 @@
                       v-model="dateOfBirthYear"
                       placeholder="1988"
                       class="text-center"
-                    ></b-form-input>
+                    />
                   </b-form-group>
                 </b-col>
               </b-row>
@@ -165,7 +169,7 @@
                 id="inputPhoneNumber"
                 v-model="phone"
                 placeholder="0561123456"
-              ></b-form-input>
+              />
             </b-form-group>
           </b-col>
 
@@ -196,86 +200,86 @@ export default {
       dateOfBirthDay: null,
       dateOfBirthMonth: null,
       dateOfBirthYear: null
-    };
+    }
   },
   computed: {
     firstName: {
       get() {
-        return this.$store.state.members.registration.first_name;
+        return this.$store.state.members.registration.first_name
       },
       set(value) {
         this.$store.commit("members/registration/updateFirstName", {
           first_name: value
-        });
+        })
       }
     },
     lastName: {
       get() {
-        return this.$store.state.members.registration.last_name;
+        return this.$store.state.members.registration.last_name
       },
       set(value) {
         this.$store.commit({
           type: "members/registration/updateLastName",
           last_name: value
-        });
+        })
       }
     },
     streetAddress: {
       get() {
-        return this.$store.state.members.registration.street_address;
+        return this.$store.state.members.registration.street_address
       },
       set(value) {
         this.$store.commit("members/registration/updateStreetAddress", {
           street_address: value
-        });
+        })
       }
     },
     houseNumber: {
       get() {
-        return this.$store.state.members.registration.street_number;
+        return this.$store.state.members.registration.street_number
       },
       set(value) {
         this.$store.commit("members/registration/updateStreetNumber", {
           street_number: value
-        });
+        })
       }
     },
     postCode: {
       get() {
-        return this.$store.state.members.registration.post_code;
+        return this.$store.state.members.registration.post_code
       },
       set(value) {
         this.$store.commit("members/registration/updatePostCode", {
           post_code: value
-        });
+        })
       }
     },
     city: {
       get() {
-        return this.$store.state.members.registration.city;
+        return this.$store.state.members.registration.city
       },
       set(value) {
-        this.$store.commit("members/registration/updateCity", { city: value });
+        this.$store.commit("members/registration/updateCity", { city: value })
       }
     },
     phone: {
       get() {
-        return this.$store.state.members.registration.phone;
+        return this.$store.state.members.registration.phone
       },
       set(value) {
         this.$store.commit("members/registration/updatePhone", {
           phone: value
-        });
+        })
       }
     },
     email: {
       get() {
-        return this.$store.state.members.registration.email;
+        return this.$store.state.members.registration.email
       },
       set(value) {
         this.$store.commit("members/registration/updateEmail", {
           email: value
-        });
+        })
       }
     },
     birthday() {
@@ -284,12 +288,12 @@ export default {
         this.dateOfBirthMonth == null ||
         this.dateOfBirthYear == null
       ) {
-        return null;
+        return null
       }
 
       return Date.parse(
         `${this.dateOfBirthYear}-${this.dateOfBirthMonth}-${this.dateOfBirthDay}`
-      );
+      )
     }
   },
   watch: {
@@ -297,9 +301,9 @@ export default {
       if (!isNaN(newValue)) {
         this.$store.commit("members/registration/updateBirthday", {
           birthday: newValue
-        });
+        })
       }
     }
   }
-};
+}
 </script>

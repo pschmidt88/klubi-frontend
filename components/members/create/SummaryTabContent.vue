@@ -11,10 +11,10 @@
           </b-card-text>
 
           <b-card-title>Abteilung</b-card-title>
-          <b-card-text></b-card-text>
+          <b-card-text/>
 
           <b-card-title>Zahlungsdaten</b-card-title>
-          <b-card-text></b-card-text>
+          <b-card-text/>
         </b-card>
       </b-col>
     </b-row>
