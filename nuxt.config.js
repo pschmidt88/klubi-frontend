@@ -1,9 +1,9 @@
 const changeLoaderOptions = loaders => {
   if (loaders) {
     for (const loader of loaders) {
-      if (loader.loader === 'sass-loader') {
+      if (loader.loader === "sass-loader") {
         Object.assign(loader.options, {
-          includePaths: ['./assets']
+          includePaths: ["./assets"]
         })
       }
     }
@@ -12,60 +12,72 @@ const changeLoaderOptions = loaders => {
 
 module.exports = {
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
-    title: 'Klubi Vereinsverwaltung',
+    title: "Klubi Vereinsverwaltung",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Unofficial Nuxt + CoreUI project, free to use boilerplate for every need.' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "Unofficial Nuxt + CoreUI project, free to use boilerplate for every need."
+      }
     ],
     link: [
-      { rel: 'apple-touch-icon', sizes: '180x180', href: '/img/apple-touch-icon.png' },
-      { rel: 'icon', sizes: '32x32', href: '/img/favicon-32x32.png' },
-      { rel: 'icon', sizes: '16x16', href: '/img/favicon-16x16.png' },
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/img/apple-touch-icon.png"
+      },
+      { rel: "icon", sizes: "32x32", href: "/img/favicon-32x32.png" },
+      { rel: "icon", sizes: "16x16", href: "/img/favicon-16x16.png" },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }
     ]
   },
 
   /*
-  ** Customize the progress bar color
-  */
-  loading: { color: '#42A5CC' },
+   ** Customize the progress bar color
+   */
+  loading: { color: "#42A5CC" },
 
   /**
    * Import CSS
    */
   css: [
-    '~/node_modules/line-awesome/dist/css/line-awesome.min.css',
+    "~/node_modules/line-awesome/dist/css/line-awesome.min.css",
     // '~/node_modules/ionicons/scss/ionicons',
     /* Import Core SCSS */
-    { src: '~/assets/scss/style.scss', lang: 'scss' }
+    { src: "~/assets/scss/style.scss", lang: "scss" }
   ],
 
   /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-    { src: "~/plugins/icons.js" }
-  ],
+   ** Plugins to load before mounting the App
+   */
+  plugins: [{ src: "~/plugins/icons.js" }],
 
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios',
+    "@nuxtjs/axios",
     // Doc: https://github.com/bootstrap-vue/bootstrap-vue
-    'bootstrap-vue/nuxt',
-    'nuxt-webfontloader'
+    "bootstrap-vue/nuxt",
+    "nuxt-webfontloader"
   ],
   /*
-  ** Axios module configuration
-  */
+   ** Axios module configuration
+   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    proxy: true
+  },
+
+  proxy: {
+    "/api/": "http://localhost:8080"
   },
 
   bootstrapVue: {
@@ -74,10 +86,10 @@ module.exports = {
   },
 
   /*
-  ** Style resources configuration
-  */
+   ** Style resources configuration
+   */
   styleResources: {
-    scss: './assets/scss/style.scss'
+    scss: "./assets/scss/style.scss"
   },
 
   webfontloader: {
@@ -87,24 +99,27 @@ module.exports = {
   },
 
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     /*
-    ** You can extend webpack config here
-    */
+     ** You can extend webpack config here
+     */
     extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
-          enforce: 'pre',
+          enforce: "pre",
           test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
+          loader: "eslint-loader",
           exclude: /(node_modules)/
         })
 
         const vueLoader = config.module.rules.find(
-          ({ loader }) => loader === 'vue-loader')
-        const { options: { loaders } } = vueLoader || { options: {} }
+          ({ loader }) => loader === "vue-loader"
+        )
+        const {
+          options: { loaders }
+        } = vueLoader || { options: {} }
 
         if (loaders) {
           for (const loader of Object.values(loaders)) {
