@@ -11,8 +11,7 @@
             >
               <b-form-select
                 v-model="paymentType"
-                :options="paymentTypeOptions"
-              />
+                :options="paymentTypeOptions" />
             </b-form-group>
           </b-col>
         </b-row>
@@ -45,12 +44,10 @@
               <b-form-group
                 label="IBAN"
                 label-for="input-iban"
-                label-class="form-control-label"
-              >
+                label-class="form-control-label">
                 <b-form-input
                   v-mask="'AA## #### #### #### #### ##'"
-                  v-model="iban"
-                />
+                  v-model="iban" />
               </b-form-group>
             </b-col>
           </b-row>
@@ -59,8 +56,7 @@
               <b-form-group
                 label="BIC"
                 label-for="input-bic"
-                label-class="form-control-label"
-              >
+                label-class="form-control-label">
                 <b-form-input v-model="bic" />
               </b-form-group>
             </b-col>
@@ -72,7 +68,9 @@
                 label-for="readonly-input-bankname"
                 label-class="form-control-label"
               >
-                <b-form-input readonly />
+                <b-form-input
+                  v-model="bankname"
+                  readonly />
               </b-form-group>
             </b-col>
           </b-row>
@@ -96,12 +94,14 @@
 
 <script>
 import { mask } from "vue-the-mask"
+import bankAPI from "@/api/bank"
 
 export default {
   name: "MembershipFeeTabContent",
   directives: { mask },
   data() {
     return {
+      bic: null,
       paymentType: null,
       accountFirstName: null,
       accountLastName: null,
@@ -110,12 +110,35 @@ export default {
         { value: null, text: "Bitte eine Zahlungsart auswählen" },
         { value: "transfer", text: "Überweisung" },
         { value: "direct_debit", text: "Lastschrift" }
-      ]
+      ],
+      bankname: null
     }
   },
   computed: {
     isDirectDebit() {
       return this.paymentType === "direct_debit"
+    }
+  },
+  watch: {
+    iban() {
+      this.onIbanChanged()
+    }
+  },
+  methods: {
+    async onIbanChanged() {
+      let rawIban = this.iban.replace(/\s/g, "")
+
+      if (rawIban.length != 22) {
+        return
+      }
+
+      let bankResponse = await bankAPI
+        .getBankInformationByIban(rawIban)
+        .catch(() => {
+          console.log("errorz")
+        })
+
+      this.bankname = bankResponse.data.bankName.shortName
     }
   }
 }
