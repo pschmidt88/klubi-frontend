@@ -10,7 +10,7 @@
               label-class="form-control-label"
             >
               <b-form-select
-                v-model="paymentType"
+                v-model="paymentMethod"
                 :options="paymentTypeOptions" />
             </b-form-group>
           </b-col>
@@ -24,7 +24,7 @@
                 label-for="input-account-first-name"
                 label-class="form-control-label"
               >
-                <b-form-input v-model="accountFirstName" />
+                <b-form-input v-model="firstName" />
               </b-form-group>
             </b-col>
           </b-row>
@@ -35,7 +35,7 @@
                 label-for="input-account-last-name"
                 label-class="form-control-label"
               >
-                <b-form-input v-model="accountLastName" />
+                <b-form-input v-model="lastName" />
               </b-form-group>
             </b-col>
           </b-row>
@@ -47,7 +47,8 @@
                 label-class="form-control-label">
                 <b-form-input
                   v-mask="'AA## #### #### #### #### ##'"
-                  v-model="iban" />
+                  v-model="iban" 
+                  size="27" />
               </b-form-group>
             </b-col>
           </b-row>
@@ -101,11 +102,6 @@ export default {
   directives: { mask },
   data() {
     return {
-      bic: null,
-      paymentType: null,
-      accountFirstName: null,
-      accountLastName: null,
-      iban: null,
       paymentTypeOptions: [
         { value: null, text: "Bitte eine Zahlungsart auswählen" },
         { value: "transfer", text: "Überweisung" },
@@ -116,24 +112,60 @@ export default {
   },
   computed: {
     isDirectDebit() {
-      return this.paymentType === "direct_debit"
-    }
-  },
-  watch: {
-    iban() {
-      this.onIbanChanged()
-    }
+      return this.paymentMethod === "direct_debit"
+    },
+    paymentMethod: {
+      get () {
+        return this.$store.state.members.registration.paymentMethod
+      },
+      set (value) {
+        this.$store.commit('members/registration/updatePaymentMethod', { paymentMethod: value })
+      }
+    },
+    firstName: {
+      get () {
+        return this.$store.state.members.registration.bankDetails.firstName
+      },
+      set (value) {
+        this.$store.commit('members/registration/updateBankDetailsFirstName', { firstName: value })
+      }
+    },
+    lastName: {
+      get () {
+        return this.$store.state.members.registration.bankDetails.lastName
+      },
+      set (value) {
+        this.$store.commit('members/registration/updateBankDetailsLastName', { lastName: value })
+      }
+    },
+    iban: {
+      get () {
+        return this.$store.state.members.registration.bankDetails.iban
+      },
+      set (value) {
+        let rawIban = value.replace(/\s/g, "")
+        this.onIbanChanged(rawIban)
+      }
+    },
+    bic: {
+      get () {
+        return this.$store.state.members.registration.bankDetails.bic
+      },
+      set (value) {
+        this.$store.commit('members/registration/updateBIC', { bic: value })
+      }
+    },
   },
   methods: {
-    async onIbanChanged() {
-      let rawIban = this.iban.replace(/\s/g, "")
-
-      if (rawIban.length != 22) {
+    async onIbanChanged(value) {
+      if (value.length != 22) {
         return
       }
 
+      this.$store.commit('members/registration/updateIBAN', { iban: value })
+
       let bankResponse = await bankAPI
-        .getBankInformationByIban(rawIban)
+        .getBankInformationByIban(value)
         .catch(() => {
           console.log("errorz")
         })

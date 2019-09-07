@@ -1,102 +1,130 @@
 <template>
   <b-container fluid>
-    <b-card
-      class="mb-5"
-      title="Abteilungsmitgliedschaften"
-    >
-      <template v-if="assigned_departments.length > 0">
-        <department-row
-          v-for="department in assigned_departments"
-          :key="department.name"
-          :name="department.name"
-          :icon="department.icon"
-          :assigned="true"
-          @action-button-pressed="unassignFromDepartment"
-        />
-
-      </template>
-
-      <b-card-text v-else>Noch keiner Abteilung zugewiesen</b-card-text>
-    </b-card>
-
     <b-row align-h="center">
-      <b-col cols="6">
-        <b-card
-          title="Verfügbare Abteilungen"
-          class="mt-5"
-          border-variant="light"
-        >
-          <department-row
-            v-for="department in available_departments"
-            :key="department.name"
-            :name="department.name"
-            :icon="department.icon"
-            @action-button-pressed="assignToDepartment"
-          />
-        </b-card>
+      <b-col cols="8">
+        <b-form-row>
+          <b-col>
+            <b-form-group
+              label-for="selectDepartment"
+              label="Abteilung"
+              label-class="form-control-label"
+            >
+              <b-form-select
+                id="selectDepartment"
+                v-model="department"
+                :options="availableDepartments" />
+            </b-form-group>
+          </b-col>
+        </b-form-row>
+        <b-form-row>
+          <b-col>
+            <b-form-group
+              label="Eintrittsdatum"
+              label-for="inputEntryDate"
+              label-class="form-control-label"
+            >
+              <b-form-input
+                id="inputEntryDate"
+                v-model="entryDate"
+                type="date"
+              />
+            </b-form-group>
+          </b-col>
+        </b-form-row>
+        <b-form-row>
+          <b-col cols="12">
+            <label class="form-control-label">Mitgliedstatus</label>
+          </b-col>
+
+          <b-col cols="4">
+            <div class="custom-control custom-radio styled-radio mb-3">
+              <input
+                id="activeOption"
+                v-model="status"
+                name="memberStatus"
+                class="custom-control-input"
+                type="radio"
+                value="active"
+              >
+              <label
+                for="activeOption"
+                class="custom-control-descfeedback"
+              >Aktiv</label>
+              <div class="invalid-feedback">Toggle this custom radio</div>
+            </div>
+          </b-col>
+          <b-col cols="4">
+            <div class="custom-control custom-radio styled-radio mb-3">
+              <input
+                id="passiveOption"
+                v-model="status"
+                name="memberStatus"
+                class="custom-control-input"
+                type="radio"
+                value="passive"
+              >
+              <label
+                for="passiveOption"
+                class="custom-control-descfeedback"
+              >Passiv</label>
+              <div class="invalid-feedback">Or toggle this other custom radio</div>
+            </div>
+          </b-col>
+        </b-form-row>
       </b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
-import DepartmentRow from "./DepartmentRow"
-import IconGymnastics from "~/components/icons/IconGymnastics"
-import IconFootball from "~/components/icons/IconFootball"
-import IconRunning from "~/components/icons/IconRunning"
-import IconTaekwondo from "~/components/icons/IconTaekwondo"
 
 export default {
   name: "DepartmentTabContent",
-  components: {
-    DepartmentRow,
-    IconGymnastics,
-    IconFootball,
-    IconRunning,
-    IconTaekwondo
-  },
+  
   data() {
     return {
-      entry_date: "2019-05-24",
-      assigned_departments: [],
-      available_departments: [
+      availableDepartments: [
+        { value: null, text: "Abteilung wählen"},
+        { value: "football", text: "Fußball", },
         {
-          name: "Fußball",
-          icon: "icon-football"
+          value: "gymnastics",
+          text: "Gymnastik",
         },
         {
-          name: "Gymnastik",
-          icon: "icon-gymnastics"
+          value: "running",
+          text: "Laufen",
         },
         {
-          name: "Laufen",
-          icon: "icon-running"
-        },
-        {
-          name: "Taekwondo",
-          icon: "icon-taekwondo"
+          value: "taekwondo",
+          text: "Taekwondo",
         }
-      ]
+      ],
     }
   },
-  methods: {
-    assignToDepartment(department) {
-      this.available_departments.splice(
-        this.available_departments.findIndex(element => {
-          return element.name === department.name
-        }),
-        1
-      )
-      this.assigned_departments.push(department)
+  computed: {
+    status: {
+      get () {
+        return this.$store.state.members.registration.memberStatus
+      },
+      set (value) {
+        this.$store.commit('members/registration/updateMemberStatus', { status: value })
+      }
     },
-    unassignFromDepartment(department) {
-      this.assigned_departments.splice(
-        this.assigned_departments.findIndex(element => {
-          return element.name === department.name
-        }),
-        1
-      )
-      this.available_departments.push(department)
+    department: {
+      get () {
+        return this.$store.state.members.registration.department
+      },
+      set (value) {
+        this.$store.commit('members/registration/updateDepartment', { department: value })
+      }
+    },
+    entryDate: {
+      get () {
+        return this.$store.state.members.registration.entryDate
+      },
+      set (value) {
+        this.$store.commit('members/registration/updateEntryDate', { entryDate: value })
+      }
     }
   }
 }
