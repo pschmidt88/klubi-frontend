@@ -6,7 +6,7 @@
           <b-card-title>Persönliche Daten</b-card-title>
           <b-card-text>
             <b-row>
-              <b-col>Paul Schmidt</b-col>
+              <b-col>fullName</b-col>
             </b-row>
           </b-card-text>
 

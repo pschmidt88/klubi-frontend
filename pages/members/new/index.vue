@@ -34,11 +34,7 @@
                   >
                     <MembershipFee/>
                   </form-wizard-tab-content>
-                  <form-wizard-tab-content
-                    tab-id="summary"
-                    title="Zusammenfassung">
-                    <Summary/>
-                  </form-wizard-tab-content>
+                  
                 </form-wizard>
               </b-col>
             </b-row>
@@ -53,7 +49,6 @@
 import Department from "~/components/members/create/DepartmentsTabContent"
 import MembershipFee from "~/components/members/create/MembershipFeeTabContent"
 import PersonalData from "~/components/members/create/PersonalDataTabContent"
-import Summary from "~/components/members/create/SummaryTabContent"
 import FormWizard from "~/components/form/FormWizard"
 import FormWizardTabContent from "~/components/form/FormWizardTabContent"
 
@@ -62,7 +57,6 @@ export default {
     Department,
     MembershipFee,
     PersonalData,
-    Summary,
     FormWizard,
     FormWizardTabContent
   },
