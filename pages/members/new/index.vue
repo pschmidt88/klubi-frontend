@@ -25,7 +25,7 @@
                   </form-wizard-tab-content>
                   <form-wizard-tab-content
                     tab-id="departments"
-                    title="Abteilungen">
+                    title="Abteilung">
                     <Department/>
                   </form-wizard-tab-content>
                   <form-wizard-tab-content
