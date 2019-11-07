@@ -9,7 +9,7 @@ export const state = () => ({
   phone: null,
   email: null,
   department: null,
-  member_status: "active",
+  member_status: 'active',
   entry_date: today(),
   payment_method: null,
   bank_details: {}
@@ -70,5 +70,5 @@ export const mutations = {
 }
 
 function today() {
-  return new Date().toISOString().split("T")[0]
+  return new Date().toISOString().split('T')[0]
 }

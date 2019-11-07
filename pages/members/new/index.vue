@@ -12,29 +12,27 @@
             <h4>Mitglied anlegen</h4>
           </div>
           <div class="widget-body">
-            <b-row
-              class="flex-row"
-              align-h="center">
+            <b-row class="flex-row" align-h="center">
               <b-col cols="10">
                 <form-wizard>
                   <form-wizard-tab-content
                     tab-id="personal-data"
                     title="Persönliche Daten &amp; Kontakt"
                   >
-                    <PersonalData/>
+                    <PersonalData />
                   </form-wizard-tab-content>
                   <form-wizard-tab-content
                     tab-id="departments"
-                    title="Abteilung">
-                    <Department/>
+                    title="Abteilung"
+                  >
+                    <Department />
                   </form-wizard-tab-content>
                   <form-wizard-tab-content
                     tab-id="membership-fee"
                     title="Mitgliedsbeitrag / Zahlungsdaten"
                   >
-                    <MembershipFee/>
+                    <MembershipFee />
                   </form-wizard-tab-content>
-                  
                 </form-wizard>
               </b-col>
             </b-row>
@@ -46,11 +44,11 @@
 </template>
 
 <script>
-import Department from "~/components/members/create/DepartmentsTabContent"
-import MembershipFee from "~/components/members/create/MembershipFeeTabContent"
-import PersonalData from "~/components/members/create/PersonalDataTabContent"
-import FormWizard from "~/components/form/FormWizard"
-import FormWizardTabContent from "~/components/form/FormWizardTabContent"
+import Department from '~/components/members/create/DepartmentsTabContent'
+import MembershipFee from '~/components/members/create/MembershipFeeTabContent'
+import PersonalData from '~/components/members/create/PersonalDataTabContent'
+import FormWizard from '~/components/form/FormWizard'
+import FormWizardTabContent from '~/components/form/FormWizardTabContent'
 
 export default {
   components: {
@@ -71,5 +69,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

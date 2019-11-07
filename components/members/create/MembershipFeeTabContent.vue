@@ -11,7 +11,8 @@
             >
               <b-form-select
                 v-model="paymentMethod"
-                :options="paymentTypeOptions" />
+                :options="paymentTypeOptions"
+              />
             </b-form-group>
           </b-col>
         </b-row>
@@ -44,11 +45,13 @@
               <b-form-group
                 label="IBAN"
                 label-for="input-iban"
-                label-class="form-control-label">
+                label-class="form-control-label"
+              >
                 <b-form-input
+                  v-model="iban"
                   v-mask="'AA## #### #### #### #### ##'"
-                  v-model="iban" 
-                  size="27" />
+                  size="27"
+                />
               </b-form-group>
             </b-col>
           </b-row>
@@ -57,7 +60,8 @@
               <b-form-group
                 label="BIC"
                 label-for="input-bic"
-                label-class="form-control-label">
+                label-class="form-control-label"
+              >
                 <b-form-input v-model="bic" />
               </b-form-group>
             </b-col>
@@ -69,9 +73,7 @@
                 label-for="readonly-input-bankname"
                 label-class="form-control-label"
               >
-                <b-form-input
-                  v-model="bankname"
-                  readonly />
+                <b-form-input v-model="bankname" readonly />
               </b-form-group>
             </b-col>
           </b-row>
@@ -94,80 +96,86 @@
 </template>
 
 <script>
-import { mask } from "vue-the-mask"
-import bankAPI from "@/api/bank"
+import { mask } from 'vue-the-mask'
+import bankAPI from '@/api/bank'
 
 export default {
-  name: "MembershipFeeTabContent",
+  name: 'MembershipFeeTabContent',
   directives: { mask },
   data() {
     return {
       paymentTypeOptions: [
-        { value: null, text: "Bitte eine Zahlungsart auswählen" },
-        { value: "transfer", text: "Überweisung" },
-        { value: "direct_debit", text: "Lastschrift" }
+        { value: null, text: 'Bitte eine Zahlungsart auswählen' },
+        { value: 'transfer', text: 'Überweisung' },
+        { value: 'direct_debit', text: 'Lastschrift' }
       ],
       bankname: null
     }
   },
   computed: {
     isDirectDebit() {
-      return this.paymentMethod === "direct_debit"
+      return this.paymentMethod === 'direct_debit'
     },
     paymentMethod: {
-      get () {
+      get() {
         return this.$store.state.members.registration.paymentMethod
       },
-      set (value) {
-        this.$store.commit('members/registration/updatePaymentMethod', { paymentMethod: value })
+      set(value) {
+        this.$store.commit('members/registration/updatePaymentMethod', {
+          paymentMethod: value
+        })
       }
     },
     firstName: {
-      get () {
+      get() {
         return this.$store.state.members.registration.bankDetails.firstName
       },
-      set (value) {
-        this.$store.commit('members/registration/updateBankDetailsFirstName', { firstName: value })
+      set(value) {
+        this.$store.commit('members/registration/updateBankDetailsFirstName', {
+          firstName: value
+        })
       }
     },
     lastName: {
-      get () {
+      get() {
         return this.$store.state.members.registration.bankDetails.lastName
       },
-      set (value) {
-        this.$store.commit('members/registration/updateBankDetailsLastName', { lastName: value })
+      set(value) {
+        this.$store.commit('members/registration/updateBankDetailsLastName', {
+          lastName: value
+        })
       }
     },
     iban: {
-      get () {
+      get() {
         return this.$store.state.members.registration.bankDetails.iban
       },
-      set (value) {
-        let rawIban = value.replace(/\s/g, "")
+      set(value) {
+        const rawIban = value.replace(/\s/g, '')
         this.onIbanChanged(rawIban)
       }
     },
     bic: {
-      get () {
+      get() {
         return this.$store.state.members.registration.bankDetails.bic
       },
-      set (value) {
+      set(value) {
         this.$store.commit('members/registration/updateBIC', { bic: value })
       }
-    },
+    }
   },
   methods: {
     async onIbanChanged(value) {
-      if (value.length != 22) {
+      if (value.length !== 22) {
         return
       }
 
       this.$store.commit('members/registration/updateIBAN', { iban: value })
 
-      let bankResponse = await bankAPI
+      const bankResponse = await bankAPI
         .getBankInformationByIban(value)
         .catch(() => {
-          console.log("errorz")
+          console.log('errorz')
         })
 
       this.bankname = bankResponse.data.bankName.shortName

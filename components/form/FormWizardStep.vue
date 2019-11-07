@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "FormWizardStep",
+  name: 'FormWizardStep',
   props: {
     tab: {
       type: Object,

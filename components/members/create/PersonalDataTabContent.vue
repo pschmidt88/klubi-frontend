@@ -96,12 +96,8 @@
         </b-row>
 
         <b-row>
-          <b-col
-            cols="12"
-            lg="12">
-            <b-form-group
-              label="Geburtstag"
-              label-class="form-control-label">
+          <b-col cols="12" lg="12">
+            <b-form-group label="Geburtstag" label-class="form-control-label">
               <b-row align-h="between">
                 <b-col>
                   <b-form-group
@@ -194,7 +190,7 @@
 
 <script>
 export default {
-  name: "PersonalDataTabContent",
+  name: 'PersonalDataTabContent',
   data() {
     return {
       dateOfBirthDay: null,
@@ -208,7 +204,7 @@ export default {
         return this.$store.state.members.registration.first_name
       },
       set(value) {
-        this.$store.commit("members/registration/updateFirstName", {
+        this.$store.commit('members/registration/updateFirstName', {
           first_name: value
         })
       }
@@ -219,7 +215,7 @@ export default {
       },
       set(value) {
         this.$store.commit({
-          type: "members/registration/updateLastName",
+          type: 'members/registration/updateLastName',
           last_name: value
         })
       }
@@ -229,7 +225,7 @@ export default {
         return this.$store.state.members.registration.street_address
       },
       set(value) {
-        this.$store.commit("members/registration/updateStreetAddress", {
+        this.$store.commit('members/registration/updateStreetAddress', {
           street_address: value
         })
       }
@@ -239,7 +235,7 @@ export default {
         return this.$store.state.members.registration.street_number
       },
       set(value) {
-        this.$store.commit("members/registration/updateStreetNumber", {
+        this.$store.commit('members/registration/updateStreetNumber', {
           street_number: value
         })
       }
@@ -249,7 +245,7 @@ export default {
         return this.$store.state.members.registration.post_code
       },
       set(value) {
-        this.$store.commit("members/registration/updatePostCode", {
+        this.$store.commit('members/registration/updatePostCode', {
           post_code: value
         })
       }
@@ -259,7 +255,7 @@ export default {
         return this.$store.state.members.registration.city
       },
       set(value) {
-        this.$store.commit("members/registration/updateCity", { city: value })
+        this.$store.commit('members/registration/updateCity', { city: value })
       }
     },
     phone: {
@@ -267,7 +263,7 @@ export default {
         return this.$store.state.members.registration.phone
       },
       set(value) {
-        this.$store.commit("members/registration/updatePhone", {
+        this.$store.commit('members/registration/updatePhone', {
           phone: value
         })
       }
@@ -277,7 +273,7 @@ export default {
         return this.$store.state.members.registration.email
       },
       set(value) {
-        this.$store.commit("members/registration/updateEmail", {
+        this.$store.commit('members/registration/updateEmail', {
           email: value
         })
       }
@@ -299,7 +295,7 @@ export default {
   watch: {
     birthday(newValue) {
       if (!isNaN(newValue)) {
-        this.$store.commit("members/registration/updateBirthday", {
+        this.$store.commit('members/registration/updateBirthday', {
           birthday: newValue
         })
       }

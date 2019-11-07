@@ -1,383 +1,155 @@
+<script>
+export default {
+  name: 'TailwindLayout',
+  head: {
+    bodyAttrs: {
+      class: 'bg-gray-200 font-sans antialiased'
+    }
+  }
+}
+</script>
+
 <template>
-  <div class="page db-modern">
-    <!-- Begin Header -->
-    <AppHeader />
-    <!-- End Header -->
-    <!-- Begin Page Content -->
-    <div class="page-content">
-      <!-- Begin Navigation -->
-      <Navigation />
-      <!-- End Navigation -->
-      <div class="content-inner boxed mt-4 w-100">
-        <nuxt/>
-        <!-- End Container -->
-        <!-- Begin Page Footer-->
-        <AppFooter />
-        <!-- End Page Footer -->
+  <div>
+    <div class="bg-indigo-900 text-center p-4 px-6 flex items-center h-16">
+      <div class="lg:w-1/4 xl:w-1/5 pr-8">
         <a
           href="#"
-          class="go-top">
-          <i class="la la-arrow-up"/>
+          class="flex justify-start pl-6 font-semibold text-xl text-white items-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            class="w-8 h-8 fill-current"
+          >
+            <path
+              d="M19.025 3.587c-4.356 2.556-4.044 7.806-7.096 10.175-2.297 1.783-5.538.88-7.412.113 0 0-1.27 1.603-2.181 3.74-.305.717-1.644-.073-1.409-.68C3.905 9.25 14.037 5.416 14.037 5.416s-7.149-.303-11.927 5.94c-.128-1.426-.34-5.284 3.36-7.65 5.016-3.211 14.572-.715 13.555-.119z"
+            />
+          </svg>
+          <span class="ml-1">Klubi</span>
         </a>
-        <!-- Offcanvas Sidebar -->
-        <div class="off-sidebar from-right">
-          <div class="off-sidebar-container">
-            <header class="off-sidebar-header">
-              <ul
-                id="weather-tab"
-                class="button-nav nav nav-tabs mt-3 mb-3 ml-3"
-                role="tablist">
-                <li>
-                  <a
-                    id="messenger-tab"
-                    class="active"
-                    data-toggle="tab"
-                    href="#messenger"
-                    role="tab"
-                  >Messages</a>
-                </li>
-                <li>
-                  <a
-                    id="today-tab"
-                    data-toggle="tab"
-                    href="#today"
-                    role="tab">Today</a>
-                </li>
-              </ul>
-              <a
-                href="#off-canvas"
-                class="off-sidebar-close"/>
-            </header>
-            <div class="off-sidebar-content offcanvas-scroll auto-scroll">
-              <div class="tab-content">
-                <!-- Begin Messenger -->
-                <div
-                  id="messenger"
-                  role="tabpanel"
-                  class="tab-pane show active fade"
-                  aria-labelledby="messenger-tab"
-                >
-                  <!-- Begin Chat Message -->
-                  <span class="date">Today</span>
-                  <div class="messenger-message messenger-message-sender">
-                    <img
-                      class="messenger-image messenger-image-default"
-                      src="/img/avatar/avatar-02.jpg"
-                      alt="..."
-                    >
-                    <div class="messenger-message-wrapper">
-                      <div class="messenger-message-content">
-                        <p>
-                          <span class="mb-2">Brandon wrote</span>
-                          Hi David, what's up?
-                        </p>
-                      </div>
-                      <div class="messenger-details">
-                        <span class="messenger-message-localization font-size-small">2 minutes ago</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="messenger-message messenger-message-recipient">
-                    <div class="messenger-message-wrapper">
-                      <div class="messenger-message-content">
-                        <p>Hi Brandon, fine and you?</p>
-                        <p>I'm working on the next update of Elisyam</p>
-                      </div>
-                      <div class="messenger-details">
-                        <span class="messenger-message-localisation font-size-small">3 minutes ago</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="messenger-message messenger-message-sender">
-                    <img
-                      class="messenger-image messenger-image-default"
-                      src="/img/avatar/avatar-02.jpg"
-                      alt="..."
-                    >
-                    <div class="messenger-message-wrapper">
-                      <div class="messenger-message-content">
-                        <p>
-                          <span class="mb-2">Brandon wrote</span>
-                          I can't wait to see
-                        </p>
-                      </div>
-                      <div class="messenger-details">
-                        <span class="messenger-message-localization font-size-small">5 minutes ago</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="messenger-message messenger-message-recipient">
-                    <div class="messenger-message-wrapper">
-                      <div class="messenger-message-content">
-                        <p>I'm almost done</p>
-                      </div>
-                      <div class="messenger-details">
-                        <span class="messenger-message-localisation font-size-small">10 minutes ago</span>
-                      </div>
-                    </div>
-                  </div>
-                  <span class="date">Yesterday</span>
-                  <div class="messenger-message messenger-message-sender">
-                    <img
-                      class="messenger-image messenger-image-default"
-                      src="/img/avatar/avatar-05.jpg"
-                      alt="..."
-                    >
-                    <div class="messenger-message-wrapper">
-                      <div class="messenger-message-content">
-                        <p>I updated the server tonight</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="messenger-message messenger-message-recipient">
-                    <div class="messenger-message-wrapper">
-                      <div class="messenger-message-content">
-                        <p>Didn't you have any problems?</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="messenger-message messenger-message-sender">
-                    <img
-                      class="messenger-image messenger-image-default"
-                      src="/img/avatar/avatar-05.jpg"
-                      alt="..."
-                    >
-                    <div class="messenger-message-wrapper">
-                      <div class="messenger-message-content">
-                        <p>No!</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="messenger-message messenger-message-recipient">
-                    <div class="messenger-message-wrapper">
-                      <div class="messenger-message-content">
-                        <p>Great!</p>
-                        <p>See you later!</p>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Chat Message -->
-                  <!-- Begin Message Form -->
-                  <div class="enter-message">
-                    <div class="enter-message-form">
-                      <input
-                        type="text"
-                        placeholder="Enter your message...">
-                    </div>
-                    <div class="enter-message-button">
-                      <a
-                        href="#"
-                        class="send">
-                        <i class="ion-paper-airplane"/>
-                      </a>
-                    </div>
-                  </div>
-                  <!-- End Message Form -->
-                </div>
-                <!-- End Messenger -->
-                <!-- Begin Today -->
-                <div
-                  id="today"
-                  role="tabpanel"
-                  class="tab-pane fade"
-                  aria-labelledby="today-tab">
-                  <!-- Begin Today Stats -->
-                  <div class="sidebar-heading pt-0">Today</div>
-                  <div class="today-stats mt-3 mb-3">
-                    <div class="row">
-                      <div class="col-4 text-center">
-                        <i class="la la-users"/>
-                        <div class="counter">264</div>
-                        <div class="heading">Clients</div>
-                      </div>
-                      <div class="col-4 text-center">
-                        <i class="la la-cart-arrow-down"/>
-                        <div class="counter">360</div>
-                        <div class="heading">Sales</div>
-                      </div>
-                      <div class="col-4 text-center">
-                        <i class="la la-money"/>
-                        <div class="counter">$ 4,565</div>
-                        <div class="heading">Earnings</div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Today Stats -->
-                  <!-- Begin Friends -->
-                  <div class="sidebar-heading">Friends</div>
-                  <div class="quick-friends mt-3 mb-3">
-                    <ul class="list-group w-100">
-                      <li class="list-group-item">
-                        <div class="media">
-                          <div class="media-left align-self-center mr-3">
-                            <img
-                              src="/img/avatar/avatar-02.jpg"
-                              alt="..."
-                              class="img-fluid rounded-circle"
-                              style="width: 35px;"
-                            >
-                          </div>
-                          <div class="media-body align-self-center">
-                            <a href="javascript:void(0);">Brandon Smith</a>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="media">
-                          <div class="media-left align-self-center mr-3">
-                            <img
-                              src="/img/avatar/avatar-03.jpg"
-                              alt="..."
-                              class="img-fluid rounded-circle"
-                              style="width: 35px;"
-                            >
-                          </div>
-                          <div class="media-body align-self-center">
-                            <a href="javascript:void(0);">Louis Henry</a>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="media">
-                          <div class="media-left align-self-center mr-3">
-                            <img
-                              src="/img/avatar/avatar-04.jpg"
-                              alt="..."
-                              class="img-fluid rounded-circle"
-                              style="width: 35px;"
-                            >
-                          </div>
-                          <div class="media-body align-self-center">
-                            <a href="javascript:void(0);">Nathan Hunter</a>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="media">
-                          <div class="media-left align-self-center mr-3">
-                            <img
-                              src="/img/avatar/avatar-05.jpg"
-                              alt="..."
-                              class="img-fluid rounded-circle"
-                              style="width: 35px;"
-                            >
-                          </div>
-                          <div class="media-body align-self-center">
-                            <a href="javascript:void(0);">Megan Duncan</a>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="media">
-                          <div class="media-left align-self-center mr-3">
-                            <img
-                              src="/img/avatar/avatar-06.jpg"
-                              alt="..."
-                              class="img-fluid rounded-circle"
-                              style="width: 35px;"
-                            >
-                          </div>
-                          <div class="media-body align-self-center">
-                            <a href="javascript:void(0);">Beverly Oliver</a>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <!-- End Friends -->
-                  <!-- Begin Settings -->
-                  <div class="sidebar-heading">Settings</div>
-                  <div class="quick-settings mt-3 mb-3">
-                    <ul class="list-group w-100">
-                      <li class="list-group-item">
-                        <div class="media">
-                          <div class="media-body align-self-center">
-                            <p class="text-dark">Notifications Email</p>
-                          </div>
-                          <div class="media-right align-self-center">
-                            <label>
-                              <input
-                                class="toggle-checkbox"
-                                type="checkbox"
-                                checked>
-                              <span>
-                                <span/>
-                              </span>
-                            </label>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="media">
-                          <div class="media-body align-self-center">
-                            <p class="text-dark">Notifications Sound</p>
-                          </div>
-                          <div class="media-right align-self-center">
-                            <label>
-                              <input
-                                class="toggle-checkbox"
-                                type="checkbox">
-                              <span>
-                                <span/>
-                              </span>
-                            </label>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="media">
-                          <div class="media-body align-self-center">
-                            <p class="text-dark">Chat Message Sound</p>
-                          </div>
-                          <div class="media-right align-self-center">
-                            <label>
-                              <input
-                                class="toggle-checkbox"
-                                type="checkbox"
-                                checked>
-                              <span>
-                                <span/>
-                              </span>
-                            </label>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <!-- End Settings -->
-                </div>
-                <!-- End Today -->
-              </div>
-            </div>
-            <!-- End Offcanvas Container -->
-          </div>
-          <!-- End Offsidebar Container -->
-        </div>
-        <!-- End Offcanvas Sidebar -->
       </div>
-      <!-- End Content -->
+      <div id="mobile-nav-trigger" class="lg:hidden pr-3">
+        <div class="toggle p-2 block"><span></span></div>
+      </div>
+      <div
+        class="flex flex-grow items-center justify-center text-white no-underline"
+      >
+        <a
+          href="#"
+          class="text-sm text-right py-2 px-3 hover:text-gray-500 flex items-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="w-6 h-6 mr-1 fill-current"
+          >
+            <path
+              class="heroicon-ui"
+              d="M11 20v-2.08a6 6 0 0 1-4.24-3A4.02 4.02 0 0 1 2 11V6c0-1.1.9-2 2-2h2c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2h2a2 2 0 0 1 2 2v5a4 4 0 0 1-4.76 3.93A6 6 0 0 1 13 17.92V20h4a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2h4zm6.92-7H18a2 2 0 0 0 2-2V6h-2v6c0 .34-.03.67-.08 1zM6.08 13A6.04 6.04 0 0 1 6 12V6H4v5a2 2 0 0 0 2.08 2zM8 4v8a4 4 0 1 0 8 0V4H8z"
+            />
+          </svg>
+          <span class="hidden lg:block">
+            Verein
+          </span>
+        </a>
+        <a
+          href="#"
+          class="text-sm text-right py-2 px-3 hover:text-gray-500 flex items-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="w-6 h-6 mr-1 fill-current"
+          >
+            <path
+              d="M9 12A5 5 0 1 1 9 2a5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2zm1-5a1 1 0 0 1 0-2 5 5 0 0 1 5 5v2a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3zm-2-4a1 1 0 0 1 0-2 3 3 0 0 0 0-6 1 1 0 0 1 0-2 5 5 0 0 1 0 10z"
+            />
+          </svg>
+          <span class="hidden lg:block">
+            Mitglieder
+          </span>
+        </a>
+        <a
+          href="#"
+          class="text-sm text-right py-2 px-3 hover:text-gray-500 items-center flex"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="w-6 h-6 mr-1 fill-current"
+          >
+            <path
+              d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm1-11v2h1a3 3 0 0 1 0 6h-1v1a1 1 0 0 1-2 0v-1H8a1 1 0 0 1 0-2h3v-2h-1a3 3 0 0 1 0-6h1V6a1 1 0 0 1 2 0v1h3a1 1 0 0 1 0 2h-3zm-2 0h-1a1 1 0 1 0 0 2h1V9zm2 6h1a1 1 0 0 0 0-2h-1v2z"
+            />
+          </svg>
+          <span class="hidden lg:block">
+            Finanzen
+          </span>
+        </a>
+        <a
+          href="#"
+          class="text-sm text-right py-2 px-3 hover:text-gray-500 items-center flex"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="w-6 h-6 mr-1 fill-current"
+          >
+            <path
+              d="M17 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2h2V3a1 1 0 1 1 2 0v1h6V3a1 1 0 0 1 2 0v1zm-2 2H9v1a1 1 0 1 1-2 0V6H5v4h14V6h-2v1a1 1 0 0 1-2 0V6zm4 6H5v8h14v-8z"
+            />
+          </svg>
+          <span class="hidden lg:block">
+            Kalender
+          </span>
+        </a>
+      </div>
+      <div class="flex items-center justify-end text-white hover:text-gray-500">
+        <a
+          href="#"
+          class="text-sm text-right py-2 px-3  no-underline flex items-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="w-6 h-6 mr-1 fill-current"
+          >
+            <path
+              d="M9 4.58V4c0-1.1.9-2 2-2h2a2 2 0 0 1 2 2v.58a8 8 0 0 1 1.92 1.11l.5-.29a2 2 0 0 1 2.74.73l1 1.74a2 2 0 0 1-.73 2.73l-.5.29a8.06 8.06 0 0 1 0 2.22l.5.3a2 2 0 0 1 .73 2.72l-1 1.74a2 2 0 0 1-2.73.73l-.5-.3A8 8 0 0 1 15 19.43V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-.58a8 8 0 0 1-1.92-1.11l-.5.29a2 2 0 0 1-2.74-.73l-1-1.74a2 2 0 0 1 .73-2.73l.5-.29a8.06 8.06 0 0 1 0-2.22l-.5-.3a2 2 0 0 1-.73-2.72l1-1.74a2 2 0 0 1 2.73-.73l.5.3A8 8 0 0 1 9 4.57zM7.88 7.64l-.54.51-1.77-1.02-1 1.74 1.76 1.01-.17.73a6.02 6.02 0 0 0 0 2.78l.17.73-1.76 1.01 1 1.74 1.77-1.02.54.51a6 6 0 0 0 2.4 1.4l.72.2V20h2v-2.04l.71-.2a6 6 0 0 0 2.41-1.4l.54-.51 1.77 1.02 1-1.74-1.76-1.01.17-.73a6.02 6.02 0 0 0 0-2.78l-.17-.73 1.76-1.01-1-1.74-1.77 1.02-.54-.51a6 6 0 0 0-2.4-1.4l-.72-.2V4h-2v2.04l-.71.2a6 6 0 0 0-2.41 1.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+            />
+          </svg>
+          <span class="hidden xl:block">
+            Einstellungen
+          </span>
+        </a>
+        <span class="relative ml-4">
+          <input
+            type="search"
+            placeholder="Search"
+            class="w-full text-sm text-white transition border border-transparent focus:outline-none focus:border-indigo placeholder-white rounded bg-indigo-800 py-1 px-2 pl-10 appearance-none leading-normal ds-input"
+          />
+          <div class="absolute search-icon" style="top: .5rem; left: .8rem;">
+            <svg
+              class="fill-current pointer-events-none text-white w-4 h-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+              ></path>
+            </svg>
+          </div>
+        </span>
+      </div>
     </div>
-    <!-- End Page Content -->
+
+    <div class="flex">
+      <nav>//sidebar</nav>
+
+      <div id="content">
+        <nuxt />
+      </div>
+    </div>
   </div>
 </template>
-
-<script>
-  import AppHeader from "~/components/layout/Header"
-  import Navigation from "~/components/layout/Navigation"
-  import AppFooter from "~/components/layout/Footer"
-
-  export default {
-    name: "Modern",
-
-    components: {
-      AppHeader,
-      AppFooter,
-      Navigation
-    },
-    computed: {
-      name() {
-        return this.$route.name
-      }
-    },
-  }
-</script>

@@ -12,7 +12,8 @@
               <b-form-select
                 id="selectDepartment"
                 v-model="department"
-                :options="availableDepartments" />
+                :options="availableDepartments"
+              />
             </b-form-group>
           </b-col>
         </b-form-row>
@@ -45,11 +46,10 @@
                 class="custom-control-input"
                 type="radio"
                 value="active"
+              />
+              <label for="activeOption" class="custom-control-descfeedback"
+                >Aktiv</label
               >
-              <label
-                for="activeOption"
-                class="custom-control-descfeedback"
-              >Aktiv</label>
               <div class="invalid-feedback">Toggle this custom radio</div>
             </div>
           </b-col>
@@ -62,12 +62,13 @@
                 class="custom-control-input"
                 type="radio"
                 value="passive"
+              />
+              <label for="passiveOption" class="custom-control-descfeedback"
+                >Passiv</label
               >
-              <label
-                for="passiveOption"
-                class="custom-control-descfeedback"
-              >Passiv</label>
-              <div class="invalid-feedback">Or toggle this other custom radio</div>
+              <div class="invalid-feedback">
+                Or toggle this other custom radio
+              </div>
             </div>
           </b-col>
         </b-form-row>
@@ -77,53 +78,58 @@
 </template>
 
 <script>
-
 export default {
-  name: "DepartmentTabContent",
-  
+  name: 'DepartmentTabContent',
+
   data() {
     return {
       availableDepartments: [
-        { value: null, text: "Abteilung wählen"},
-        { value: "football", text: "Fußball", },
+        { value: null, text: 'Abteilung wählen' },
+        { value: 'football', text: 'Fußball' },
         {
-          value: "gymnastics",
-          text: "Gymnastik",
+          value: 'gymnastics',
+          text: 'Gymnastik'
         },
         {
-          value: "running",
-          text: "Laufen",
+          value: 'running',
+          text: 'Laufen'
         },
         {
-          value: "taekwondo",
-          text: "Taekwondo",
+          value: 'taekwondo',
+          text: 'Taekwondo'
         }
-      ],
+      ]
     }
   },
   computed: {
     status: {
-      get () {
+      get() {
         return this.$store.state.members.registration.memberStatus
       },
-      set (value) {
-        this.$store.commit('members/registration/updateMemberStatus', { status: value })
+      set(value) {
+        this.$store.commit('members/registration/updateMemberStatus', {
+          status: value
+        })
       }
     },
     department: {
-      get () {
+      get() {
         return this.$store.state.members.registration.department
       },
-      set (value) {
-        this.$store.commit('members/registration/updateDepartment', { department: value })
+      set(value) {
+        this.$store.commit('members/registration/updateDepartment', {
+          department: value
+        })
       }
     },
     entryDate: {
-      get () {
+      get() {
         return this.$store.state.members.registration.entryDate
       },
-      set (value) {
-        this.$store.commit('members/registration/updateEntryDate', { entryDate: value })
+      set(value) {
+        this.$store.commit('members/registration/updateEntryDate', {
+          entryDate: value
+        })
       }
     }
   }

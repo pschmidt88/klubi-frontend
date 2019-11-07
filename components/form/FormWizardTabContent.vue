@@ -1,15 +1,12 @@
 <template>
-  <div
-    :id="tabId"
-    :class="{ active: active }"
-    class="tab-pane">
-    <slot/>
+  <div :id="tabId" :class="{ active: active }" class="tab-pane">
+    <slot />
   </div>
 </template>
 
 <script>
 export default {
-  name: "FormWizardTabContent",
+  name: 'FormWizardTabContent',
   props: {
     tabId: {
       type: String,
@@ -17,7 +14,7 @@ export default {
     },
     title: {
       type: String,
-      default: ""
+      default: ''
     }
   },
   data() {
@@ -25,7 +22,7 @@ export default {
       active: false
     }
   },
-  inject: ["addTab", "removeTab"],
+  inject: ['addTab', 'removeTab'],
   mounted() {
     this.addTab(this)
   },

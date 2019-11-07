@@ -12,17 +12,17 @@
           <p class="text-gradient-02 mr-2">Design By Saerox</p>
           <p>
             Icons made by
-            <a
-              href="https://www.freepik.com/"
-              title="Freepik">Freepik</a> from
-            <a
-              href="https://www.flaticon.com/"
-              title="Flaticon">www.flaticon.com</a> is licensed by
+            <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from
+            <a href="https://www.flaticon.com/" title="Flaticon"
+              >www.flaticon.com</a
+            >
+            is licensed by
             <a
               href="http://creativecommons.org/licenses/by/3.0/"
               title="Creative Commons BY 3.0"
               target="_blank"
-            >CC 3.0 BY</a>
+              >CC 3.0 BY</a
+            >
           </p>
         </b-col>
         <div
@@ -30,14 +30,10 @@
         >
           <ul class="nav">
             <li class="nav-item">
-              <a
-                class="nav-link"
-                href="documentation.html">Documentation</a>
+              <a class="nav-link" href="documentation.html">Documentation</a>
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link"
-                href="changelog.html">Changelog</a>
+              <a class="nav-link" href="changelog.html">Changelog</a>
             </li>
           </ul>
         </div>

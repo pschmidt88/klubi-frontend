@@ -17,14 +17,14 @@ export default {
         element: '',
         attributes: {}
       }
-    },    
+    },
     {
       name: 'Mitglieder',
       url: '/members',
       icon: 'icon-people',
       children: [
         {
-          name: "Mitgliedersuche",
+          name: 'Mitgliedersuche',
           url: '/members',
           icon: 'icon-magnifier'
         },
