@@ -1,4 +1,5 @@
 export const state = () => ({
+  member_id: null,
   first_name: null,
   last_name: null,
   street_address: null,
@@ -8,14 +9,17 @@ export const state = () => ({
   birthday: null,
   phone: null,
   email: null,
-  department: null,
+  department: '',
   member_status: 'active',
   entry_date: today(),
-  payment_method: null,
+  payment_method: '',
   bank_details: {}
 })
 
 export const mutations = {
+  updateMemberId(state, payload) {
+    state.member_id = payload.memberId
+  },
   updateFirstName(state, payload) {
     state.first_name = payload.first_name
   },
@@ -47,25 +51,25 @@ export const mutations = {
     state.department = payload.department
   },
   updateEntryDate(state, payload) {
-    state.entryDate = payload.entryDate
+    state.entry_date = payload.entryDate
   },
   updateMemberStatus(state, payload) {
-    state.memberStatus = payload.status
+    state.member_status = payload.status
   },
   updatePaymentMethod(state, payload) {
-    state.paymentMethod = payload.paymentMethod
+    state.payment_method = payload.paymentMethod
   },
   updateBankDetailsFirstName(state, payload) {
-    state.bankDetails.firstName = payload.firstName
+    state.bank_details.firstName = payload.firstName
   },
   updateBankDetailsLastName(state, payload) {
-    state.bankDetails.lastName = payload.lastName
+    state.bank_details.lastName = payload.lastName
   },
   updateIBAN(state, payload) {
-    state.bankDetails.iban = payload.iban
+    state.bank_details.iban = payload.iban
   },
   updateBIC(state, payload) {
-    state.bankDetails.bic = payload.bic
+    state.bank_details.bic = payload.bic
   }
 }
 
