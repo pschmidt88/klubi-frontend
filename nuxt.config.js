@@ -35,7 +35,11 @@ module.exports = {
    */
   plugins: [],
 
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
+  buildModules: [
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/tailwindcss',
+    '@nuxt/typescript-build'
+  ],
 
   /*
    ** Nuxt.js modules

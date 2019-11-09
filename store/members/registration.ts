@@ -1,22 +1,31 @@
+import { GetterTree, ActionTree, MutationTree } from 'vuex'
+
 export const state = () => ({
-  member_id: null,
-  first_name: null,
-  last_name: null,
-  street_address: null,
-  street_number: null,
-  post_code: null,
-  city: null,
-  birthday: null,
-  phone: null,
-  email: null,
+  member_id: '',
+  first_name: '',
+  last_name: '',
+  street_address: '',
+  street_number: '',
+  post_code: '',
+  city: '',
+  birthday: '',
+  phone: '',
+  email: '',
   department: '',
   member_status: 'active',
   entry_date: today(),
   payment_method: '',
-  bank_details: {}
+  bank_details: {
+    first_name: '',
+    last_name: '',
+    iban: '',
+    bic: ''
+  }
 })
 
-export const mutations = {
+export type RootState = ReturnType<typeof state>
+
+export const mutations: MutationTree<RootState> = {
   updateMemberId(state, payload) {
     state.member_id = payload.memberId
   },
@@ -60,10 +69,10 @@ export const mutations = {
     state.payment_method = payload.paymentMethod
   },
   updateBankDetailsFirstName(state, payload) {
-    state.bank_details.firstName = payload.firstName
+    state.bank_details.first_name = payload.firstName
   },
   updateBankDetailsLastName(state, payload) {
-    state.bank_details.lastName = payload.lastName
+    state.bank_details.last_name = payload.lastName
   },
   updateIBAN(state, payload) {
     state.bank_details.iban = payload.iban

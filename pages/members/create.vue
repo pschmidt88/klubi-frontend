@@ -394,6 +394,7 @@
     <div class="flex justify-end">
       <button
         class="mb-4 border text-white bg-indigo-700 hover:bg-white hover:text-indigo-700 border-indigo-700 rounded px-2 py-2"
+        @click="createMember"
       >
         Mitglied anlegen
       </button>
@@ -401,243 +402,262 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Watch, Vue } from 'vue-property-decorator'
 import { mask } from 'vue-the-mask'
-import bankAPI from '@/api/bank'
+import bankAPI from '~/api/bank'
 
-export default {
-  directives: { mask },
-  data() {
-    return {
-      tabIndex: 0,
-      bankName: '',
-      dobDay: null,
-      dobMonth: null,
-      dobYear: null,
-      availableDepartments: [
-        { value: '', text: 'Abteilung wählen', disabled: true },
-        { value: 'football', text: 'Fußball' },
-        { value: 'gymnastics', text: 'Gymnastik' },
-        { value: 'running', text: 'Laufen' },
-        { value: 'taekwondo', text: 'Taekwondo' }
-      ],
-      availablePaymentMethods: [
-        { value: '', text: 'Zahlungsart auswählen', disabled: true },
-        { value: 'transfer', text: 'Überweisung' },
-        { value: 'direct_debit', text: 'Lastschrift' }
-      ]
+interface BankResponse {
+  data: BankData
+}
+
+interface BankData {
+  bankName: BankName
+  bankCode: BankCode
+  bic: Bic
+}
+
+interface BankName {
+  shortName: string
+  name: string
+}
+
+interface BankCode {
+  value: string
+}
+
+interface Bic {
+  value: string
+}
+
+@Component({
+  directives: { mask }
+})
+export default class MemberCreatePage extends Vue {
+  bankName: string = ''
+
+  dobDay = null
+  dobMonth = null
+  dobYear = null
+
+  availableDepartments = [
+    { value: '', text: 'Abteilung wählen', disabled: true },
+    { value: 'football', text: 'Fußball' },
+    { value: 'gymnastics', text: 'Gymnastik' },
+    { value: 'running', text: 'Laufen' },
+    { value: 'taekwondo', text: 'Taekwondo' }
+  ]
+
+  availablePaymentMethods = [
+    { value: '', text: 'Zahlungsart auswählen', disabled: true },
+    { value: 'transfer', text: 'Überweisung' },
+    { value: 'direct_debit', text: 'Lastschrift' }
+  ]
+
+  get isDirectDebit(): boolean {
+    return this.paymentMethod === 'direct_debit'
+  }
+
+  async onIbanChanged(value: string) {
+    if (value.length !== 22) {
+      return
     }
-  },
-  computed: {
-    memberId: {
-      get() {
-        return this.$store.state.members.registration.member_id
-      },
-      set(value) {
-        this.$store.commit('members/registration/updateMemberId', {
-          memberId: value
-        })
-      }
-    },
-    firstName: {
-      get() {
-        return this.$store.state.members.registration.first_name
-      },
-      set(value) {
-        this.$store.commit('members/registration/updateFirstName', {
-          first_name: value
-        })
-      }
-    },
-    lastName: {
-      get() {
-        return this.$store.state.members.registration.last_name
-      },
-      set(value) {
-        this.$store.commit({
-          type: 'members/registration/updateLastName',
-          last_name: value
-        })
-      }
-    },
-    birthday() {
-      if (
-        this.dobDay == null ||
-        this.dobMonth == null ||
-        this.dobYear == null
-      ) {
-        return null
-      }
 
-      return Date.parse(`${this.dobYear}-${this.dobMonth}-${this.dobDay}`)
-    },
-    streetAddress: {
-      get() {
-        return this.$store.state.members.registration.street_address
-      },
-      set(value) {
-        this.$store.commit('members/registration/updateStreetAddress', {
-          street_address: value
-        })
-      }
-    },
-    houseNumber: {
-      get() {
-        return this.$store.state.members.registration.street_number
-      },
-      set(value) {
-        this.$store.commit('members/registration/updateStreetNumber', {
-          street_number: value
-        })
-      }
-    },
-    postCode: {
-      get() {
-        return this.$store.state.members.registration.post_code
-      },
-      set(value) {
-        this.$store.commit('members/registration/updatePostCode', {
-          post_code: value
-        })
-      }
-    },
-    city: {
-      get() {
-        return this.$store.state.members.registration.city
-      },
-      set(value) {
-        this.$store.commit('members/registration/updateCity', { city: value })
-      }
-    },
-    phone: {
-      get() {
-        return this.$store.state.members.registration.phone
-      },
-      set(value) {
-        this.$store.commit('members/registration/updatePhone', {
-          phone: value
-        })
-      }
-    },
-    email: {
-      get() {
-        return this.$store.state.members.registration.email
-      },
-      set(value) {
-        this.$store.commit('members/registration/updateEmail', {
-          email: value
-        })
-      }
-    },
-    department: {
-      get() {
-        return this.$store.state.members.registration.department
-      },
-      set(value) {
-        this.$store.commit('members/registration/updateDepartment', {
-          department: value
-        })
-      }
-    },
-    status: {
-      get() {
-        return this.$store.state.members.registration.member_status
-      },
-      set(value) {
-        this.$store.commit('members/registration/updateMemberStatus', {
-          status: value
-        })
-      }
-    },
-    entryDate: {
-      get() {
-        return this.$store.state.members.registration.entry_date
-      },
-      set(value) {
-        this.$store.commit('members/registration/updateEntryDate', {
-          entryDate: value
-        })
-      }
-    },
-    isDirectDebit() {
-      return this.paymentMethod === 'direct_debit'
-    },
-    iban: {
-      get() {
-        return this.$store.state.members.registration.bank_details.iban
-      },
-      set(value) {
-        const rawIban = value.replace(/\s/g, '')
-        this.onIbanChanged(rawIban)
-      }
-    },
-    bic: {
-      get() {
-        return this.$store.state.members.registration.bank_details.bic
-      },
-      set(value) {
-        this.$store.commit('members/registration/updateBIC', { bic: value })
-      }
-    },
-    paymentMethod: {
-      get() {
-        return this.$store.state.members.registration.payment_method
-      },
-      set(value) {
-        this.$store.commit('members/registration/updatePaymentMethod', {
-          paymentMethod: value
-        })
-      }
-    },
-    accountOwnerFirstName: {
-      get() {
-        return this.$store.state.members.registration.bank_details.firstName
-      },
-      set(value) {
-        this.$store.commit('members/registration/updateBankDetailsFirstName', {
-          firstName: value
-        })
-      }
-    },
-    accountOwnerLastName: {
-      get() {
-        return this.$store.state.members.registration.bank_details.lastName
-      },
-      set(value) {
-        this.$store.commit('members/registration/updateBankDetailsLastName', {
-          lastName: value
-        })
-      }
+    this.$store.commit('members/registration/updateIBAN', { iban: value })
+
+    const bankResponse = await bankAPI
+      .getBankInformationByIban(value)
+      .catch(() => {
+        console.log('errorz')
+      })
+
+    this.bankName = (bankResponse as BankResponse).data.bankName.shortName
+  }
+
+  @Watch('birthday')
+  onBirthdayChanged(newValue: number) {
+    if (!isNaN(newValue)) {
+      this.$store.commit('members/registration/updateBirthday', {
+        birthday: newValue
+      })
     }
-  },
-  watch: {
-    birthday(newValue) {
-      if (!isNaN(newValue)) {
-        this.$store.commit('members/registration/updateBirthday', {
-          birthday: newValue
-        })
-      }
+  }
+
+  get memberId(): string {
+    return this.$store.state.members.registration.member_id
+  }
+
+  set memberId(value: string) {
+    this.$store.commit('members/registration/updateMemberId', {
+      memberId: value
+    })
+  }
+
+  get firstName(): string {
+    return this.$store.state.members.registration.first_name
+  }
+
+  set firstName(value: string) {
+    this.$store.commit('members/registration/updateFirstName', {
+      first_name: value
+    })
+  }
+
+  get lastName(): string {
+    return this.$store.state.members.registration.last_name
+  }
+
+  set lastName(value: string) {
+    this.$store.commit({
+      type: 'members/registration/updateLastName',
+      last_name: value
+    })
+  }
+
+  get birthday(): number | null {
+    if (this.dobDay == null || this.dobMonth == null || this.dobYear == null) {
+      return null
     }
-  },
-  methods: {
-    createMember() {},
-    async onIbanChanged(value) {
-      if (value.length !== 22) {
-        return
-      }
 
-      this.$store.commit('members/registration/updateIBAN', { iban: value })
+    return Date.parse(`${this.dobYear}-${this.dobMonth}-${this.dobDay}`)
+  }
 
-      const bankResponse = await bankAPI
-        .getBankInformationByIban(value)
-        .catch(() => {
-          console.log('errorz')
-        })
+  get streetAddress(): string {
+    return this.$store.state.members.registration.street_address
+  }
 
-      this.bankName = bankResponse.data.bankName.shortName
-    }
+  set streetAddress(value: string) {
+    this.$store.commit('members/registration/updateStreetAddress', {
+      street_address: value
+    })
+  }
+
+  get houseNumber(): string {
+    return this.$store.state.members.registration.street_number
+  }
+
+  set houseNumber(value: string) {
+    this.$store.commit('members/registration/updateStreetNumber', {
+      street_number: value
+    })
+  }
+
+  get postCode(): string {
+    return this.$store.state.members.registration.post_code
+  }
+  set postCode(value: string) {
+    this.$store.commit('members/registration/updatePostCode', {
+      post_code: value
+    })
+  }
+
+  get city(): string {
+    return this.$store.state.members.registration.city
+  }
+
+  set city(value: string) {
+    this.$store.commit('members/registration/updateCity', { city: value })
+  }
+
+  get phone(): string {
+    return this.$store.state.members.registration.phone
+  }
+
+  set phone(value: string) {
+    this.$store.commit('members/registration/updatePhone', {
+      phone: value
+    })
+  }
+
+  get email(): string {
+    return this.$store.state.members.registration.email
+  }
+
+  set email(value: string) {
+    this.$store.commit('members/registration/updateEmail', {
+      email: value
+    })
+  }
+
+  get department(): string {
+    return this.$store.state.members.registration.department
+  }
+
+  set department(value: string) {
+    this.$store.commit('members/registration/updateDepartment', {
+      department: value
+    })
+  }
+
+  get status(): string {
+    return this.$store.state.members.registration.member_status
+  }
+
+  set status(value: string) {
+    this.$store.commit('members/registration/updateMemberStatus', {
+      status: value
+    })
+  }
+
+  get entryDate(): string {
+    return this.$store.state.members.registration.entry_date
+  }
+
+  set entryDate(value: string) {
+    this.$store.commit('members/registration/updateEntryDate', {
+      entryDate: value
+    })
+  }
+
+  get iban(): string {
+    return this.$store.state.members.registration.bank_details.iban
+  }
+
+  set iban(value: string) {
+    const rawIban = value.replace(/\s/g, '')
+    this.onIbanChanged(rawIban)
+  }
+
+  get bic(): string {
+    return this.$store.state.members.registration.bank_details.bic
+  }
+
+  set bic(value: string) {
+    this.$store.commit('members/registration/updateBIC', { bic: value })
+  }
+
+  get paymentMethod() {
+    return this.$store.state.members.registration.payment_method
+  }
+
+  set paymentMethod(value: string) {
+    this.$store.commit('members/registration/updatePaymentMethod', {
+      paymentMethod: value
+    })
+  }
+
+  get accountOwnerFirstName(): string {
+    return this.$store.state.members.registration.bank_details.firstName
+  }
+
+  set accountOwnerFirstName(value: string) {
+    this.$store.commit('members/registration/updateBankDetailsFirstName', {
+      firstName: value
+    })
+  }
+
+  get accountOwnerLastName(): string {
+    return this.$store.state.members.registration.bank_details.lastName
+  }
+
+  set accountOwnerLastName(value: string) {
+    this.$store.commit('members/registration/updateBankDetailsLastName', {
+      lastName: value
+    })
+  }
+
+  createMember() {
+    console.log('Creating member asshole!')
   }
 }
 </script>
-
-<style></style>
