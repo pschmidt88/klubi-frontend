@@ -46,9 +46,9 @@ module.exports = {
    */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios',
-    'nuxt-webfontloader'
+    '@nuxtjs/axios'
   ],
+
   /*
    ** Axios module configuration
    */
@@ -63,12 +63,6 @@ module.exports = {
     '/api/': 'http://localhost:8080'
   },
 
-  webfontloader: {
-    google: {
-      families: ['Montserrat:400,500,600,700', 'Noto+Sans:400,700']
-    }
-  },
-
   /*
    ** Build configuration
    */
@@ -76,6 +70,6 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(_config, _ctx) {}
   }
 }

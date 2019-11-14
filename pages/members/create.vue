@@ -405,6 +405,7 @@
 <script lang="ts">
 import { Component, Watch, Vue } from 'vue-property-decorator'
 import { mask } from 'vue-the-mask'
+import Consola from 'consola'
 import bankAPI from '~/api/bank'
 
 interface BankResponse {
@@ -465,11 +466,7 @@ export default class MemberCreatePage extends Vue {
 
     this.$store.commit('members/registration/updateIBAN', { iban: value })
 
-    const bankResponse = await bankAPI
-      .getBankInformationByIban(value)
-      .catch(() => {
-        console.log('errorz')
-      })
+    const bankResponse = await bankAPI.getBankInformationByIban(value)
 
     this.bankName = (bankResponse as BankResponse).data.bankName.shortName
   }
@@ -656,8 +653,6 @@ export default class MemberCreatePage extends Vue {
     })
   }
 
-  createMember() {
-    console.log('Creating member asshole!')
-  }
+  createMember() {}
 }
 </script>
