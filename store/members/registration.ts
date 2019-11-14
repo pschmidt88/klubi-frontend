@@ -1,4 +1,5 @@
-import { GetterTree, ActionTree, MutationTree } from 'vuex'
+import { ActionTree, MutationTree } from 'vuex'
+import MembersApi from '~/api/members'
 
 export const state = () => ({
   member_id: '',
@@ -79,6 +80,34 @@ export const mutations: MutationTree<RootState> = {
   },
   updateBIC(state, payload) {
     state.bank_details.bic = payload.bic
+  }
+}
+
+export const actions: ActionTree<RootState, RootState> = {
+  createMember( { state }) {
+    const dateOfBirth = new Date(state.birthday)
+
+    const requestObject = {
+      firstName: state.first_name,
+      lastName: state.last_name,
+      streetAddress: state.street_address,
+      streetNumber: state.street_number,
+      postalCode: state.post_code,
+      city: state.city,
+      phone: state.phone,
+      email: state.email,
+      birthday: dateOfBirth.toJSON().split('T')[0],
+      department: state.department,
+      entryDate: state.entry_date,
+      memberStatus: state.member_status,
+      paymentMethod: state.payment_method,
+      accountOwnerFirstName: state.bank_details.first_name,
+      accountOwnerLastName: state.bank_details.last_name,
+      iban: state.bank_details.iban,
+      bic: state.bank_details.bic
+    }
+
+    return MembersApi.createMember(requestObject)
   }
 }
 

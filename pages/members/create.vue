@@ -306,6 +306,7 @@
               </label>
               <input
                 id="inputAccountOwnerFirstName"
+                v-model="accountOwnerFirstName"
                 class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Paul"
@@ -317,6 +318,7 @@
               </label>
               <input
                 id="inputAccountOwnerLastName"
+                v-model="accountOwnerLastName"
                 class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Schmidt"
@@ -393,8 +395,8 @@
 
     <div class="flex justify-end">
       <button
-        class="mb-4 border text-white bg-indigo-700 hover:bg-white hover:text-indigo-700 border-indigo-700 rounded px-2 py-2"
         @click="createMember"
+        class="mb-4 border text-white bg-indigo-700 hover:bg-white hover:text-indigo-700 border-indigo-700 rounded px-2 py-2"
       >
         Mitglied anlegen
       </button>
@@ -405,7 +407,6 @@
 <script lang="ts">
 import { Component, Watch, Vue } from 'vue-property-decorator'
 import { mask } from 'vue-the-mask'
-import Consola from 'consola'
 import bankAPI from '~/api/bank'
 
 interface BankResponse {
@@ -440,6 +441,7 @@ export default class MemberCreatePage extends Vue {
   dobDay = null
   dobMonth = null
   dobYear = null
+  iban: string = ''
 
   availableDepartments = [
     { value: '', text: 'Abteilung wählen', disabled: true },
@@ -452,23 +454,27 @@ export default class MemberCreatePage extends Vue {
   availablePaymentMethods = [
     { value: '', text: 'Zahlungsart auswählen', disabled: true },
     { value: 'transfer', text: 'Überweisung' },
-    { value: 'direct_debit', text: 'Lastschrift' }
+    { value: 'debit', text: 'Lastschrift' }
   ]
 
   get isDirectDebit(): boolean {
-    return this.paymentMethod === 'direct_debit'
+    return this.paymentMethod === 'debit'
   }
 
+  @Watch('iban')
   async onIbanChanged(value: string) {
-    if (value.length !== 22) {
+    const rawIban = value.replace(/\s/g, '')
+
+    if (rawIban.length !== 22) {
       return
     }
 
-    this.$store.commit('members/registration/updateIBAN', { iban: value })
+    this.$store.commit('members/registration/updateIBAN', { iban: rawIban })
 
-    const bankResponse = await bankAPI.getBankInformationByIban(value)
+    const bankResponse = await bankAPI.getBankInformationByIban(rawIban)
 
     this.bankName = (bankResponse as BankResponse).data.bankName.shortName
+    this.bic = (bankResponse as BankResponse).data.bic.value
   }
 
   @Watch('birthday')
@@ -606,15 +612,6 @@ export default class MemberCreatePage extends Vue {
     })
   }
 
-  get iban(): string {
-    return this.$store.state.members.registration.bank_details.iban
-  }
-
-  set iban(value: string) {
-    const rawIban = value.replace(/\s/g, '')
-    this.onIbanChanged(rawIban)
-  }
-
   get bic(): string {
     return this.$store.state.members.registration.bank_details.bic
   }
@@ -634,7 +631,7 @@ export default class MemberCreatePage extends Vue {
   }
 
   get accountOwnerFirstName(): string {
-    return this.$store.state.members.registration.bank_details.firstName
+    return this.$store.state.members.registration.bank_details.first_name
   }
 
   set accountOwnerFirstName(value: string) {
@@ -644,7 +641,7 @@ export default class MemberCreatePage extends Vue {
   }
 
   get accountOwnerLastName(): string {
-    return this.$store.state.members.registration.bank_details.lastName
+    return this.$store.state.members.registration.bank_details.last_name
   }
 
   set accountOwnerLastName(value: string) {
@@ -653,6 +650,8 @@ export default class MemberCreatePage extends Vue {
     })
   }
 
-  createMember() {}
+  createMember() {
+    this.$store.dispatch('members/registration/createMember')
+  }
 }
 </script>
