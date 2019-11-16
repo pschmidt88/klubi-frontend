@@ -340,6 +340,7 @@ export default class MemberCreatePage extends Vue {
   get postCode(): string {
     return this.$store.state.members.registration.post_code
   }
+
   set postCode(value: string) {
     this.$store.commit('members/registration/updatePostCode', {
       post_code: value

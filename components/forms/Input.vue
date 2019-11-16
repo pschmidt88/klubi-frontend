@@ -3,12 +3,6 @@ import Vue from 'vue'
 import { mask } from 'vue-the-mask'
 import { Component, Prop, Model } from 'vue-property-decorator'
 
-declare module 'vue/types/vue' {
-  interface Vue {
-    _uid: number
-  }
-}
-
 @Component({
   directives: { mask }
 })
@@ -29,7 +23,7 @@ export default class KlubiInput extends Vue {
   readonly placeholder: string | undefined
 
   @Prop({ default: 'text-sm', type: String })
-  readonly labelClass: String | undefined
+  readonly labelClass: string | undefined
 
   @Model('changeInput', { type: String })
   value!: string
@@ -48,19 +42,20 @@ export default class KlubiInput extends Vue {
       <slot name="label">
         {{ label }}
       </slot>
+      <input
+        :id="inputId"
+        :value="value"
+        @input="$emit('changeInput', $event.target.value)"
+        :type="type"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :class="[
+          readonly
+            ? 'cursor-default bg-gray-100'
+            : 'focus:outline-none focus:shadow-outline'
+        ]"
+        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight"
+      />
     </label>
-    <input
-      :id="inputId"
-      :value="value"
-      @input="$emit('changeInput', $event.target.value)"
-      :type="type"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :class="[
-        readonly
-          ? 'cursor-default bg-gray-100'
-          : 'focus:outline-none focus:shadow-outline'
-      ]"
-      class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight"
-    /></div
-></template>
+  </div>
+</template>
