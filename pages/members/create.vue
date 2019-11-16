@@ -5,89 +5,55 @@
     <div class="shadow-md bg-white rounded mb-6 px-6 py-6">
       <h3 class="text-lg mb-4">Persönliche Daten</h3>
 
-      <div class="mb-4">
-        <label class="block text-sm mb-2" for="inputMemberId">
+      <k-input v-model="memberId" placeholder="1337" wrapper-class="mb-4">
+        <template v-slot:label>
           Mitgliedsnummer
           <span class="text-xs font-normal text-gray-500">
             (Leer lassen um automatisch zu generieren)
           </span>
-        </label>
-        <input
-          id="inputMemberId"
-          v-model="memberId"
-          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          type="text"
-          placeholder="1337"
-        />
-      </div>
+        </template>
+      </k-input>
 
-      <div class="mb-4">
-        <label class="block text-sm mb-2" for="inputFirstName">
-          Vorname
-        </label>
-        <input
-          id="inputFirstName"
-          v-model="firstName"
-          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          type="text"
-          placeholder="Paul"
-        />
-      </div>
+      <k-input
+        v-model="firstName"
+        label="Vorname"
+        placeholder="Paul"
+        wrapper-class="mb-4"
+      />
 
-      <div class="mb-4">
-        <label class="block text-sm mb-2" for="inputLastName">
-          Nachname
-        </label>
-        <input
-          id="inputLastName"
-          v-model="lastName"
-          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          type="text"
-          placeholder="Schmidt"
-        />
-      </div>
+      <k-input
+        v-model="lastName"
+        label="Nachname"
+        placeholder="Schmidt"
+        wrapper-class="mb-4"
+      />
 
       <div class="mb-4">
         <span class="text-sm">Geburtstag</span>
         <div class="flex">
-          <div class="w-1/3">
-            <label class="block text-xs mb-2" for="inputDobDay">
-              Tag
-            </label>
-            <input
-              id="inputDobDay"
-              v-model="dobDay"
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
-              type="text"
-              placeholder="16"
-            />
-          </div>
+          <k-input
+            v-model="dobDay"
+            label="Tag"
+            placeholder="16"
+            wrapper-class="w-1/3"
+            label-class="text-xs"
+          />
 
-          <div class="w-1/3 ml-2">
-            <label class="block text-xs mb-2" for="inputDobMonth">
-              Monat
-            </label>
-            <input
-              id="inputDobMonth"
-              v-model="dobMonth"
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
-              type="text"
-              placeholder="06"
-            />
-          </div>
+          <k-input
+            v-model="dobMonth"
+            label="Monat"
+            placeholder="06"
+            wrapper-class="w-1/3 ml-2"
+            label-class="text-xs"
+          />
 
-          <div class="w-1/3 ml-2">
-            <label class="block text-xs mb-2" for="inputDobYear">
-              Jahr
-            </label>
-            <input
-              id="inputDobYear"
-              v-model="dobYear"
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
-              type="text"
-              placeholder="1988"
-            />
-          </div>
+          <k-input
+            v-model="dobYear"
+            label="Jahr"
+            placeholder="1988"
+            wrapper-class="w-1/3 ml-2"
+            label-class="text-xs"
+          />
         </div>
       </div>
     </div>
@@ -98,232 +64,111 @@
       <div class="mb-4">
         <span class="text-sm">Adresse</span>
         <div class="flex mb-2">
-          <div class="w-4/5">
-            <label class="block text-xs mb-2" for="inputStreetAddress">
-              Straße
-            </label>
-            <input
-              id="inputStreetAddress"
-              v-model="streetAddress"
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
-              placeholder="Aschrottstraße"
-            />
-          </div>
-          <div class="w-1/5 ml-2">
-            <label class="block text-xs mb-2" for="inputStreetNumber">
-              Hausnr.
-            </label>
-            <input
-              id="inputStreetNumber"
-              v-model="houseNumber"
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
-              placeholder="4"
-            />
-          </div>
+          <k-input
+            v-model="streetAddress"
+            label="Straße"
+            placeholder="Aschrottstraße"
+            wrapper-class="w-4/5"
+            label-class="text-xs"
+          />
+
+          <k-input
+            v-model="houseNumber"
+            label="Hausnr."
+            placeholder="4"
+            wrapper-class="w-1/5 ml-2"
+            label-class="text-xs"
+          />
         </div>
+
         <div class="flex mb-4">
-          <div class="w-2/5">
-            <label class="block text-xs mb-2" for="inputPostcode">
-              Postleitzahl
-            </label>
-            <input
-              id="inputPostcode"
-              v-model="postCode"
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
-              placeholder="34119"
-            />
-          </div>
-          <div class="w-3/5 ml-2">
-            <label class="block text-xs mb-2" for="inputCity">
-              Ort
-            </label>
-            <input
-              id="inputCity"
-              v-model="city"
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
-              placeholder="Kassel"
-            />
-          </div>
-        </div>
+          <k-input
+            v-model="postCode"
+            label="Postleitzahl"
+            placeholder="34119"
+            wrapper-class="w-2/5"
+            label-class="text-xs"
+          />
 
-        <div class="mb-4">
-          <label class="block text-sm mb-2" for="inputPhoneNumber">
-            Telefon
-          </label>
-          <input
-            id="inputPhoneNumber"
-            v-model="phone"
-            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="01717693796"
+          <k-input
+            v-model="city"
+            label="Ort"
+            placeholder="Kassel"
+            wrapper-class="w-3/5 ml-2"
+            label-class="text-xs"
           />
         </div>
 
-        <div class="mb-4">
-          <label class="block text-sm mb-2" for="inputEmail">
-            E-Mail
-          </label>
-          <input
-            id="inputEmail"
-            v-model="email"
-            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="email"
-            placeholder="rookian@gmail.com"
-          />
-        </div>
+        <k-input
+          v-model="phone"
+          placeholder="01717693796"
+          wrapper-class="mb-4"
+          label="Telefon"
+        />
+
+        <k-input
+          v-model="email"
+          label="E-Mail"
+          placeholder="rookian@gmail.com"
+        />
       </div>
     </div>
 
     <div class="shadow-md bg-white rounded mb-6 px-6 py-6">
       <h3 class="text-lg mb-4">Abteilung</h3>
 
-      <div class="mb-4">
-        <label class="block text-sm mb-2" for="selectDepartment">
-          Abteilung
-        </label>
-        <div class="relative">
-          <select
-            id="selectDepartment"
-            v-model="department"
-            class="block appearance-none w-full border bg-white text-gray-700 py-2 px-3 rounded pr-8 leading-tight focus:outline-none focus:shadow-outline focus:border-gray-500"
-          >
-            <option
-              v-for="option in availableDepartments"
-              :key="option.value"
-              :value="option.value"
-              :disabled="option.disabled"
-            >
-              {{ option.text }}
-            </option>
-          </select>
-          <div
-            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-          >
-            <svg
-              class="fill-current h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
+      <k-select
+        v-model="department"
+        :options="availableDepartments"
+        wrapper-class="mb-4"
+        label="Abteilung"
+      />
 
-      <div class="mb-4">
-        <label class="block text-sm mb-2" for="inputEntryDate">
-          Eintrittdatum
-        </label>
-        <input
-          id="inputEntryDate"
-          v-model="entryDate"
-          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          type="date"
-        />
-      </div>
+      <k-input
+        v-model="entryDate"
+        type="date"
+        label="Eintrittsdatum"
+        wrapper-class="mb-4"
+      />
 
-      <div class="mb-4">
-        <label class="block text-sm mb-2" for="inputEntryDate">
-          Mitgliedsstatus
-        </label>
-
-        <label for="radioActive" class="inline-flex items-center">
-          <input
-            v-model="status"
-            type="radio"
-            value="active"
-            name="memberStatus"
-          />
-          <span class="ml-2">Aktiv</span>
-        </label>
-
-        <label for="radioPassive" class="inline-flex items-center">
-          <input
-            v-model="status"
-            type="radio"
-            value="passive"
-            name="memberStatus"
-          />
-          <span class="ml-2">Passiv</span>
-        </label>
-      </div>
+      <k-radio-group
+        v-model="status"
+        :options="memberStatusOptions"
+        label="Mitgliedstatus"
+        wrapper-class="mb-4"
+      />
     </div>
 
     <div class="shadow-md bg-white rounded mb-6 px-6 py-6">
       <h3 class="text-lg mb-4">Mitgliedsbeitrag &amp; Zahlungsdaten</h3>
-      <div class="mb-4">
-        <label class="block text-sm mb-2" for="selectPaymentMethod">
-          Zahlungsmethode
-        </label>
-        <div class="relative">
-          <select
-            id="selectPaymentMethod"
-            v-model="paymentMethod"
-            class="block appearance-none w-full border bg-white text-gray-700 py-2 px-3 rounded pr-8 leading-tight focus:outline-none focus:shadow-outline focus:border-gray-500"
-          >
-            <option
-              v-for="option in availablePaymentMethods"
-              :key="option.value"
-              :value="option.value"
-              :disabled="option.disabled"
-            >
-              {{ option.text }}
-            </option>
-          </select>
-          <div
-            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-          >
-            <svg
-              class="fill-current h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
+
+      <k-select
+        v-model="paymentMethod"
+        :options="availablePaymentMethods"
+        label="Zahlungsmethode"
+        wrapper-class="mb-4"
+      />
 
       <template v-if="isDirectDebit">
         <div class="mb-4">
           <span class="text-sm">Kontoinhaber</span>
 
           <div class="flex">
-            <div class="w-1/2">
-              <label
-                class="block text-xs mb-2"
-                for="inputAccountOwnerFirstName"
-              >
-                Vorname
-              </label>
-              <input
-                id="inputAccountOwnerFirstName"
-                v-model="accountOwnerFirstName"
-                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
-                placeholder="Paul"
-              />
-            </div>
-            <div class="w-1/2 ml-2">
-              <label class="block text-xs mb-2" for="inputAccountOwnerLastName">
-                Nachname
-              </label>
-              <input
-                id="inputAccountOwnerLastName"
-                v-model="accountOwnerLastName"
-                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
-                placeholder="Schmidt"
-              />
-            </div>
+            <k-input
+              v-model="accountOwnerFirstName"
+              label-class="text-xs"
+              wrapper-class="w-1/2"
+              label="Vorname"
+              placeholder="Paul"
+            />
+
+            <k-input
+              v-model="accountOwnerLastName"
+              label-class="text-xs"
+              wrapper-class="w-1/2 ml-2"
+              label="Nachname"
+              placeholder="Schmidt"
+            />
           </div>
         </div>
 
@@ -340,56 +185,16 @@
           />
         </div>
 
-        <div class="mb-4">
-          <label class="block text-sm mb-2" for="inputBic">
-            BIC
-          </label>
-          <input
-            id="inputBic"
-            v-model="bic"
-            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-          />
-        </div>
+        <k-input v-model="bic" wrapper-class="mb-4" label="BIC" />
 
-        <div class="mb-4">
-          <label class="block text-sm mb-2" for="readonlyInputBankname">
-            Bankinstitut
-          </label>
-          <input
-            id="readonlyInputBankname"
-            v-model="bankName"
-            readonly
-            class="appearance-none border bg-gray-100 rounded w-full py-2 px-3 text-gray-700 leading-tight cursor-default"
-            type="text"
-          />
-        </div>
+        <k-input
+          v-model="bankName"
+          wrapper-class="mb-4"
+          label="Bankinstitut"
+          readonly
+        />
 
-        <div class="mb-4">
-          <label class="block text-sm mb-2" for="uploadMandate">
-            Lastschriftmandat
-          </label>
-          <div class="items-center bg-grey-lighter">
-            <label
-              class="flex items-center px-3 py-2 bg-white text-indigo-700 rounded border border-indigo-600 cursor-pointer hover:bg-indigo-700 hover:text-white"
-            >
-              <svg
-                class="w-6 h-6 mr-3"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
-                />
-              </svg>
-              <span class="text-sm">
-                SEPA Mandat hochladen
-              </span>
-              <input id="uploadMandate" type="file" class="hidden" />
-            </label>
-          </div>
-        </div>
+        <k-upload />
       </template>
     </div>
 
@@ -407,33 +212,15 @@
 <script lang="ts">
 import { Component, Watch, Vue } from 'vue-property-decorator'
 import { mask } from 'vue-the-mask'
-import bankAPI from '~/api/bank'
-
-interface BankResponse {
-  data: BankData
-}
-
-interface BankData {
-  bankName: BankName
-  bankCode: BankCode
-  bic: Bic
-}
-
-interface BankName {
-  shortName: string
-  name: string
-}
-
-interface BankCode {
-  value: string
-}
-
-interface Bic {
-  value: string
-}
+import KInput from '~/components/forms/Input.vue'
+import KSelect from '~/components/forms/Select.vue'
+import KUpload from '~/components/forms/Upload.vue'
+import KRadioGroup from '~/components/forms/RadioGroup.vue'
+import BankApi from '~/api/bank.ts'
 
 @Component({
-  directives: { mask }
+  directives: { mask },
+  components: { KInput, KSelect, KUpload, KRadioGroup }
 })
 export default class MemberCreatePage extends Vue {
   bankName: string = ''
@@ -457,6 +244,11 @@ export default class MemberCreatePage extends Vue {
     { value: 'debit', text: 'Lastschrift' }
   ]
 
+  memberStatusOptions = [
+    { value: 'active', text: 'Aktiv' },
+    { value: 'passive', text: 'Passiv' }
+  ]
+
   get isDirectDebit(): boolean {
     return this.paymentMethod === 'debit'
   }
@@ -471,10 +263,10 @@ export default class MemberCreatePage extends Vue {
 
     this.$store.commit('members/registration/updateIBAN', { iban: rawIban })
 
-    const bankResponse = await bankAPI.getBankInformationByIban(rawIban)
+    const bankResponse = await new BankApi().getBankInformationByIban(rawIban)
 
-    this.bankName = (bankResponse as BankResponse).data.bankName.shortName
-    this.bic = (bankResponse as BankResponse).data.bic.value
+    this.bankName = bankResponse.data.bankName.shortName
+    this.bic = bankResponse.data.bic.value
   }
 
   @Watch('birthday')
