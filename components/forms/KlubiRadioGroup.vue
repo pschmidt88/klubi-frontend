@@ -21,7 +21,7 @@ export default class KlubiRadioGroup extends Vue {
   @Prop({ type: Array, required: true })
   readonly options!: Array<RadioButtonOption>
 
-  componentId = ''
+  private componentId = ''
 
   mounted() {
     this.componentId = `radio-group-${this._uid}`
@@ -31,7 +31,7 @@ export default class KlubiRadioGroup extends Vue {
 
 <template>
   <div :class="wrapperClass">
-    <label class="block text-sm mb-2">
+    <label class="block text-sm font-bold mb-2">
       {{ label }}
     </label>
 
@@ -46,7 +46,7 @@ export default class KlubiRadioGroup extends Vue {
         :name="componentId"
         type="radio"
       />
-      <span class="ml-2">{{ option.text }}</span>
+      <span class="ml-2 text-sm">{{ option.text }}</span>
     </label>
   </div>
 </template>

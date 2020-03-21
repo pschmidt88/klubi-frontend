@@ -1,40 +1,29 @@
-<script>
-import TopNavigation from './top_navigation'
-import SubNavigation from './sub_navigation'
-import Logo from './logo'
-import SearchBar from './search_bar'
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+import MainNavigation from './main_navigation.vue'
 
-export default {
-  name: 'MainLayout',
-  components: { TopNavigation, SubNavigation, Logo, SearchBar },
-  head: {
-    bodyAttrs: {
-      class: 'bg-gray-200 font-sans antialiased'
+@Component({
+  name: 'DefaultLayout',
+  components: { MainNavigation },
+  head() {
+    return {
+      bodyAttrs: {
+        class: 'bg-gray-200 font-sans antialiased'
+      }
     }
   }
-}
+})
+export default class DefaultLayout extends Vue {}
 </script>
 
 <template>
   <div>
-    <div class="bg-indigo-900 text-center p-4 px-6 flex items-center h-16">
-      <logo />
+    <main-navigation />
 
-      <div id="mobile-nav-trigger" class="lg:hidden pr-3">
-        <div class="toggle p-2 block"><span></span></div>
-      </div>
-
-      <top-navigation />
-
-      <search-bar />
-    </div>
-
-    <div class="flex">
-      <sub-navigation />
-
-      <div id="content" class="flex flex-1 flex-col md:px-6 pt-10">
+    <main>
+      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <nuxt />
       </div>
-    </div>
+    </main>
   </div>
 </template>

@@ -32,7 +32,7 @@ export default class KlubiSelect extends Vue {
 
 <template>
   <div :class="wrapperClass">
-    <label :for="componentId" class="block text-sm mb-2">
+    <label :for="componentId" class="block mb-1 text-sm font-semibold">
       {{ label }}
     </label>
     <div class="relative">
