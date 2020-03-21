@@ -5,7 +5,65 @@ import KInput from '~/components/forms/KlubiInput.vue'
 @Component({
   components: { KInput }
 })
-export default class Contacts extends Vue {}
+export default class Contacts extends Vue {
+  get streetAddress(): string {
+    return this.$store.state.members.registration.street_address
+  }
+
+  set streetAddress(value: string) {
+    this.$store.commit('members/registration/updateStreetAddress', {
+      street_address: value
+    })
+  }
+
+  get houseNumber(): string {
+    return this.$store.state.members.registration.street_number
+  }
+
+  set houseNumber(value: string) {
+    this.$store.commit('members/registration/updateStreetNumber', {
+      street_number: value
+    })
+  }
+
+  get postCode(): string {
+    return this.$store.state.members.registration.post_code
+  }
+
+  set postCode(value: string) {
+    this.$store.commit('members/registration/updatePostCode', {
+      post_code: value
+    })
+  }
+
+  get city(): string {
+    return this.$store.state.members.registration.city
+  }
+
+  set city(value: string) {
+    this.$store.commit('members/registration/updateCity', { city: value })
+  }
+
+  get phone(): string {
+    return this.$store.state.members.registration.phone
+  }
+
+  set phone(value: string) {
+    this.$store.commit('members/registration/updatePhone', {
+      phone: value
+    })
+  }
+
+  get email(): string {
+    return this.$store.state.members.registration.email
+  }
+
+  set email(value: string) {
+    this.$store.commit('members/registration/updateEmail', {
+      email: value
+    })
+  }
+}
 </script>
 
 <template>

@@ -1,10 +1,13 @@
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
+import { mask } from 'vue-the-mask'
 import KInput from '~/components/forms/KlubiInput.vue'
 import KSelect from '~/components/forms/KlubiSelect.vue'
 import KUpload from '~/components/forms/KlubiUpload.vue'
+import BankApi from '~/api/bank'
 
 @Component({
+  directives: { mask },
   components: { KInput, KSelect, KUpload }
 })
 export default class PaymentDetails extends Vue {
@@ -13,6 +16,10 @@ export default class PaymentDetails extends Vue {
     { value: 'transfer', text: 'Überweisung' },
     { value: 'debit', text: 'Lastschrift' }
   ]
+
+  private iban = ''
+  private bankName = ''
+  private bic = ''
 
   get isDirectDebit(): boolean {
     return this.paymentMethod === 'debit'
@@ -26,6 +33,42 @@ export default class PaymentDetails extends Vue {
     this.$store.commit('members/registration/updatePaymentMethod', {
       paymentMethod: value
     })
+  }
+
+  get accountOwnerFirstName(): string {
+    return this.$store.state.members.registration.bank_details.first_name
+  }
+
+  set accountOwnerFirstName(value: string) {
+    this.$store.commit('members/registration/updateBankDetailsFirstName', {
+      firstName: value
+    })
+  }
+
+  get accountOwnerLastName(): string {
+    return this.$store.state.members.registration.bank_details.last_name
+  }
+
+  set accountOwnerLastName(value: string) {
+    this.$store.commit('members/registration/updateBankDetailsLastName', {
+      lastName: value
+    })
+  }
+
+  @Watch('iban')
+  async onIbanChanged(value: string) {
+    const rawIban = value.replace(/\s/g, '')
+
+    if (rawIban.length !== 22) {
+      return
+    }
+
+    this.$store.commit('members/registration/updateIBAN', { iban: rawIban })
+
+    const bankResponse = await new BankApi().getBankInformationByIban(rawIban)
+
+    this.bankName = bankResponse.data.bankName.shortName
+    this.bic = bankResponse.data.bic.value
   }
 }
 </script>

@@ -5,7 +5,49 @@ import KInput from '~/components/forms/KlubiInput.vue'
 @Component({
   components: { KInput }
 })
-export default class PersonalDetails extends Vue {}
+export default class PersonalDetails extends Vue {
+  get memberId(): string {
+    return this.$store.state.members.registration.member_id
+  }
+
+  set memberId(value: string) {
+    this.$store.commit('members/registration/updateMemberId', {
+      memberId: value
+    })
+  }
+
+  get firstName(): string {
+    return this.$store.state.members.registration.first_name
+  }
+
+  set firstName(value: string) {
+    this.$store.commit('members/registration/updateFirstName', {
+      first_name: value
+    })
+  }
+
+  get lastName(): string {
+    return this.$store.state.members.registration.last_name
+  }
+
+  set lastName(value: string) {
+    this.$store.commit({
+      type: 'members/registration/updateLastName',
+      last_name: value
+    })
+  }
+
+  get dateOfBirth(): string {
+    return this.$store.state.members.registration.birthday
+  }
+
+  set dateOfBirth(value: string) {
+    this.$store.commit({
+      type: 'members/registration/updateBirthday',
+      birthday: value
+    })
+  }
+}
 </script>
 
 <template>
@@ -43,6 +85,7 @@ export default class PersonalDetails extends Vue {}
 
       <k-input
         v-model="dateOfBirth"
+        type="date"
         label="Geburtstag"
         placeholder="16.06.1988"
         wrapper-class="mt-4"

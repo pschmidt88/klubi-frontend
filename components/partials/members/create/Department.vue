@@ -20,6 +20,36 @@ export default class Department extends Vue {
     { value: 'active', text: 'Aktiv' },
     { value: 'passive', text: 'Passiv' }
   ]
+
+  get department(): string {
+    return this.$store.state.members.registration.department
+  }
+
+  set department(value: string) {
+    this.$store.commit('members/registration/updateDepartment', {
+      department: value
+    })
+  }
+
+  get status(): string {
+    return this.$store.state.members.registration.member_status
+  }
+
+  set status(value: string) {
+    this.$store.commit('members/registration/updateMemberStatus', {
+      status: value
+    })
+  }
+
+  get entryDate(): string {
+    return this.$store.state.members.registration.entry_date
+  }
+
+  set entryDate(value: string) {
+    this.$store.commit('members/registration/updateEntryDate', {
+      entryDate: value
+    })
+  }
 }
 </script>
 

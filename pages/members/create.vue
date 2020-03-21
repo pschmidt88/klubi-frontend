@@ -8,7 +8,11 @@ import PaymentDetails from '~/components/partials/members/create/PaymentDetails.
 @Component({
   components: { PersonalDetails, Contacts, Department, PaymentDetails }
 })
-export default class CreateMemberPage extends Vue {}
+export default class CreateMemberPage extends Vue {
+  createMember() {
+    this.$store.dispatch('members/registration/createMember')
+  }
+}
 </script>
 
 <template>
@@ -28,5 +32,14 @@ export default class CreateMemberPage extends Vue {}
     <hr class="w-11/12 my-12 mx-auto" />
 
     <paymentDetails />
+
+    <div class="flex mt-12 justify-end">
+      <button
+        @click="createMember"
+        class="mb-4 border text-white bg-indigo-700 hover:bg-white hover:text-indigo-700 border-indigo-700 rounded px-2 py-2"
+      >
+        Mitglied anlegen
+      </button>
+    </div>
   </div>
 </template>

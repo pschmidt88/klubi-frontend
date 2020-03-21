@@ -84,7 +84,7 @@ export const mutations: MutationTree<RootState> = {
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  createMember( { state }) {
+  createMember({ state }) {
     const dateOfBirth = new Date(state.birthday)
 
     const requestObject = {
