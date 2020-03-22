@@ -1,16 +1,20 @@
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { mask } from 'vue-the-mask'
 import KInput from '~/components/forms/KlubiInput.vue'
 import KSelect from '~/components/forms/KlubiSelect.vue'
 import KUpload from '~/components/forms/KlubiUpload.vue'
 import BankApi from '~/api/bank'
+import KIban from '~/components/forms/KlubiIban.vue'
+import { PaymentDetailsValidation } from '~/components/partials/members/create/validationTypes'
 
 @Component({
   directives: { mask },
-  components: { KInput, KSelect, KUpload }
+  components: { KInput, KSelect, KUpload, KIban }
 })
 export default class PaymentDetails extends Vue {
+  @Prop() readonly validator!: PaymentDetailsValidation
+
   private availablePaymentMethods = [
     { value: '', text: 'Zahlungsart auswählen', disabled: true },
     { value: 'transfer', text: 'Überweisung' },
@@ -33,6 +37,7 @@ export default class PaymentDetails extends Vue {
     this.$store.commit('members/registration/updatePaymentMethod', {
       paymentMethod: value
     })
+    this.validator.paymentMethod.$touch()
   }
 
   get accountOwnerFirstName(): string {
@@ -43,6 +48,7 @@ export default class PaymentDetails extends Vue {
     this.$store.commit('members/registration/updateBankDetailsFirstName', {
       firstName: value
     })
+    this.validator.accountOwnerFirstName.$touch()
   }
 
   get accountOwnerLastName(): string {
@@ -53,6 +59,7 @@ export default class PaymentDetails extends Vue {
     this.$store.commit('members/registration/updateBankDetailsLastName', {
       lastName: value
     })
+    this.validator.accountOwnerLastName.$touch()
   }
 
   @Watch('iban')
@@ -64,6 +71,7 @@ export default class PaymentDetails extends Vue {
     }
 
     this.$store.commit('members/registration/updateIBAN', { iban: rawIban })
+    this.validator.iban.$touch()
 
     const bankResponse = await new BankApi().getBankInformationByIban(rawIban)
 
@@ -86,6 +94,7 @@ export default class PaymentDetails extends Vue {
       <div class="w-3/5">
         <k-select
           v-model="paymentMethod"
+          :validation="validator.paymentMethod"
           :options="availablePaymentMethods"
           label="Zahlungsmethode"
         />
@@ -100,29 +109,25 @@ export default class PaymentDetails extends Vue {
       <div class="w-3/5">
         <k-input
           v-model="accountOwnerFirstName"
+          :validation="validator.accountOwnerFirstName"
           label="Vorname"
           placeholder="Paul"
         />
 
         <k-input
           v-model="accountOwnerLastName"
+          :validation="validator.accountOwnerLastName"
           label="Nachname"
           placeholder="Schmidt"
           wrapper-class="mt-4"
         />
 
-        <div class="mt-4">
-          <label class="block text-sm font-bold mb-1" for="inputIban">
-            IBAN
-          </label>
-          <input
-            id="inputIban"
-            v-model="iban"
-            v-mask="'AA## #### #### #### #### ##'"
-            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-          />
-        </div>
+        <k-iban
+          v-model="iban"
+          :validation="validator.iban"
+          wrapper-class="mt-4"
+          label="IBAN"
+        />
 
         <k-input v-model="bic" wrapper-class="mt-4" label="BIC" />
 

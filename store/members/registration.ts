@@ -1,4 +1,4 @@
-import { ActionTree, MutationTree } from 'vuex'
+import { ActionTree, MutationTree, GetterTree } from 'vuex'
 import MembersApi from '~/api/members'
 
 export const state = () => ({
@@ -108,6 +108,43 @@ export const actions: ActionTree<RootState, RootState> = {
     }
 
     return MembersApi.createMember(requestObject)
+  }
+}
+
+export const getters: GetterTree<RootState, RootState> = {
+  personalDetails(state) {
+    return {
+      memberId: state.member_id,
+      firstName: state.first_name,
+      lastName: state.last_name,
+      birthday: state.birthday
+    }
+  },
+  contacts(state) {
+    return {
+      streetAddress: state.street_address,
+      streetNumber: state.street_number,
+      postcode: state.post_code,
+      city: state.city,
+      phone: state.phone,
+      email: state.email
+    }
+  },
+  department(state) {
+    return {
+      department: state.department,
+      entryDate: state.entry_date,
+      memberStatus: state.member_status
+    }
+  },
+  paymentDetails(state) {
+    return {
+      paymentMethod: state.payment_method,
+      accountOwnerFirstName: state.bank_details.first_name,
+      accountOwnerLastName: state.bank_details.last_name,
+      iban: state.bank_details.iban,
+      bic: state.bank_details.bic
+    }
   }
 }
 

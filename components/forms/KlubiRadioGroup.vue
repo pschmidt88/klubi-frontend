@@ -1,6 +1,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Model, Component, Prop } from 'vue-property-decorator'
+import { Validation } from 'vuelidate'
 
 interface RadioButtonOption {
   value: string
@@ -21,6 +22,21 @@ export default class KlubiRadioGroup extends Vue {
   @Prop({ type: Array, required: true })
   readonly options!: Array<RadioButtonOption>
 
+  @Prop()
+  readonly validation!: Validation
+
+  get labelErrorClass(): String {
+    return this.hasValidationErrors ? 'text-red-600' : ''
+  }
+
+  get inputErrorClass(): String {
+    return this.hasValidationErrors ? 'border-red-600' : ''
+  }
+
+  get hasValidationErrors(): Boolean {
+    return this.validation && this.validation.$anyError
+  }
+
   private componentId = ''
 
   mounted() {
@@ -31,7 +47,7 @@ export default class KlubiRadioGroup extends Vue {
 
 <template>
   <div :class="wrapperClass">
-    <label class="block text-sm font-bold mb-2">
+    <label :class="[labelErrorClass]" class="block text-sm font-bold mb-2">
       {{ label }}
     </label>
 
@@ -44,9 +60,16 @@ export default class KlubiRadioGroup extends Vue {
         :value="option.value"
         @input="$emit('change', $event.target.value)"
         :name="componentId"
+        :class="[inputErrorClass]"
         type="radio"
       />
       <span class="ml-2 text-sm">{{ option.text }}</span>
     </label>
+
+    <div v-if="hasValidationErrors" class="text-red-600 text-xs">
+      <span v-if="validation.required !== undefined && !validation.required">
+        Wähle eine gültige Option aus
+      </span>
+    </div>
   </div>
 </template>

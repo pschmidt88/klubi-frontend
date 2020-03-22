@@ -1,13 +1,16 @@
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 import KInput from '~/components/forms/KlubiInput.vue'
 import KSelect from '~/components/forms/KlubiSelect.vue'
 import KRadioGroup from '~/components/forms/KlubiRadioGroup.vue'
+import { DepartmentValidation } from '~/components/partials/members/create/validationTypes'
 
 @Component({
   components: { KInput, KSelect, KRadioGroup }
 })
 export default class Department extends Vue {
+  @Prop() readonly validator!: DepartmentValidation
+
   private availableDepartments = [
     { value: '', text: 'Abteilung wählen', disabled: true },
     { value: 'football', text: 'Fußball' },
@@ -29,6 +32,7 @@ export default class Department extends Vue {
     this.$store.commit('members/registration/updateDepartment', {
       department: value
     })
+    this.validator.department.$touch()
   }
 
   get status(): string {
@@ -39,6 +43,7 @@ export default class Department extends Vue {
     this.$store.commit('members/registration/updateMemberStatus', {
       status: value
     })
+    this.validator.memberStatus.$touch()
   }
 
   get entryDate(): string {
@@ -49,6 +54,7 @@ export default class Department extends Vue {
     this.$store.commit('members/registration/updateEntryDate', {
       entryDate: value
     })
+    this.validator.entryDate.$touch()
   }
 }
 </script>
@@ -65,12 +71,14 @@ export default class Department extends Vue {
     <div class="container w-3/5">
       <k-select
         v-model="department"
+        :validation="validator.department"
         :options="availableDepartments"
         label="Abteilung"
       />
 
       <k-input
         v-model="entryDate"
+        :validation="validator.entryDate"
         type="date"
         label="Eintrittsdatum"
         wrapper-class="mt-4"

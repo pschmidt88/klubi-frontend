@@ -1,9 +1,12 @@
 <script lang="ts">
+import { mask } from 'vue-the-mask'
 import { Vue, Component, Prop, Model } from 'vue-property-decorator'
 import { Validation } from 'vuelidate'
 
-@Component({})
-export default class KlubiInput extends Vue {
+@Component({
+  directives: { mask }
+})
+export default class KlubiIban extends Vue {
   @Prop(String)
   readonly wrapperClass: string | undefined
 
@@ -12,9 +15,6 @@ export default class KlubiInput extends Vue {
 
   @Prop(Boolean)
   readonly readonly: boolean | undefined
-
-  @Prop({ default: 'text', type: String })
-  readonly type!: string
 
   @Prop(String)
   readonly placeholder: string | undefined
@@ -43,7 +43,7 @@ export default class KlubiInput extends Vue {
   }
 
   mounted() {
-    this.inputId = `input-${this.type}-${this._uid}`
+    this.inputId = `input-iban-${this._uid}`
   }
 }
 </script>
@@ -62,8 +62,8 @@ export default class KlubiInput extends Vue {
       <input
         :id="inputId"
         :value="value"
+        v-mask="'AA## #### #### #### #### ##'"
         @input="$emit('changeInput', $event.target.value)"
-        :type="type"
         :placeholder="placeholder"
         :readonly="readonly"
         :class="[
@@ -72,6 +72,7 @@ export default class KlubiInput extends Vue {
             : 'focus:outline-none focus:shadow-outline',
           inputErrorClass
         ]"
+        type="text"
         class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight"
       />
     </label>

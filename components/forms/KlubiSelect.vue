@@ -1,6 +1,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Model, Component, Prop } from 'vue-property-decorator'
+import { Validation } from 'vuelidate'
 
 interface Option {
   value: String
@@ -22,17 +23,36 @@ export default class KlubiSelect extends Vue {
   @Prop(String)
   readonly wrapperClass: String | undefined
 
+  @Prop()
+  readonly validation!: Validation
+
   componentId: string = ''
 
   mounted() {
     this.componentId = `select-${this._uid}`
+  }
+
+  get labelErrorClass(): String {
+    return this.hasValidationErrors ? 'text-red-600' : ''
+  }
+
+  get inputErrorClass(): String {
+    return this.hasValidationErrors ? 'border-red-600' : ''
+  }
+
+  get hasValidationErrors(): Boolean {
+    return this.validation && this.validation.$anyError
   }
 }
 </script>
 
 <template>
   <div :class="wrapperClass">
-    <label :for="componentId" class="block mb-1 text-sm font-semibold">
+    <label
+      :for="componentId"
+      :class="[labelErrorClass]"
+      class="block mb-1 text-sm font-semibold"
+    >
       {{ label }}
     </label>
     <div class="relative">
@@ -40,6 +60,7 @@ export default class KlubiSelect extends Vue {
         :id="componentId"
         :value="value"
         @input="$emit('changeInput', $event.target.value)"
+        :class="[inputErrorClass]"
         class="block appearance-none w-full border bg-white text-gray-700 py-2 px-3 rounded pr-8 leading-tight focus:outline-none focus:shadow-outline focus:border-gray-500"
       >
         <option
@@ -64,6 +85,12 @@ export default class KlubiSelect extends Vue {
           />
         </svg>
       </div>
+    </div>
+
+    <div v-if="hasValidationErrors" class="mt-1 text-red-600 text-xs">
+      <span v-if="validation.required !== undefined && !validation.required">
+        Wähle eine gültige Option aus
+      </span>
     </div>
   </div>
 </template>
