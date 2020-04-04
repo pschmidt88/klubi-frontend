@@ -40,17 +40,17 @@ import PaymentDetails from '~/components/partials/members/create/PaymentDetails.
     paymentDetails: {
       paymentMethod: { required },
       accountOwnerFirstName: {
-        requiredIf: requiredIf(function(_model) {
+        requiredIf: requiredIf(function(this: any) {
           return this.paymentDetails.paymentMethod === 'debit'
         })
       },
       accountOwnerLastName: {
-        requiredIf: requiredIf(function(_model) {
+        requiredIf: requiredIf(function(this: any) {
           return this.paymentDetails.paymentMethod === 'debit'
         })
       },
       iban: {
-        requiredIf: requiredIf(function(_model) {
+        requiredIf: requiredIf(function(this: any) {
           return this.paymentDetails.paymentMethod === 'debit'
         })
       }
