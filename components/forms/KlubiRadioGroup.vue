@@ -68,7 +68,7 @@ export default class KlubiRadioGroup extends Vue {
 
     <div v-if="hasValidationErrors" class="text-red-600 text-xs">
       <span v-if="validation.required !== undefined && !validation.required">
-        Wähle eine gültige Option aus
+        {{ $t('form.option.validation.required.error') }}
       </span>
     </div>
   </div>

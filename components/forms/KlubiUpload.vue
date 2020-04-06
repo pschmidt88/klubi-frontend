@@ -42,7 +42,7 @@ export default class KlubiUpload extends Vue {
           class="px-3 py-2 hover:bg-gray-800 hover:text-white bg-white border-gray-800 rounded border cursor-pointer"
         >
           <span class="text-sm">
-            Choose files
+            {{ $t('form.upload.button.label') }}
           </span>
           <input :id="componentId" type="file" class="hidden" />
         </label>

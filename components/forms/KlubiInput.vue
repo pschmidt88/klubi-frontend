@@ -78,21 +78,25 @@ export default class KlubiInput extends Vue {
 
     <div v-if="hasValidationErrors" :class="labelErrorClass" class="text-xs">
       <span v-if="validation.required !== undefined && !validation.required">
-        Der kack hier muss ausgefüllt sein Junge
+        {{ $t('form.text.validation.required.error') }}
       </span>
 
       <span
         v-if="validation.requiredIf !== undefined && !validation.requiredIf"
       >
-        Der kack hier muss ausgefüllt sein Junge
+        {{ $t('form.text.validation.required.error') }}
       </span>
 
       <span v-if="validation.minLength !== undefined && !validation.minLength">
-        Mindestlänge ist {{ validation.$params.minLength.min }}
+        {{
+          $t('form.text.validation.minLength.error', {
+            length: validation.$params.minLength.min
+          })
+        }}
       </span>
 
       <span v-if="validation.email !== undefined && !validation.email">
-        email ist nicht valide
+        {{ $t('form.text.validation.email.error') }}
       </span>
     </div>
   </div>

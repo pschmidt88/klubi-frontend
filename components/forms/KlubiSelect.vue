@@ -89,7 +89,7 @@ export default class KlubiSelect extends Vue {
 
     <div v-if="hasValidationErrors" class="mt-1 text-red-600 text-xs">
       <span v-if="validation.required !== undefined && !validation.required">
-        Wähle eine gültige Option aus
+        {{ $t('form.select.validation.required.error') }}
       </span>
     </div>
   </div>
