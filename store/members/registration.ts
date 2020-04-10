@@ -84,6 +84,20 @@ export const mutations: MutationTree<RootState> = {
 }
 
 export const actions: ActionTree<RootState, RootState> = {
+  demo({ commit }) {
+    commit('updateFirstName', { first_name: 'Paul' })
+    commit('updateLastName', { last_name: 'Schmidt' })
+    commit('updateStreetAddress', { street_address: 'Aschrottstraße' })
+    commit('updateStreetNumber', { street_number: '4' })
+    commit('updatePostCode', { post_code: '34119' })
+    commit('updateCity', { city: 'Kassel' })
+    commit('updateBirthday', { birthday: '1988-06-16' })
+    commit('updateEmail', { email: 'rookian@gmail.com' })
+    commit('updateDepartment', { department: 'football' })
+    commit('updateMemberStatus', { status: 'passive' })
+    commit('updatePaymentMethod', { paymentMethod: 'transfer' })
+  },
+
   createMember({ state }) {
     const dateOfBirth = new Date(state.birthday)
 

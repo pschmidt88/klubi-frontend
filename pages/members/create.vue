@@ -58,6 +58,8 @@ import PaymentDetails from '~/components/partials/members/create/PaymentDetails.
   }
 })
 export default class CreateMemberPage extends Vue {
+  private _keyListener: ((e: any) => void) | undefined
+
   createMember() {
     this.$v.$touch()
     if (this.$v.$invalid) {
@@ -66,7 +68,19 @@ export default class CreateMemberPage extends Vue {
     }
 
     console.log('vallah läuft bei dir')
-    // this.$store.dispatch('members/registration/createMember')
+  }
+  private fillFormWithDemoData() {
+    this.$store.dispatch('members/registration/demo')
+  }
+
+  mounted() {
+    this._keyListener = function(e: KeyboardEvent) {
+      if (e.key === 'F' && e.shiftKey) {
+        e.preventDefault()
+        this.fillFormWithDemoData()
+      }
+    }
+    document.addEventListener('keydown', this._keyListener.bind(this))
   }
 }
 </script>
