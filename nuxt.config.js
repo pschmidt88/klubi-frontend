@@ -73,7 +73,7 @@ module.exports = {
   css: [],
 
   proxy: {
-    '/api/': 'http://localhost:8080'
+    '/api/': 'https://klubi.dev.rookian.me'
   },
 
   /*
