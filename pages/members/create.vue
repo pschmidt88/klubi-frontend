@@ -7,9 +7,10 @@ import PersonalDetails from '~/components/partials/members/create/PersonalDetail
 import Contacts from '~/components/partials/members/create/Contacts.vue'
 import Department from '~/components/partials/members/create/Department.vue'
 import PaymentDetails from '~/components/partials/members/create/PaymentDetails.vue'
+import Submit from '~/components/forms/KlubiSubmit.vue'
 
 @Component({
-  components: { PersonalDetails, Contacts, Department, PaymentDetails },
+  components: { PersonalDetails, Contacts, Department, PaymentDetails, Submit },
   mixins: [validationMixin],
   computed: {
     ...mapGetters({
@@ -58,17 +59,23 @@ import PaymentDetails from '~/components/partials/members/create/PaymentDetails.
   }
 })
 export default class CreateMemberPage extends Vue {
+  private saving: boolean = false
   private _keyListener: ((e: any) => void) | undefined
 
   createMember() {
     this.$v.$touch()
+    this.saving = !this.saving
     if (this.$v.$invalid) {
       console.log('invalid bruder')
       return
     }
 
-    console.log('vallah läuft bei dir')
+    setTimeout(() => {
+      console.log('vallah läuft bei dir')
+      this.saving = !this.saving
+    }, 1000)
   }
+
   private fillFormWithDemoData() {
     this.$store.dispatch('members/registration/demo')
   }
@@ -102,12 +109,13 @@ export default class CreateMemberPage extends Vue {
     <paymentDetails :validator="$v.paymentDetails" />
 
     <div class="flex container mt-12 justify-end">
-      <button
-        @click="createMember"
-        class="mb-4 border text-white bg-indigo-700 hover:bg-indigo-800 rounded px-2 py-2"
-      >
-        Mitglied anlegen
-      </button>
+      <div class="w-1/5">
+        <submit
+          @button-clicked="createMember"
+          :label="$t('members.create.submit.label')"
+          :isBusy="saving"
+        />
+      </div>
     </div>
   </div>
 </template>
