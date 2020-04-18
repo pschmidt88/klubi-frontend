@@ -25,18 +25,22 @@ export default defineComponent({
   },
 
   setup(props) {
-    const hasValidationErrors = props.validation && props.validation.$anyError
+    const hasValidationErrors = computed(
+      () => props.validation && props.validation.$anyError
+    )
 
     const inputErrorClass = computed(() =>
-      hasValidationErrors ? 'border-red-600' : ''
+      hasValidationErrors.value ? 'border-red-600' : ''
     )
+
     const labelErrorClass = computed(() =>
-      hasValidationErrors ? 'text-red-600' : ''
+      hasValidationErrors.value ? 'text-red-600' : ''
     )
     const componentId = `input-radio-${shortid.generate()}`
 
     return {
       componentId,
+      hasValidationErrors,
       labelErrorClass,
       inputErrorClass
     }
