@@ -94,7 +94,7 @@ export const actions: ActionTree<RootState, RootState> = {
     commit('updateBirthday', { birthday: '1988-06-16' })
     commit('updateEmail', { email: 'rookian@gmail.com' })
     commit('updateDepartment', { department: 'football' })
-    commit('updateMemberStatus', { status: 'passive' })
+    commit('updateMemberStatus', { status: 'active' })
     commit('updatePaymentMethod', { paymentMethod: 'transfer' })
   },
 
