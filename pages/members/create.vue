@@ -1,7 +1,7 @@
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
 import { validationMixin } from 'vuelidate'
 import { mapGetters } from 'vuex'
+import Vue from 'vue'
 import { email, required, requiredIf } from 'vuelidate/lib/validators'
 import PersonalDetails from '~/components/partials/members/create/PersonalDetails.vue'
 import Contacts from '~/components/partials/members/create/Contacts.vue'
@@ -9,17 +9,9 @@ import Department from '~/components/partials/members/create/Department.vue'
 import PaymentDetails from '~/components/partials/members/create/PaymentDetails.vue'
 import Submit from '~/components/forms/KlubiSubmit.vue'
 
-@Component({
+export default Vue.extend({
   components: { PersonalDetails, Contacts, Department, PaymentDetails, Submit },
   mixins: [validationMixin],
-  computed: {
-    ...mapGetters({
-      personalDetails: 'members/registration/personalDetails',
-      contacts: 'members/registration/contacts',
-      department: 'members/registration/department',
-      paymentDetails: 'members/registration/paymentDetails'
-    })
-  },
   validations: {
     personalDetails: {
       firstName: { required },
@@ -56,40 +48,55 @@ import Submit from '~/components/forms/KlubiSubmit.vue'
         })
       }
     }
-  }
-})
-export default class CreateMemberPage extends Vue {
-  private saving: boolean = false
-  private _keyListener: ((e: any) => void) | undefined
+  },
 
-  createMember() {
-    this.$v.$touch()
-    this.saving = !this.saving
-    if (this.$v.$invalid) {
-      console.log('invalid bruder')
-      return
+  data() {
+    return {
+      saving: false
     }
+  },
 
-    setTimeout(() => {
-      console.log('vallah läuft bei dir')
-      this.saving = !this.saving
-    }, 1000)
-  }
-
-  private fillFormWithDemoData() {
-    this.$store.dispatch('members/registration/demo')
-  }
+  computed: {
+    ...mapGetters({
+      personalDetails: 'members/registration/personalDetails',
+      contacts: 'members/registration/contacts',
+      department: 'members/registration/department',
+      paymentDetails: 'members/registration/paymentDetails'
+    })
+  },
 
   mounted() {
-    this._keyListener = function(e: KeyboardEvent) {
+    // register shift+f shortcut to fill in demo data
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.key === 'F' && e.shiftKey) {
         e.preventDefault()
         this.fillFormWithDemoData()
       }
+    })
+  },
+
+  methods: {
+    createMember() {
+      this.$v.$touch()
+      this.saving = !this.saving
+
+      if (this.$v.$invalid) {
+        console.log('invalid bruder')
+        this.saving = !this.saving
+        return
+      }
+
+      setTimeout(() => {
+        console.log('Vallah, läuft bei dir!')
+        this.saving = !this.saving
+      }, 1000)
+    },
+
+    fillFormWithDemoData() {
+      this.$store.dispatch('members/registration/demo')
     }
-    document.addEventListener('keydown', this._keyListener.bind(this))
   }
-}
+})
 </script>
 
 <template>
