@@ -21,7 +21,7 @@ export default class KlubiSubmit extends Vue {
     @click="$emit('button-clicked')"
     :disabled="isBusy"
     :class="[background, pointer]"
-    class="mb-4 border text-white rounded px-2 py-2 w-full"
+    class="mb-4 text-white rounded px-2 py-2 w-full"
   >
     <div class="flex justify-center">
       <div
