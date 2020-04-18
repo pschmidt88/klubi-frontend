@@ -26,6 +26,7 @@
     "types": [
       "@types/node",
       "@types/vue-the-mask",
+      "@types/shortid",
       "@nuxt/axios",
       "@nuxt/types",
       "nuxt-i18n"

@@ -58,23 +58,23 @@ export default class KlubiInput extends Vue {
       <slot name="label">
         {{ label }}
       </slot>
-
-      <input
-        :id="inputId"
-        :value="value"
-        @input="$emit('changeInput', $event.target.value)"
-        :type="type"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        :class="[
-          readonly
-            ? 'cursor-default bg-gray-100'
-            : 'focus:outline-none focus:shadow-outline',
-          inputErrorClass
-        ]"
-        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight"
-      />
     </label>
+
+    <input
+      :id="inputId"
+      :value="value"
+      @input="$emit('changeInput', $event.target.value)"
+      :type="type"
+      :placeholder="placeholder"
+      :readonly="readonly"
+      :class="[
+        readonly
+          ? 'cursor-default bg-gray-100'
+          : 'focus:outline-none focus:shadow-outline',
+        inputErrorClass
+      ]"
+      class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight"
+    />
 
     <div v-if="hasValidationErrors" :class="labelErrorClass" class="text-xs">
       <span v-if="validation.required !== undefined && !validation.required">

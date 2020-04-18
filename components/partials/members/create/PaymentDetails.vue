@@ -138,7 +138,7 @@ export default class PaymentDetails extends Vue {
           readonly
         />
 
-        <k-upload wrapper-class="mt-4" />
+        <k-upload wrapper-class="mt-4" label="SEPA Lastschriftmandat" />
       </div>
     </div>
   </div>

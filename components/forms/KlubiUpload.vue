@@ -1,55 +1,89 @@
 <script lang="ts">
-import Vue from 'vue'
-import { Model, Component, Prop } from 'vue-property-decorator'
+import { defineComponent, ref } from '@vue/composition-api'
+import shortid from 'shortid'
 
 interface HTMLInputEvent extends Event {
   target: HTMLInputElement & EventTarget
   dataTransfer: DataTransfer
 }
 
-@Component
-export default class KlubiUpload extends Vue {
-  @Prop(String)
-  readonly wrapperClass: string | undefined
+export default defineComponent({
+  props: {
+    wrapperClass: String,
+    labelClass: String,
+    label: {
+      type: String,
+      required: true
+    }
+  },
 
-  @Model('changeInput', { type: String })
-  readonly value!: String
+  setup() {
+    const componentId = `upload-${shortid.generate()}`
 
-  private componentId: String = ''
+    const file = ref<File>()
 
-  private file: File | null = null
+    function addFile(e: HTMLInputEvent) {
+      const fileList: FileList | null = e.target.files || e.dataTransfer.files
+      if (fileList === null) {
+        return
+      }
 
-  mounted() {
-    this.componentId = `upload-${this._uid}`
-  }
-
-  private addFiles(e: HTMLInputEvent) {
-    const fileList: FileList | null = e.target.files || e.dataTransfer.files
-
-    if (fileList === null) {
-      return
+      file.value = fileList[0]
     }
 
-    this.file = fileList[0]
+    function removeFile() {
+      file.value = undefined
+    }
 
-    const content = new FileReader().readAsBinaryString(this.file)
-    console.log(content)
+    function humanReadableFilesize() {
+      if (file.value === undefined) {
+        return
+      }
+
+      let size = file.value.size
+      let prefixIndex = 0
+      const decimalPrefixes = ['Bytes', 'KB', 'MB']
+      while (size > 1000) {
+        prefixIndex++
+        size /= 1000
+      }
+
+      return `${size.toFixed(2)} ${decimalPrefixes[prefixIndex]}`
+    }
+
+    return {
+      componentId,
+      file,
+      addFile,
+      removeFile,
+      humanReadableFilesize
+    }
   }
-}
+})
 </script>
 
 <template>
-  <div :class="wrapperClass" class="w-full">
-    <div
-      @drop.prevent="addFiles"
-      @dragover.prevent
-      class="rounded border-2 border-dashed border-gray-600 p-2 align"
+  <div :class="wrapperClass">
+    <label
+      :for="componentId"
+      :class="labelClass"
+      class="block mb-1 text-sm font-semibold"
     >
+      <slot name="label">
+        {{ label }}
+      </slot>
+    </label>
+    <div
+      @drop.prevent="addFile"
+      @dragover.prevent
+      class="rounded border border-dashed border-indigo-700 bg-indigo-100 p-2 align"
+    >
+      <input :id="componentId" @change="addFile" type="file" class="hidden" />
       <template v-if="file">
-        <div class="w-3/5 mx-auto flex items-center justify-center">
+        <div class="flex items-center">
           <svg
             viewBox="-16 0 512 512"
-            class="w-8 h-8"
+            class="w-12 h-12"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -63,42 +97,40 @@ export default class KlubiUpload extends Vue {
             />
           </svg>
 
-          <span class="ml-4">
-            {{ file.name }}
-          </span>
+          <div class="flex flex-col ml-4 justify-between">
+            <span>
+              {{ file.name }}
+            </span>
+
+            <div class="text-xs">
+              <span>PDF</span>
+              &middot;
+              <span>{{ humanReadableFilesize() }}</span>
+            </div>
+          </div>
+
+          <div
+            @click="removeFile"
+            class="text-xs text-gray-700 ml-auto cursor-pointer hover:underline"
+          >
+            Auswahl entfernen
+          </div>
         </div>
       </template>
 
       <template v-else>
-        <svg
-          class="w-12 h-12 mx-auto text-indigo-700"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-        >
-          <path
-            d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
-          />
-        </svg>
-        <div class="text-center text-gray-600 mt-2">
-          <p>Drag and drop files here</p>
-          <p>or</p>
+        <div class="text-center text-xs text-gray-600">
+          <div>
+            Drag and drop here or
+            <label
+              :for="componentId"
+              class="text-indigo-700 underline cursor-pointer"
+            >
+              browse
+            </label>
+          </div>
         </div>
       </template>
-      <div class="mt-3 text-center mx-auto w-1/2">
-        <label
-          :for="componentId"
-          class="block px-3 py-2 bg-indigo-700 hover:bg-indigo-800 text-white rounded cursor-pointer"
-        >
-          {{ $t('form.upload.button.label') }}
-          <input
-            :id="componentId"
-            @change="addFiles"
-            type="file"
-            class="hidden"
-          />
-        </label>
-      </div>
     </div>
   </div>
 </template>
