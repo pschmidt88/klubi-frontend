@@ -1,9 +1,11 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { mixin as clickaway } from 'vue-clickaway'
+import NavigationLink from '~/components/partials/layouts/MainNavigationLink.vue'
 
 @Component({
-  mixins: [clickaway]
+  mixins: [clickaway],
+  components: { NavigationLink }
 })
 export default class MainNavigation extends Vue {
   profileMenuOpen = false
@@ -37,31 +39,8 @@ export default class MainNavigation extends Vue {
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline">
-              <a
-                href="#"
-                class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
-                >Dashboard</a
-              >
-              <a
-                href="#"
-                class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-                >Products</a
-              >
-              <a
-                href="#"
-                class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-                >Stock</a
-              >
-              <a
-                href="#"
-                class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-                >Markets</a
-              >
-              <a
-                href="#"
-                class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-                >Orders</a
-              >
+              <navigation-link to="/dashboard" exact>Dashboard</navigation-link>
+              <navigation-link to="/members">Mitglieder</navigation-link>
             </div>
           </div>
         </div>
