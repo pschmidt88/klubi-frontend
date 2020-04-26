@@ -1,159 +1,65 @@
-<template>
-  <div class="animated fadeIn">
-    <b-row class="form-group" align-h="center">
-      <b-col cols="6">
-        <b-input-group>
-          <b-form-input />
-          <b-input-group-append>
-            <b-button variant="primary">Suche</b-button>
-          </b-input-group-append>
-        </b-input-group>
-        <b-list-group class="mt-1">
-          <b-list-group-item
-            href="/members/details"
-            class="flex-column align-items-start"
-          >
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Paul Schmidt</h5>
-              <small>16.06.1988</small>
-            </div>
-            <p class="mb-1">
-              Aschrottstraße 4, 34119 Kassel
-            </p>
-            <small>Fußball (Senioren)</small>
-          </b-list-group-item>
-          <b-list-group-item
-            href="/members/details"
-            class="flex-column align-items-start"
-          >
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Daniel Matzdorf</h5>
-              <small class="text-muted">15.12.1986</small>
-            </div>
-            <p class="mb-1">
-              Willi Allee irgendwo, 34117 Kassel
-            </p>
-            <small class="text-muted">Fußball (Senioren)</small>
-          </b-list-group-item>
-        </b-list-group>
-      </b-col>
-    </b-row>
-  </div>
-</template>
+<script lang="ts">
+import { defineComponent, ref } from '@vue/composition-api'
+import { rawUsers } from '~/utility/fake_members.js'
 
-<script>
-export default {
-  data() {
-    return {
-      isBusy: false,
-      currentPage: 3,
-      fields: [
-        { key: 'id', sortable: true, label: 'Mitgliedsnummer' },
-        { key: 'name', label: 'Name' },
-        { key: 'address', label: 'Adresse' },
-        { key: 'city', label: 'Wohnort' },
-        { key: 'birthday', label: 'Geburtstag' },
-        { key: 'contact', label: 'Kontakt' }
-      ],
-      items: [
-        {
-          id: 1134,
-          name: 'Angelika Mehler',
-          address: 'Buelowstrasse 87',
-          city: 'Stockhausen-Illfurth',
-          birthday: '25.10.1996',
-          contact: 'Tel.: 02661 31 53 35'
-        },
-        {
-          id: 1135,
-          name: 'Heike Gersten',
-          address: 'Anhalter Strasse 2',
-          city: 'Dielkirchen',
-          birthday: '02.05.1966',
-          contact: 'Tel.: 06361 14 64 67'
-        },
-        {
-          id: 1136,
-          name: 'Jan Fleischer',
-          address: 'An der Alster 18',
-          city: 'Barkow',
-          birthday: '08.11.1998',
-          contact: 'Mail: JanFleischer@einrot.com'
-        },
-        {
-          id: 1137,
-          name: 'Tim Schultheiss',
-          address: 'Knesebeckstrasse 97',
-          city: 'Marienhausen',
-          birthday: '10.01.19676',
-          contact: 'Tel.: 02689 49 33 67'
-        },
-        {
-          id: 1138,
-          name: 'Angelika Mehler',
-          address: 'Buelowstrasse 87',
-          city: 'Stockhausen-Illfurth',
-          birthday: '25.10.1996',
-          contact: 'Tel.: 02661 31 53 35'
-        },
-        {
-          id: 1139,
-          name: 'Heike Gersten',
-          address: 'Anhalter Strasse 2',
-          city: 'Dielkirchen',
-          birthday: '02.05.1966',
-          contact: 'Tel.: 06361 14 64 67'
-        },
-        {
-          id: 1140,
-          name: 'Jan Fleischer',
-          address: 'An der Alster 18',
-          city: 'Barkow',
-          birthday: '08.11.1998',
-          contact: 'Mail: JanFleischer@einrot.com'
-        },
-        {
-          id: 1141,
-          name: 'Tim Schultheiss',
-          address: 'Knesebeckstrasse 97',
-          city: 'Marienhausen',
-          birthday: '10.01.19676',
-          contact: 'Tel.: 02689 49 33 67'
-        },
-        {
-          id: 1142,
-          name: 'Angelika Mehler',
-          address: 'Buelowstrasse 87',
-          city: 'Stockhausen-Illfurth',
-          birthday: '25.10.1996',
-          contact: 'Tel.: 02661 31 53 35'
-        },
-        {
-          id: 1143,
-          name: 'Heike Gersten',
-          address: 'Anhalter Strasse 2',
-          city: 'Dielkirchen',
-          birthday: '02.05.1966',
-          contact: 'Tel.: 06361 14 64 67'
-        },
-        {
-          id: 1144,
-          name: 'Jan Fleischer',
-          address: 'An der Alster 18',
-          city: 'Barkow',
-          birthday: '08.11.1998',
-          contact: 'Mail: JanFleischer@einrot.com'
-        },
-        {
-          id: 1145,
-          name: 'Tim Schultheiss',
-          address: 'Knesebeckstrasse 97',
-          city: 'Marienhausen',
-          birthday: '10.01.19676',
-          contact: 'Tel.: 02689 49 33 67'
-        }
-      ]
-    }
+interface User {
+  id: Number
+  name: String
+  address: String
+  city: String
+  birthday: String
+  contact: {
+    phone: String | undefined
+    email: String | undefined
   }
 }
+
+export default defineComponent({
+  setup() {
+    const users = ref<User[]>(rawUsers)
+
+    return {
+      users
+    }
+  }
+})
 </script>
+
+<template>
+  <div class="w-4/5 ml-auto">
+    <div class="flex items-center">
+      <div>
+        <h1>Mitgliederübersicht</h1>
+      </div>
+      <nuxt-link
+        class="px-2 py-2 ml-auto text-gray-200 bg-indigo-700 rounded"
+        to="/members/create"
+      >
+        Neues Mitglied
+      </nuxt-link>
+    </div>
+    <div class="px-4 py-4 mt-2 text-gray-800 bg-white rounded shadow-md">
+      <div class="flex text-xs font-semibold text-gray-600">
+        <span class="w-2/6 mr-2 ">Name</span>
+        <span class="w-2/6">Addresse</span>
+        <span class="w-2/6">Kontakt</span>
+      </div>
+
+      <div class="mt-4">
+        <div
+          v-for="user in users"
+          :key="user.id"
+          class="flex py-2 text-gray-800 border-b"
+        >
+          <div class="w-2/6 mr-2">
+            <span class="text-xs text-gray-500">{{ user.id }}</span>
+            <br />
+            {{ user.name }}
+          </div>
+          <span class="w-2/6">{{ user.address }} <br />{{ user.city }}</span>
+          <span class="w-2/6">{{ user.contact.phone }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

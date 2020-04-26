@@ -76,7 +76,7 @@ export default defineComponent({
     <div
       @drop.prevent="addFile"
       @dragover.prevent
-      class="rounded border border-dashed border-indigo-700 bg-indigo-100 p-2 align"
+      class="p-2 bg-indigo-100 border border-indigo-700 border-dashed rounded align"
     >
       <input :id="componentId" @change="addFile" type="file" class="hidden" />
       <template v-if="file">
@@ -97,7 +97,7 @@ export default defineComponent({
             />
           </svg>
 
-          <div class="flex flex-col ml-4 justify-between">
+          <div class="flex flex-col justify-between ml-4">
             <span>
               {{ file.name }}
             </span>
@@ -111,7 +111,7 @@ export default defineComponent({
 
           <div
             @click="removeFile"
-            class="text-xs text-gray-700 ml-auto cursor-pointer hover:underline"
+            class="ml-auto text-xs text-gray-700 cursor-pointer hover:underline"
           >
             Auswahl entfernen
           </div>
@@ -119,7 +119,7 @@ export default defineComponent({
       </template>
 
       <template v-else>
-        <div class="text-center text-xs text-gray-600">
+        <div class="text-xs text-center text-gray-600">
           <div>
             Drag and drop here or
             <label

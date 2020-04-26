@@ -39,7 +39,7 @@ export default class MainNavigation extends Vue {
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline">
-              <navigation-link to="/dashboard" exact>Dashboard</navigation-link>
+              <navigation-link to="/" exact>Dashboard</navigation-link>
               <navigation-link to="/members">Mitglieder</navigation-link>
             </div>
           </div>

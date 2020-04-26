@@ -1,0 +1,122 @@
+export const rawUsers = [
+  {
+    id: 1134,
+    name: 'Angelika Mehler',
+    address: 'Buelowstrasse 87',
+    city: 'Stockhausen-Illfurth',
+    birthday: '25.10.1996',
+    contact: {
+      phone: '02661 31 53 35'
+    }
+  },
+  {
+    id: 1135,
+    name: 'Heike Gersten',
+    address: 'Anhalter Strasse 2',
+    city: 'Dielkirchen',
+    birthday: '02.05.1966',
+    contact: {
+      phone: '06361 14 64 67'
+    }
+  },
+  {
+    id: 1136,
+    name: 'Jan Fleischer',
+    address: 'An der Alster 18',
+    city: 'Barkow',
+    birthday: '08.11.1998',
+    contact: {
+      email: 'JanFleischer@einrot.com'
+    }
+  },
+  {
+    id: 1137,
+    name: 'Tim Schultheiss',
+    address: 'Knesebeckstrasse 97',
+    city: 'Marienhausen',
+    birthday: '10.01.19676',
+    contact: {
+      phone: '02689 49 33 67'
+    }
+  },
+  {
+    id: 1138,
+    name: 'Angelika Mehler',
+    address: 'Buelowstrasse 87',
+    city: 'Stockhausen-Illfurth',
+    birthday: '25.10.1996',
+    contact: {
+      phone: '02661 31 53 35'
+    }
+  },
+  {
+    id: 1139,
+    name: 'Heike Gersten',
+    address: 'Anhalter Strasse 2',
+    city: 'Dielkirchen',
+    birthday: '02.05.1966',
+    contact: {
+      phone: '06361 14 64 67'
+    }
+  },
+  {
+    id: 1140,
+    name: 'Jan Fleischer',
+    address: 'An der Alster 18',
+    city: 'Barkow',
+    birthday: '08.11.1998',
+    contact: {
+      email: 'Mail: JanFleischer@einrot.com'
+    }
+  },
+  {
+    id: 1141,
+    name: 'Tim Schultheiss',
+    address: 'Knesebeckstrasse 97',
+    city: 'Marienhausen',
+    birthday: '10.01.19676',
+    contact: {
+      phone: '02689 49 33 67'
+    }
+  },
+  {
+    id: 1142,
+    name: 'Angelika Mehler',
+    address: 'Buelowstrasse 87',
+    city: 'Stockhausen-Illfurth',
+    birthday: '25.10.1996',
+    contact: {
+      phone: '02661 31 53 35'
+    }
+  },
+  {
+    id: 1143,
+    name: 'Heike Gersten',
+    address: 'Anhalter Strasse 2',
+    city: 'Dielkirchen',
+    birthday: '02.05.1966',
+    contact: {
+      phone: '06361 14 64 67'
+    }
+  },
+  {
+    id: 1144,
+    name: 'Jan Fleischer',
+    address: 'An der Alster 18',
+    city: 'Barkow',
+    birthday: '08.11.1998',
+    contact: {
+      email: 'JanFleischer@einrot.com'
+    }
+  },
+  {
+    id: 1145,
+    name: 'Tim Schultheiss',
+    address: 'Knesebeckstrasse 97',
+    city: 'Marienhausen',
+    birthday: '10.01.19676',
+    contact: {
+      phone: '02689 49 33 67'
+    }
+  }
+]
