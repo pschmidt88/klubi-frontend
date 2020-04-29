@@ -27,30 +27,30 @@ export default class MainNavigation extends Vue {
 
 <template>
   <nav class="bg-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
           <div class="flex-shrink-0">
             <img
               src="/img/workflow-mark-on-dark.svg"
               alt="Logo"
-              class="h-8 w-8"
+              class="w-8 h-8"
             />
           </div>
           <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline">
+            <div class="flex items-baseline ml-10">
               <navigation-link to="/" exact>Dashboard</navigation-link>
               <navigation-link to="/members">Mitglieder</navigation-link>
             </div>
           </div>
         </div>
         <div class="hidden md:block">
-          <div class="ml-4 flex items-center md:ml-6">
+          <div class="flex items-center ml-4 md:ml-6">
             <button
-              class="p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700"
+              class="p-1 text-gray-400 border-2 border-transparent rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700"
             >
               <svg
-                class="h-6 w-6"
+                class="w-6 h-6"
                 stroke="currentColor"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -63,33 +63,33 @@ export default class MainNavigation extends Vue {
                 />
               </svg>
             </button>
-            <div class="ml-3 relative">
+            <div class="relative ml-3">
               <div>
                 <button
                   @click="toggleProfileMenu"
                   v-on-clickaway="closeProfileMenu"
-                  class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid"
+                  class="flex items-center max-w-xs text-sm text-white rounded-full focus:outline-none focus:shadow-solid"
                 >
                   <img
-                    class="h-8 w-8 rounded-full"
+                    class="w-8 h-8 rounded-full"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                     alt=""
                   />
                 </button>
               </div>
               <transition
-                enter-class="transform opacity-0 scale-95"
-                enter-active-class="transition ease-out duration-300"
-                enter-to-class="transform opacity-100 scale-100"
-                leave-class="transform opacity-100 scale-100"
-                leave-active-class="transition ease-in duration-75"
-                leave-to-class="transform opacity-0 scale-95"
+                enter-class="transform scale-95 opacity-0"
+                enter-active-class="transition duration-300 ease-out"
+                enter-to-class="transform scale-100 opacity-100"
+                leave-class="transform scale-100 opacity-100"
+                leave-active-class="transition duration-75 ease-in"
+                leave-to-class="transform scale-95 opacity-0"
               >
                 <div
                   v-if="profileMenuOpen"
-                  class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"
+                  class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg"
                 >
-                  <div class="py-1 rounded-md bg-white shadow-xs">
+                  <div class="py-1 bg-white rounded-md shadow-xs">
                     <a
                       href="#"
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -111,13 +111,13 @@ export default class MainNavigation extends Vue {
             </div>
           </div>
         </div>
-        <div class="-mr-2 flex md:hidden">
+        <div class="flex -mr-2 md:hidden">
           <button
             @click="toggleMobileMenu"
-            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
+            class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
           >
             <svg
-              class="h-6 w-6"
+              class="w-6 h-6"
               stroke="currentColor"
               fill="none"
               viewBox="0 0 24 24"
@@ -151,27 +151,27 @@ export default class MainNavigation extends Vue {
       <div class="px-2 pt-2 pb-3 sm:px-3">
         <a
           href="#"
-          class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
+          class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md focus:outline-none focus:text-white focus:bg-gray-700"
           >Dashboard</a
         >
         <a
           href="#"
-          class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+          class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
           >Team</a
         >
         <a
           href="#"
-          class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+          class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
           >Projects</a
         >
         <a
           href="#"
-          class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+          class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
           >Calendar</a
         >
         <a
           href="#"
-          class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+          class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
           >Reports</a
         >
       </div>
@@ -179,7 +179,7 @@ export default class MainNavigation extends Vue {
         <div class="flex items-center px-5">
           <div class="flex-shrink-0">
             <img
-              class="h-10 w-10 rounded-full"
+              class="w-10 h-10 rounded-full"
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt=""
             />
@@ -193,20 +193,20 @@ export default class MainNavigation extends Vue {
             </div>
           </div>
         </div>
-        <div class="mt-3 px-2">
+        <div class="px-2 mt-3">
           <a
             href="#"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+            class="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
             >Your Profile</a
           >
           <a
             href="#"
-            class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+            class="block px-3 py-2 mt-1 text-base font-medium text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
             >Settings</a
           >
           <a
             href="#"
-            class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+            class="block px-3 py-2 mt-1 text-base font-medium text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
             >Sign out</a
           >
         </div>

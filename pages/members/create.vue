@@ -100,22 +100,22 @@ export default Vue.extend({
 </script>
 
 <template>
-  <div class="w-3/4 mx-auto text-gray-800 shadow-md bg-white rounded px-8 py-4">
+  <div class="w-3/4 px-8 py-4 ml-auto text-gray-800 bg-white rounded shadow-md">
     <personal-details :validator="$v.personalDetails" />
 
-    <hr class="w-11/12 my-12 mx-auto" />
+    <hr class="w-11/12 mx-auto my-12" />
 
     <contacts :validator="$v.contacts" />
 
-    <hr class="w-11/12 my-12 mx-auto" />
+    <hr class="w-11/12 mx-auto my-12" />
 
     <department :validator="$v.department" />
 
-    <hr class="w-11/12 my-12 mx-auto" />
+    <hr class="w-11/12 mx-auto my-12" />
 
     <paymentDetails :validator="$v.paymentDetails" />
 
-    <div class="flex container mt-12 justify-end">
+    <div class="container flex justify-end mt-12">
       <div class="w-1/5">
         <submit
           @button-clicked="createMember"

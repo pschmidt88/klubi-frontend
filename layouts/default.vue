@@ -8,7 +8,7 @@ import MainNavigation from './main_navigation.vue'
   head() {
     return {
       bodyAttrs: {
-        class: 'bg-gray-200 font-sans antialiased'
+        class: 'bg-gray-100 font-sans antialiased'
       }
     }
   }
@@ -21,7 +21,7 @@ export default class DefaultLayout extends Vue {}
     <main-navigation />
 
     <main>
-      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div class="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <nuxt />
       </div>
     </main>
