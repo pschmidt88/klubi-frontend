@@ -1,28 +1,36 @@
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
 import { mixin as clickaway } from 'vue-clickaway'
+import { ref, defineComponent } from '@vue/composition-api'
 import NavigationLink from '~/components/partials/layouts/MainNavigationLink.vue'
 
-@Component({
+export default defineComponent({
   mixins: [clickaway],
-  components: { NavigationLink }
+  components: { NavigationLink },
+  setup() {
+    const profileMenuVisibility = ref(false)
+    const mobileMenuVisibility = ref(false)
+
+    function closeProfileMenu() {
+      profileMenuVisibility.value = false
+    }
+
+    function toggleProfileMenu() {
+      profileMenuVisibility.value = !profileMenuVisibility.value
+    }
+
+    function toggleMobileMenu() {
+      mobileMenuVisibility.value = !mobileMenuVisibility.value
+    }
+
+    return {
+      mobileMenuVisibility,
+      profileMenuVisibility,
+      closeProfileMenu,
+      toggleProfileMenu,
+      toggleMobileMenu,
+    }
+  },
 })
-export default class MainNavigation extends Vue {
-  profileMenuOpen = false
-  mobileMenu = false
-
-  closeProfileMenu() {
-    this.profileMenuOpen = false
-  }
-
-  toggleProfileMenu() {
-    this.profileMenuOpen = !this.profileMenuOpen
-  }
-
-  toggleMobileMenu() {
-    this.mobileMenu = !this.mobileMenu
-  }
-}
 </script>
 
 <template>
@@ -66,9 +74,9 @@ export default class MainNavigation extends Vue {
             <div class="relative ml-3">
               <div>
                 <button
-                  @click="toggleProfileMenu"
                   v-on-clickaway="closeProfileMenu"
                   class="flex items-center max-w-xs text-sm text-white rounded-full focus:outline-none focus:shadow-solid"
+                  @click="toggleProfileMenu()"
                 >
                   <img
                     class="w-8 h-8 rounded-full"
@@ -86,7 +94,7 @@ export default class MainNavigation extends Vue {
                 leave-to-class="transform scale-95 opacity-0"
               >
                 <div
-                  v-if="profileMenuOpen"
+                  v-if="profileMenuVisibility"
                   class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg"
                 >
                   <div class="py-1 bg-white rounded-md shadow-xs">
@@ -113,8 +121,8 @@ export default class MainNavigation extends Vue {
         </div>
         <div class="flex -mr-2 md:hidden">
           <button
-            @click="toggleMobileMenu"
             class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
+            @click="toggleMobileMenu()"
           >
             <svg
               class="w-6 h-6"
@@ -123,9 +131,9 @@ export default class MainNavigation extends Vue {
               viewBox="0 0 24 24"
             >
               <path
-                v-bind:class="{
-                  hidden: mobileMenu,
-                  'inline-flex': !mobileMenu
+                :class="{
+                  hidden: mobileMenuVisibility,
+                  'inline-flex': !mobileMenuVisibility,
                 }"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -133,9 +141,9 @@ export default class MainNavigation extends Vue {
                 d="M4 6h16M4 12h16M4 18h16"
               />
               <path
-                v-bind:class="{
-                  hidden: !mobileMenu,
-                  'inline-flex': mobileMenu
+                :class="{
+                  hidden: !mobileMenuVisibility,
+                  'inline-flex': mobileMenuVisibility,
                 }"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -147,7 +155,9 @@ export default class MainNavigation extends Vue {
         </div>
       </div>
     </div>
-    <div v-bind="{ block: mobileMenu, hidden: !mobileMenu }">
+    <div
+      v-bind="{ block: mobileMenuVisibility, hidden: !mobileMenuVisibility }"
+    >
       <div class="px-2 pt-2 pb-3 sm:px-3">
         <a
           href="#"

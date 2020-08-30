@@ -20,8 +20,8 @@ export const state = () => ({
     first_name: '',
     last_name: '',
     iban: '',
-    bic: ''
-  }
+    bic: '',
+  },
 })
 
 export type RootState = ReturnType<typeof state>
@@ -80,7 +80,7 @@ export const mutations: MutationTree<RootState> = {
   },
   updateBIC(state, payload) {
     state.bank_details.bic = payload.bic
-  }
+  },
 }
 
 export const actions: ActionTree<RootState, RootState> = {
@@ -118,11 +118,11 @@ export const actions: ActionTree<RootState, RootState> = {
       accountOwnerFirstName: state.bank_details.first_name,
       accountOwnerLastName: state.bank_details.last_name,
       iban: state.bank_details.iban,
-      bic: state.bank_details.bic
+      bic: state.bank_details.bic,
     }
 
     return MembersApi.createMember(requestObject)
-  }
+  },
 }
 
 export const getters: GetterTree<RootState, RootState> = {
@@ -131,7 +131,7 @@ export const getters: GetterTree<RootState, RootState> = {
       memberId: state.member_id,
       firstName: state.first_name,
       lastName: state.last_name,
-      birthday: state.birthday
+      birthday: state.birthday,
     }
   },
   contacts(state) {
@@ -141,14 +141,14 @@ export const getters: GetterTree<RootState, RootState> = {
       postcode: state.post_code,
       city: state.city,
       phone: state.phone,
-      email: state.email
+      email: state.email,
     }
   },
   department(state) {
     return {
       department: state.department,
       entryDate: state.entry_date,
-      memberStatus: state.member_status
+      memberStatus: state.member_status,
     }
   },
   paymentDetails(state) {
@@ -157,9 +157,9 @@ export const getters: GetterTree<RootState, RootState> = {
       accountOwnerFirstName: state.bank_details.first_name,
       accountOwnerLastName: state.bank_details.last_name,
       iban: state.bank_details.iban,
-      bic: state.bank_details.bic
+      bic: state.bank_details.bic,
     }
-  }
+  },
 }
 
 function today() {

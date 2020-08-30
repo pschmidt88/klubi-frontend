@@ -6,8 +6,8 @@ export const rawUsers = [
     city: 'Stockhausen-Illfurth',
     birthday: '25.10.1996',
     contact: {
-      phone: '02661 31 53 35'
-    }
+      phone: '02661 31 53 35',
+    },
   },
   {
     id: 1135,
@@ -16,8 +16,8 @@ export const rawUsers = [
     city: 'Dielkirchen',
     birthday: '02.05.1966',
     contact: {
-      phone: '06361 14 64 67'
-    }
+      phone: '06361 14 64 67',
+    },
   },
   {
     id: 1136,
@@ -26,8 +26,8 @@ export const rawUsers = [
     city: 'Barkow',
     birthday: '08.11.1998',
     contact: {
-      email: 'JanFleischer@einrot.com'
-    }
+      email: 'JanFleischer@einrot.com',
+    },
   },
   {
     id: 1137,
@@ -36,8 +36,8 @@ export const rawUsers = [
     city: 'Marienhausen',
     birthday: '10.01.19676',
     contact: {
-      phone: '02689 49 33 67'
-    }
+      phone: '02689 49 33 67',
+    },
   },
   {
     id: 1138,
@@ -46,8 +46,8 @@ export const rawUsers = [
     city: 'Stockhausen-Illfurth',
     birthday: '25.10.1996',
     contact: {
-      phone: '02661 31 53 35'
-    }
+      phone: '02661 31 53 35',
+    },
   },
   {
     id: 1139,
@@ -56,8 +56,8 @@ export const rawUsers = [
     city: 'Dielkirchen',
     birthday: '02.05.1966',
     contact: {
-      phone: '06361 14 64 67'
-    }
+      phone: '06361 14 64 67',
+    },
   },
   {
     id: 1140,
@@ -66,8 +66,8 @@ export const rawUsers = [
     city: 'Barkow',
     birthday: '08.11.1998',
     contact: {
-      email: 'Mail: JanFleischer@einrot.com'
-    }
+      email: 'Mail: JanFleischer@einrot.com',
+    },
   },
   {
     id: 1141,
@@ -76,8 +76,8 @@ export const rawUsers = [
     city: 'Marienhausen',
     birthday: '10.01.19676',
     contact: {
-      phone: '02689 49 33 67'
-    }
+      phone: '02689 49 33 67',
+    },
   },
   {
     id: 1142,
@@ -86,8 +86,8 @@ export const rawUsers = [
     city: 'Stockhausen-Illfurth',
     birthday: '25.10.1996',
     contact: {
-      phone: '02661 31 53 35'
-    }
+      phone: '02661 31 53 35',
+    },
   },
   {
     id: 1143,
@@ -96,8 +96,8 @@ export const rawUsers = [
     city: 'Dielkirchen',
     birthday: '02.05.1966',
     contact: {
-      phone: '06361 14 64 67'
-    }
+      phone: '06361 14 64 67',
+    },
   },
   {
     id: 1144,
@@ -106,8 +106,8 @@ export const rawUsers = [
     city: 'Barkow',
     birthday: '08.11.1998',
     contact: {
-      email: 'JanFleischer@einrot.com'
-    }
+      email: 'JanFleischer@einrot.com',
+    },
   },
   {
     id: 1145,
@@ -116,7 +116,7 @@ export const rawUsers = [
     city: 'Marienhausen',
     birthday: '10.01.19676',
     contact: {
-      phone: '02689 49 33 67'
-    }
-  }
+      phone: '02689 49 33 67',
+    },
+  },
 ]

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
+import { defineComponent, ref, reactive } from '@vue/composition-api'
 import { rawUsers } from '~/utility/fake_members.js'
 
 interface User {
@@ -20,12 +20,12 @@ interface User {
 
 export default defineComponent({
   setup() {
-    const users = ref<User[]>(rawUsers)
+    const users = reactive(rawUsers)
 
     return {
-      users
+      users,
     }
-  }
+  },
 })
 </script>
 
@@ -75,9 +75,7 @@ export default defineComponent({
               d="M12 22a10 10 0 110-20 10 10 0 010 20zm0-2a8 8 0 100-16 8 8 0 000 16zm1-9h2a1 1 0 010 2h-2v2a1 1 0 01-2 0v-2H9a1 1 0 010-2h2V9a1 1 0 012 0v2z"
             />
           </svg>
-          <span class="ml-2">
-            Neues Mitglied
-          </span>
+          <span class="ml-2"> Neues Mitglied </span>
         </nuxt-link>
       </div>
 

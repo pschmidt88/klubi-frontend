@@ -10,19 +10,19 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'TODO meta description'
-      }
+        content: 'TODO meta description',
+      },
     ],
     link: [
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
-        href: '/img/apple-touch-icon.png'
+        href: '/img/apple-touch-icon.png',
       },
       { rel: 'icon', sizes: '32x32', href: '/img/favicon-32x32.png' },
       { rel: 'icon', sizes: '16x16', href: '/img/favicon-16x16.png' },
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    ],
   },
 
   /*
@@ -33,12 +33,13 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/compositions-api'],
+  plugins: [],
 
   buildModules: [
-    '@nuxtjs/eslint-module',
+    // '@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss',
-    '@nuxt/typescript-build'
+    '@nuxt/typescript-build',
+    '@nuxtjs/composition-api',
   ],
 
   /*
@@ -47,7 +48,7 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
-    'nuxt-i18n'
+    'nuxt-i18n',
   ],
 
   i18n: {
@@ -57,9 +58,9 @@ module.exports = {
       fallbackLocale: 'de',
       messages: {
         de: require('./locales/de.json'),
-        en: require('./locales/en.json')
-      }
-    }
+        en: require('./locales/en.json'),
+      },
+    },
   },
 
   /*
@@ -67,13 +68,13 @@ module.exports = {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    proxy: true
+    proxy: true,
   },
 
   css: [],
 
   proxy: {
-    '/api/': 'https://klubi.dev.rookian.me'
+    '/api/': 'https://klubi.dev.rookian.me',
   },
 
   /*
@@ -83,6 +84,6 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(_config, _ctx) {}
-  }
+    extend(_config, _ctx) {},
+  },
 }

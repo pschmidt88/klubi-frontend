@@ -1,19 +1,18 @@
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { defineComponent } from '@vue/composition-api'
 import MainNavigation from './main_navigation.vue'
 
-@Component({
+export default defineComponent({
   name: 'DefaultLayout',
   components: { MainNavigation },
   head() {
     return {
       bodyAttrs: {
-        class: 'bg-gray-100 font-sans antialiased'
-      }
+        class: 'bg-gray-100 font-sans antialiased',
+      },
     }
-  }
+  },
 })
-export default class DefaultLayout extends Vue {}
 </script>
 
 <template>
