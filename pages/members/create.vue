@@ -1,126 +1,58 @@
 <script lang="ts">
-import { validationMixin } from 'vuelidate'
-import { mapGetters } from 'vuex'
-import Vue from 'vue'
-import { email, required, requiredIf } from 'vuelidate/lib/validators'
+import { defineComponent, onMounted } from '@vue/composition-api'
+import useMemberRegistration from '~/composables/useMemberRegistration.ts'
 import PersonalDetails from '~/components/partials/members/create/PersonalDetails.vue'
 import Contacts from '~/components/partials/members/create/Contacts.vue'
 import Department from '~/components/partials/members/create/Department.vue'
 import PaymentDetails from '~/components/partials/members/create/PaymentDetails.vue'
 import Submit from '~/components/forms/KlubiSubmit.vue'
 
-export default Vue.extend({
+export default defineComponent({
   components: { PersonalDetails, Contacts, Department, PaymentDetails, Submit },
-  mixins: [validationMixin],
-  validations: {
-    personalDetails: {
-      firstName: { required },
-      lastName: { required },
-      birthday: { required }
-    },
-    contacts: {
-      streetAddress: { required },
-      streetNumber: { required },
-      postcode: { required },
-      city: { required },
-      email: { email }
-    },
-    department: {
-      department: { required },
-      entryDate: { required },
-      memberStatus: { required }
-    },
-    paymentDetails: {
-      paymentMethod: { required },
-      accountOwnerFirstName: {
-        requiredIf: requiredIf(function(this: any) {
-          return this.paymentDetails.paymentMethod === 'debit'
-        })
-      },
-      accountOwnerLastName: {
-        requiredIf: requiredIf(function(this: any) {
-          return this.paymentDetails.paymentMethod === 'debit'
-        })
-      },
-      iban: {
-        requiredIf: requiredIf(function(this: any) {
-          return this.paymentDetails.paymentMethod === 'debit'
-        })
-      }
-    }
-  },
+  setup(_props) {
+    const { loading, demoMember } = useMemberRegistration()
 
-  data() {
-    return {
-      saving: false
+    function onSubmit() {
+      console.log('Creating member...')
+      // createMember()
     }
-  },
 
-  computed: {
-    ...mapGetters({
-      personalDetails: 'members/registration/personalDetails',
-      contacts: 'members/registration/contacts',
-      department: 'members/registration/department',
-      paymentDetails: 'members/registration/paymentDetails'
+    onMounted(() => {
+      document.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'F' && e.shiftKey) {
+          e.preventDefault()
+          demoMember()
+        }
+      })
     })
+
+    return { loading, onSubmit }
   },
-
-  mounted() {
-    // register shift+f shortcut to fill in demo data
-    document.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'F' && e.shiftKey) {
-        e.preventDefault()
-        this.fillFormWithDemoData()
-      }
-    })
-  },
-
-  methods: {
-    createMember() {
-      this.$v.$touch()
-      this.saving = !this.saving
-
-      if (this.$v.$invalid) {
-        console.log('invalid bruder')
-        this.saving = !this.saving
-        return
-      }
-
-      setTimeout(() => {
-        console.log('Vallah, läuft bei dir!')
-        this.saving = !this.saving
-      }, 1000)
-    },
-
-    fillFormWithDemoData() {
-      this.$store.dispatch('members/registration/demo')
-    }
-  }
 })
 </script>
 
 <template>
   <div class="w-3/4 px-8 py-4 ml-auto text-gray-800 bg-white rounded shadow-md">
-    <personal-details :validator="$v.personalDetails" />
+    <personal-details />
 
     <hr class="w-11/12 mx-auto my-12" />
 
-    <contacts :validator="$v.contacts" />
+    <contacts />
 
     <hr class="w-11/12 mx-auto my-12" />
 
-    <department :validator="$v.department" />
+    <department />
 
     <hr class="w-11/12 mx-auto my-12" />
 
-    <paymentDetails :validator="$v.paymentDetails" />
+    <paymentDetails />
 
     <div class="container flex justify-end mt-12">
       <div class="w-1/5">
         <submit
-          @button-clicked="createMember"
           :label="$t('members.create.submit.label')"
-          :isBusy="saving"
+          :is-busy="loading"
+          @button-clicked="onSubmit"
         />
       </div>
     </div>
