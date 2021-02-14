@@ -109,7 +109,7 @@ export default defineComponent({
               v-model="personalDetails.birthday"
               type="date"
               label="Geburtstag"
-              placeholder="16.06.1988"
+              placeholder="06/16/1988"
               :validation="validation.personalDetails.birthday"
             />
           </div>
@@ -139,7 +139,7 @@ export default defineComponent({
                 placeholder="20"
                 class="w-1/5 ml-2"
                 label-class="text-xs"
-                :validation="validation.contacts.streetAddress"
+                :validation="validation.contacts.streetNumber"
               />
             </div>
 
@@ -150,6 +150,7 @@ export default defineComponent({
                 placeholder="34130"
                 class="w-2/5"
                 label-class="text-xs"
+                :validation="validation.contacts.postcode"
               />
               <KInput
                 v-model="contacts.city"
@@ -157,6 +158,7 @@ export default defineComponent({
                 placeholder="Kassel"
                 class="w-3/5 ml-2"
                 label-class="text-xs"
+                :validation="validation.contacts.city"
               />
             </div>
             <KInput
@@ -164,11 +166,13 @@ export default defineComponent({
               placeholder="0123 456789"
               class="mb-4"
               label="Telefon"
+              :validation="validation.contacts.phone"
             />
             <KEmail
               v-model="contacts.email"
               label="E-Mail"
               placeholder="email@example.com"
+              :validation="validation.contacts.email"
             />
           </div>
         </div>
@@ -187,6 +191,7 @@ export default defineComponent({
               :options="availableDepartments"
               label="Abteilung"
               class="mb-4"
+              :validation="validation.department.department"
             />
 
             <KInput
@@ -194,12 +199,14 @@ export default defineComponent({
               type="date"
               label="Eintrittsdatum"
               class="mb-4"
+              :validation="validation.department.entryDate"
             />
 
             <KRadioGroup
               v-model="department.status"
               label="Mitgliedstatus"
               :options="memberStatusOptions"
+              :validation="validation.department.status"
             />
           </div>
         </div>
@@ -218,6 +225,7 @@ export default defineComponent({
               :options="availablePaymentMethods"
               label="Zahlungsmethode"
               class="mb-4"
+              :validation="validation.paymentDetails.paymentMethod"
             />
 
             <div v-if="isDirectDebit">
@@ -226,6 +234,7 @@ export default defineComponent({
                 label="Vorname"
                 placeholder="Paul"
                 class="mb-4"
+                :validation="validation.paymentDetails.accountOwnerFirstName"
               />
 
               <KInput
@@ -233,11 +242,22 @@ export default defineComponent({
                 label="Nachname"
                 placeholder="Schmidt"
                 class="mb-4"
+                :validation="validation.paymentDetails.accountOwnerLastName"
               />
 
-              <KIban v-model="paymentDetails.iban" class="mb-4" label="IBAN" />
+              <KIban
+                v-model="paymentDetails.iban"
+                class="mb-4"
+                label="IBAN"
+                :validation="validation.paymentDetails.iban"
+              />
 
-              <KInput v-model="paymentDetails.bic" class="mb-4" label="BIC" />
+              <KInput
+                v-model="paymentDetails.bic"
+                class="mb-4"
+                label="BIC"
+                :validation="validation.paymentDetails.bic"
+              />
 
               <KInput
                 v-model="paymentDetails.bankName"

@@ -1,5 +1,6 @@
 <script lang="ts">
-import { computed, defineComponent } from '@vue/composition-api'
+import { computed, defineComponent, PropType } from '@vue/composition-api'
+import { Validation } from 'vuelidate'
 
 export default defineComponent({
   props: {
@@ -23,7 +24,9 @@ export default defineComponent({
       type: String,
       default: '',
     },
-    validation: Object,
+    validation: {
+      type: Object as PropType<Validation>,
+    },
   },
   setup(props, { emit }) {
     const input = computed({

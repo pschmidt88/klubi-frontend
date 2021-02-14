@@ -45,6 +45,7 @@ export default function useMemberRegistration() {
       streetAddress: { required },
       streetNumber: { required },
       postcode: { required },
+      phone: {},
       city: { required },
       email: { email },
     },
