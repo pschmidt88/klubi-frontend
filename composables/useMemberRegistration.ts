@@ -97,6 +97,9 @@ export default function useMemberRegistration() {
 
   async function createMember() {
     loading.value = true
+
+    console.log(state)
+
     // await MembersApi.createMember(memberRegistration)
     loading.value = false
   }

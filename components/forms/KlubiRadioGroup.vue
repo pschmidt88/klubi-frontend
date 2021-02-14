@@ -2,55 +2,59 @@
 import { Validation } from 'vuelidate'
 import { defineComponent, computed } from '@vue/composition-api'
 import shortid from 'shortid'
-
-interface RadioButtonOption {
-  value: string
-  text: string
-}
+import { RadioButtonOption } from '~/components/forms/RadioButtonOption'
 
 export default defineComponent({
   props: {
-    value: String,
+    value: {
+      type: String,
+      required: true,
+    },
     label: {
       type: String,
-      required: true
+      required: true,
     },
-    wrapperClass: String,
     options: {
-      type: Array as () => Array<RadioButtonOption>
+      type: Array as () => Array<RadioButtonOption>,
     },
     validation: {
-      type: Object as () => Validation
-    }
+      type: Object as () => Validation,
+    },
   },
-
-  setup(props) {
-    const hasValidationErrors = computed(
+  setup(props, { emit }) {
+    const hasValidationError = computed(
       () => props.validation && props.validation.$anyError
     )
 
-    const inputErrorClass = computed(() =>
-      hasValidationErrors.value ? 'border-red-600' : ''
+    const errorClassForInput = computed(() =>
+      hasValidationError.value ? 'border-red-600' : ''
     )
 
-    const labelErrorClass = computed(() =>
-      hasValidationErrors.value ? 'text-red-600' : ''
+    const errorClassForLabel = computed(() =>
+      hasValidationError.value ? 'text-red-600' : ''
     )
+
+    const input = computed({
+      get: () => props.value,
+      set: (value: string) => emit('input', value),
+    })
+
     const componentId = `input-radio-${shortid.generate()}`
 
     return {
       componentId,
-      hasValidationErrors,
-      labelErrorClass,
-      inputErrorClass
+      hasValidationError,
+      errorClassForLabel,
+      errorClassForInput,
+      input,
     }
-  }
+  },
 })
 </script>
 
 <template>
-  <div :class="wrapperClass">
-    <label :class="[labelErrorClass]" class="block text-sm font-bold mb-2">
+  <div>
+    <label :class="[errorClassForLabel]" class="block mb-2 text-sm font-bold">
       {{ label }}
     </label>
 
@@ -60,19 +64,24 @@ export default defineComponent({
       class="inline-flex items-center mr-2"
     >
       <input
-        v-model="value"
+        v-model="input"
         :value="option.value"
-        @input="$emit('input', $event.target.value)"
-        :class="[inputErrorClass]"
+        :class="[errorClassForInput]"
         type="radio"
       />
       <span class="ml-2 text-sm">{{ option.text }}</span>
     </label>
 
-    <div v-if="hasValidationErrors" class="text-red-600 text-xs">
-      <span v-if="validation.required !== undefined && !validation.required">
-        {{ $t('form.option.validation.required.error') }}
-      </span>
+    <div v-if="hasValidationError" class="text-xs text-red-600">
+      <template v-for="(error, index) in validation.$errors">
+        <span v-if="error.$validator === 'required'" :key="index">
+          {{ $t('form.text.validation.required.error') }}
+        </span>
+
+        <span v-if="error.$validator === 'requiredIf'" :key="index">
+          {{ $t('form.text.validation.required.error') }}
+        </span>
+      </template>
     </div>
   </div>
 </template>

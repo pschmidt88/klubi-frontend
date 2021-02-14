@@ -31,11 +31,12 @@ export default defineComponent({
       paymentDetails,
       contacts,
       department,
+      createMember,
     } = useMemberRegistration()
 
     function onSubmit() {
       validation.value.$touch()
-      console.log(validation.value.personalDetails.firstName)
+      console.log(department.value.memberStatus)
       console.log('Creating member...')
       // createMember()
     }
@@ -203,7 +204,7 @@ export default defineComponent({
             />
 
             <KRadioGroup
-              v-model="department.status"
+              v-model="department.memberStatus"
               label="Mitgliedstatus"
               :options="memberStatusOptions"
               :validation="validation.department.status"
