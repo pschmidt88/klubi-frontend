@@ -1,6 +1,7 @@
 import { ref, computed, reactive, toRefs } from '@vue/composition-api'
 import MembersApi from '@/api/members'
-import { required, email, requiredIf } from 'vuelidate/lib/validators'
+import useVuelidate from '@vuelidate/core'
+import { required, email, requiredIf, minLength } from '@vuelidate/validators'
 
 export default function useMemberRegistration() {
   const loading = ref(false)
@@ -34,6 +35,65 @@ export default function useMemberRegistration() {
     },
   })
 
+  const rules = computed(() => ({
+    personalDetails: {
+      firstName: { required },
+      lastName: { required },
+      birthday: { required },
+    },
+    contacts: {
+      streetAddress: { required },
+      streetNumber: { required },
+      postcode: { required },
+      city: { required },
+      email: { email },
+    },
+    department: {
+      department: { required },
+      entryDate: { required },
+      memberStatus: { required },
+    },
+    paymentDetails: {
+      paymentMethod: { required },
+      accountOwnerFirstName: {
+        requiredIf: requiredIf(
+          () => state.paymentDetails.paymentMethod === 'debit'
+        ),
+      },
+      accountOwnerLastName: {
+        requiredIf: requiredIf(
+          () => state.paymentDetails.paymentMethod === 'debit'
+        ),
+      },
+      iban: {
+        requiredIf: requiredIf(
+          () => state.paymentDetails.paymentMethod === 'debit'
+        ),
+      },
+    },
+  }))
+
+  const validation = useVuelidate(rules, state)
+
+  const availableDepartments = ref([
+    { value: '', text: 'Abteilung wählen', disabled: true },
+    { value: 'football', text: 'Fußball' },
+    { value: 'gymnastics', text: 'Gymnastik' },
+    { value: 'running', text: 'Laufen' },
+    { value: 'taekwondo', text: 'Taekwondo' },
+  ])
+
+  const memberStatusOptions = ref([
+    { value: 'active', text: 'Aktiv' },
+    { value: 'passive', text: 'Passiv' },
+  ])
+
+  const availablePaymentMethods = ref([
+    { value: '', text: 'Zahlungsart auswählen', disabled: true },
+    { value: 'transfer', text: 'Überweisung' },
+    { value: 'debit', text: 'Lastschrift' },
+  ])
+
   async function createMember() {
     loading.value = true
     // await MembersApi.createMember(memberRegistration)
@@ -60,44 +120,10 @@ export default function useMemberRegistration() {
     loading: computed(() => loading.value),
     demoMember,
     createMember,
+    availableDepartments,
+    memberStatusOptions,
+    availablePaymentMethods,
     ...toRefs(state),
+    validation,
   }
-}
-
-export const validations = {
-  personalDetails: {
-    firstName: { required },
-    lastName: { required },
-    birthday: { required },
-  },
-  contacts: {
-    streetAddress: { required },
-    streetNumber: { required },
-    postcode: { required },
-    city: { required },
-    email: { email },
-  },
-  department: {
-    department: { required },
-    entryDate: { required },
-    memberStatus: { required },
-  },
-  paymentDetails: {
-    paymentMethod: { required },
-    accountOwnerFirstName: {
-      requiredIf: requiredIf(function (model: any) {
-        return model.paymentDetails.paymentMethod === 'debit'
-      }),
-    },
-    accountOwnerLastName: {
-      requiredIf: requiredIf(function (model: any) {
-        return model.paymentDetails.paymentMethod === 'debit'
-      }),
-    },
-    iban: {
-      requiredIf: requiredIf(function (model: any) {
-        return model.paymentDetails.paymentMethod === 'debit'
-      }),
-    },
-  },
 }

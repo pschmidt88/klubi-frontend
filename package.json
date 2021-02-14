@@ -16,13 +16,14 @@
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/composition-api": "^0.19.1",
     "@vue/composition-api": "^1.0.0-beta.11",
+    "@vuelidate/core": "^2.0.0-alpha.11",
+    "@vuelidate/validators": "^2.0.0-alpha.9",
     "consola": "^2.15.0",
     "nuxt": "^2.14.12",
     "nuxt-i18n": "^6.13.12",
     "shortid": "^2.2.15",
     "vue-clickaway": "^2.2.2",
-    "vue-the-mask": "^0.11.1",
-    "vuelidate": "^0.7.5"
+    "vue-the-mask": "^0.11.1"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.4",

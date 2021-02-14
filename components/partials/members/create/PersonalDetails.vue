@@ -8,7 +8,6 @@ export default defineComponent({
   // props: ['validator'],
   setup() {
     const { personalDetails } = useMemberRegistration()
-
     return { personalDetails }
   },
 })
@@ -22,30 +21,30 @@ export default defineComponent({
     </div>
 
     <div class="w-3/5">
-      <k-input v-model="personalDetails.memberId" label="Mitgliedsnummer">
-        <template v-slot:label>
+      <KInput v-model="personalDetails.memberId" label="Mitgliedsnummer">
+        <template #label>
           Mitgliedsnummer
           <span
             class="text-xs font-normal text-gray-500"
           >(Leer lassen um automatisch zu generieren)</span>
         </template>
-      </k-input>
+      </KInput>
 
-      <k-input
+      <KInput
         v-model="personalDetails.firstName"
         label="Vorname"
         placeholder="Paul"
         wrapper-class="mt-4"
       />
 
-      <k-input
+      <KInput
         v-model="personalDetails.lastName"
         label="Nachname"
         placeholder="Schmidt"
         wrapper-class="mt-4"
       />
 
-      <k-input
+      <KInput
         v-model="personalDetails.birthday"
         type="date"
         label="Geburtstag"
