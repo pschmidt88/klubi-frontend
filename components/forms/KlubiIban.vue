@@ -1,104 +1,138 @@
 <script lang="ts">
+import { computed, defineComponent, PropType } from '@vue/composition-api'
+import { Validation } from '@vuelidate/core'
 import { mask } from 'vue-the-mask'
-import { Vue, Component, Prop, Model } from 'vue-property-decorator'
-import { Validation } from 'vuelidate'
 
-@Component({
-  directives: { mask }
+export default defineComponent({
+  directives: { mask },
+  props: {
+    value: {
+      type: String,
+      default: '',
+    },
+    label: {
+      type: String,
+      default: '',
+    },
+    placeholder: {
+      type: String,
+      default: '',
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
+    validation: {
+      type: Object as PropType<Validation>,
+      default: null,
+    },
+  },
+  setup(props, { emit }) {
+    const input = computed({
+      get: () => props.value,
+      set: (value: string) => emit('input', value),
+    })
+
+    const hasValidationError = computed(() => {
+      return props.validation && props.validation.$error
+    })
+
+    const errorClassForInput = computed(() => {
+      return hasValidationError.value ? 'border-red-600' : ''
+    })
+
+    const errorClassForLabel = computed(() => {
+      return hasValidationError.value ? 'text-red-600' : ''
+    })
+
+    function validateInput() {
+      if (props.validation) {
+        props.validation.$touch()
+      }
+    }
+
+    return {
+      input,
+      hasValidationError,
+      errorClassForInput,
+      errorClassForLabel,
+      validateInput,
+    }
+  },
 })
-export default class KlubiIban extends Vue {
-  @Prop(String)
-  readonly wrapperClass: string | undefined
-
-  @Prop(String)
-  readonly label: string | undefined
-
-  @Prop(Boolean)
-  readonly readonly: boolean | undefined
-
-  @Prop(String)
-  readonly placeholder: string | undefined
-
-  @Prop({ type: String })
-  readonly labelClass: string | undefined
-
-  @Prop()
-  readonly validation!: Validation
-
-  @Model('changeInput', { type: String })
-  value!: string
-
-  inputId: string = ''
-
-  get hasValidationErrors(): Boolean {
-    return this.validation && this.validation.$anyError
-  }
-
-  get labelErrorClass(): String {
-    return this.hasValidationErrors ? 'text-red-600' : ''
-  }
-
-  get inputErrorClass(): String {
-    return this.hasValidationErrors ? 'border-red-600' : ''
-  }
-
-  mounted() {
-    this.inputId = `input-iban-${this._uid}`
-  }
-}
 </script>
 
 <template>
-  <div :class="wrapperClass">
+  <div class="flex flex-col">
     <label
-      :for="inputId"
-      :class="[labelClass, labelErrorClass]"
-      class="block mb-1 text-sm font-semibold"
+      :class="[errorClassForLabel]"
+      class="pb-2 text-sm font-bold text-gray-800"
     >
       <slot name="label">
         {{ label }}
       </slot>
-
-      <input
-        :id="inputId"
-        :value="value"
-        v-mask="'AA## #### #### #### #### ##'"
-        @input="$emit('changeInput', $event.target.value)"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        :class="[
-          readonly
-            ? 'cursor-default bg-gray-100'
-            : 'focus:outline-none focus:shadow-outline',
-          inputErrorClass
-        ]"
-        type="text"
-        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight"
-      />
     </label>
 
-    <div v-if="hasValidationErrors" :class="labelErrorClass" class="text-xs">
-      <span v-if="validation.required !== undefined && !validation.required">
-        {{ $t('form.text.validation.required.error') }}
-      </span>
-
-      <span
-        v-if="validation.requiredIf !== undefined && !validation.requiredIf"
+    <div class="relative">
+      <div
+        class="absolute flex items-center h-full px-4 text-gray-600 border-r"
       >
-        {{ $t('form.text.validation.required.error') }}
-      </span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          class="icon icon-tabler icon-tabler-cash"
+          width="20"
+          height="20"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+        >
+          <path
+            d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
+      </div>
 
-      <span v-if="validation.minLength !== undefined && !validation.minLength">
-        {{
-          $t('form.text.validation.minLength.error', {
-            length: validation.$params.minLength.min
-          })
-        }}
-      </span>
+      <input
+        v-model="input"
+        type="text"
+        v-mask="'AA## #### #### #### #### ##'"
+        :placeholder="placeholder"
+        :class="[
+          readonly
+            ? 'cursor-default bg-gray-100 focus:border-gray-300'
+            : 'focus:border-indigo-600',
+          errorClassForInput,
+        ]"
+        class="items-center w-full py-3 pl-16 text-sm border border-gray-300 rounded shadow-sm focus:outline-none"
+        @blur="validateInput"
+      />
+    </div>
 
-      <span v-if="validation.email !== undefined && !validation.email">
-        {{ $t('form.text.validation.email.error') }}
-      </span>
+    <div v-if="hasValidationError" class="text-xs text-red-600">
+      <template v-for="(error, index) in validation.$errors">
+        <span v-if="error.$validator === 'required'" :key="index">
+          {{ $t('form.text.validation.required.error') }}
+        </span>
+
+        <span v-if="error.$validator === 'requiredIf'" :key="index">
+          {{ $t('form.text.validation.required.error') }}
+        </span>
+
+        <span v-if="error.$validator === 'minLength'" :key="index">
+          {{
+            $t('form.text.validation.minLength.error', {
+              length: error.$params.min,
+            })
+          }}
+        </span>
+
+        <span v-if="error.$validator === 'email'" :key="index">
+          {{ $t('form.text.validation.email.error') }}
+        </span>
+      </template>
     </div>
   </div>
 </template>

@@ -249,6 +249,7 @@ export default defineComponent({
                 v-model="paymentDetails.iban"
                 class="mb-4"
                 label="IBAN"
+                placeholder="DE74 5001 0517 4238 1497 32"
                 :validation="validation.paymentDetails.iban"
               />
 
