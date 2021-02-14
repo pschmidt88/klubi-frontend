@@ -8,6 +8,7 @@ import KIban from '~/components/forms/KlubiIban.vue'
 import KUpload from '~/components/forms/KlubiUpload.vue'
 import SectionHeader from '~/components/partials/members/create/SectionHeader.vue'
 import KEmail from '~/components/forms/KEmail.vue'
+import KSubmit from '~/components/forms/KlubiSubmit.vue'
 
 export default defineComponent({
   components: {
@@ -18,6 +19,7 @@ export default defineComponent({
     KUpload,
     SectionHeader,
     KEmail,
+    KSubmit,
   },
   setup() {
     const {
@@ -36,7 +38,7 @@ export default defineComponent({
 
     function onSubmit() {
       validation.value.$touch()
-      console.log(department.value.memberStatus)
+      console.log(paymentDetails.value.paymentMethod)
       console.log('Creating member...')
       // createMember()
     }
@@ -277,12 +279,10 @@ export default defineComponent({
       <div
         class="flex justify-end w-full px-4 py-4 mt-6 bg-gray-100 rounded-bl rounded-br sm:px-12"
       >
-        <button
-          class="px-8 py-2 text-sm text-white transition duration-150 ease-in-out bg-indigo-700 rounded hover:bg-indigo-600 focus:outline-none"
-          type="submit"
-        >
-          {{ $t('members.create.submit.label') }}
-        </button>
+        <KSubmit
+          :label="$t('members.create.submit.label')"
+          :is-busy="loading"
+        />
       </div>
     </form>
   </div>
