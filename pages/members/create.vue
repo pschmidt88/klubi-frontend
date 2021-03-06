@@ -1,128 +1,289 @@
 <script lang="ts">
-import { validationMixin } from 'vuelidate'
-import { mapGetters } from 'vuex'
-import Vue from 'vue'
-import { email, required, requiredIf } from 'vuelidate/lib/validators'
-import PersonalDetails from '~/components/partials/members/create/PersonalDetails.vue'
-import Contacts from '~/components/partials/members/create/Contacts.vue'
-import Department from '~/components/partials/members/create/Department.vue'
-import PaymentDetails from '~/components/partials/members/create/PaymentDetails.vue'
-import Submit from '~/components/forms/KlubiSubmit.vue'
+import { defineComponent, onMounted } from '@vue/composition-api'
+import useMemberRegistration from '~/composables/useMemberRegistration.ts'
+import KInput from '~/components/forms/KlubiInput.vue'
+import KSelect from '~/components/forms/KlubiSelect.vue'
+import KRadioGroup from '~/components/forms/KlubiRadioGroup.vue'
+import KIban from '~/components/forms/KlubiIban.vue'
+import KUpload from '~/components/forms/KlubiUpload.vue'
+import SectionHeader from '~/components/partials/members/create/SectionHeader.vue'
+import KEmail from '~/components/forms/KEmail.vue'
+import KSubmit from '~/components/forms/KlubiSubmit.vue'
 
-export default Vue.extend({
-  components: { PersonalDetails, Contacts, Department, PaymentDetails, Submit },
-  mixins: [validationMixin],
-  validations: {
-    personalDetails: {
-      firstName: { required },
-      lastName: { required },
-      birthday: { required }
-    },
-    contacts: {
-      streetAddress: { required },
-      streetNumber: { required },
-      postcode: { required },
-      city: { required },
-      email: { email }
-    },
-    department: {
-      department: { required },
-      entryDate: { required },
-      memberStatus: { required }
-    },
-    paymentDetails: {
-      paymentMethod: { required },
-      accountOwnerFirstName: {
-        requiredIf: requiredIf(function(this: any) {
-          return this.paymentDetails.paymentMethod === 'debit'
-        })
-      },
-      accountOwnerLastName: {
-        requiredIf: requiredIf(function(this: any) {
-          return this.paymentDetails.paymentMethod === 'debit'
-        })
-      },
-      iban: {
-        requiredIf: requiredIf(function(this: any) {
-          return this.paymentDetails.paymentMethod === 'debit'
-        })
-      }
-    }
+export default defineComponent({
+  components: {
+    KInput,
+    KSelect,
+    KRadioGroup,
+    KIban,
+    KUpload,
+    SectionHeader,
+    KEmail,
+    KSubmit,
   },
+  setup() {
+    const {
+      loading,
+      demoMember,
+      availableDepartments,
+      memberStatusOptions,
+      availablePaymentMethods,
+      validation,
+      personalDetails,
+      paymentDetails,
+      contacts,
+      department,
+      createMember,
+    } = useMemberRegistration()
 
-  data() {
+    function onSubmit() {
+      validation.value.$touch()
+      console.log(paymentDetails.value.paymentMethod)
+      console.log('Creating member...')
+      // createMember()
+    }
+
+    onMounted(() => {
+      document.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'F' && e.shiftKey) {
+          e.preventDefault()
+          demoMember()
+        }
+      })
+    })
+
     return {
-      saving: false
+      loading,
+      onSubmit,
+      availableDepartments,
+      memberStatusOptions,
+      availablePaymentMethods,
+      department,
+      personalDetails,
+      paymentDetails,
+      contacts,
+      validation,
     }
   },
-
   computed: {
-    ...mapGetters({
-      personalDetails: 'members/registration/personalDetails',
-      contacts: 'members/registration/contacts',
-      department: 'members/registration/department',
-      paymentDetails: 'members/registration/paymentDetails'
-    })
-  },
-
-  mounted() {
-    // register shift+f shortcut to fill in demo data
-    document.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'F' && e.shiftKey) {
-        e.preventDefault()
-        this.fillFormWithDemoData()
-      }
-    })
-  },
-
-  methods: {
-    createMember() {
-      this.$v.$touch()
-      this.saving = !this.saving
-
-      if (this.$v.$invalid) {
-        console.log('invalid bruder')
-        this.saving = !this.saving
-        return
-      }
-
-      setTimeout(() => {
-        console.log('Vallah, läuft bei dir!')
-        this.saving = !this.saving
-      }, 1000)
+    isDirectDebit(): boolean {
+      return this.paymentDetails.paymentMethod === 'debit'
     },
-
-    fillFormWithDemoData() {
-      this.$store.dispatch('members/registration/demo')
-    }
-  }
+  },
 })
 </script>
 
 <template>
-  <div class="w-3/4 px-8 py-4 ml-auto text-gray-800 bg-white rounded shadow-md">
-    <personal-details :validator="$v.personalDetails" />
+  <div>
+    <form
+      novalidate
+      class="container mx-auto text-gray-800 bg-white rounded shadow"
+      @submit.prevent="onSubmit"
+    >
+      <SectionHeader title="Persönliche Daten" />
 
-    <hr class="w-11/12 mx-auto my-12" />
+      <div class="w-11/12 mx-auto">
+        <div class="container mx-auto">
+          <div class="mx-auto my-8 xl:w-full xl:mx-0">
+            <KInput
+              v-model="personalDetails.memberId"
+              label="Mitgliedsnummer"
+              placeholder="Leer lassen um automatisch zu generieren"
+              class="mb-4"
+            />
 
-    <contacts :validator="$v.contacts" />
+            <KInput
+              v-model="personalDetails.firstName"
+              label="Vorname"
+              placeholder="Paul"
+              class="mb-4"
+              :validation="validation.personalDetails.firstName"
+            />
 
-    <hr class="w-11/12 mx-auto my-12" />
+            <KInput
+              v-model="personalDetails.lastName"
+              label="Nachname"
+              placeholder="Schmidt"
+              class="mb-4"
+              :validation="validation.personalDetails.lastName"
+            />
 
-    <department :validator="$v.department" />
+            <KInput
+              v-model="personalDetails.birthday"
+              type="date"
+              label="Geburtstag"
+              placeholder="06/16/1988"
+              :validation="validation.personalDetails.birthday"
+            />
+          </div>
+        </div>
+      </div>
 
-    <hr class="w-11/12 mx-auto my-12" />
+      <SectionHeader
+        title="Kontakt"
+        description="Adresse, Kontaktmöglichkeiten, etc."
+      />
 
-    <paymentDetails :validator="$v.paymentDetails" />
+      <div class="w-11/12 mx-auto">
+        <div class="container mx-auto">
+          <div class="mx-auto my-8 xl:w-full xl:mx-0">
+            <div class="flex mb-4 xl:w-full">
+              <KInput
+                v-model="contacts.streetAddress"
+                label="Straße"
+                placeholder="Herlebergweg"
+                class="w-4/5"
+                label-class="text-xs"
+                :validation="validation.contacts.streetAddress"
+              />
+              <KInput
+                v-model="contacts.streetNumber"
+                label="Hausnr."
+                placeholder="20"
+                class="w-1/5 ml-2"
+                label-class="text-xs"
+                :validation="validation.contacts.streetNumber"
+              />
+            </div>
 
-    <div class="container flex justify-end mt-12">
-      <div class="w-1/5">
-        <submit
-          @button-clicked="createMember"
+            <div class="flex mb-4">
+              <KInput
+                v-model="contacts.postcode"
+                label="Postleitzahl"
+                placeholder="34130"
+                class="w-2/5"
+                label-class="text-xs"
+                :validation="validation.contacts.postcode"
+              />
+              <KInput
+                v-model="contacts.city"
+                label="Ort"
+                placeholder="Kassel"
+                class="w-3/5 ml-2"
+                label-class="text-xs"
+                :validation="validation.contacts.city"
+              />
+            </div>
+            <KInput
+              v-model="contacts.phone"
+              placeholder="0123 456789"
+              class="mb-4"
+              label="Telefon"
+              :validation="validation.contacts.phone"
+            />
+            <KEmail
+              v-model="contacts.email"
+              label="E-Mail"
+              placeholder="email@example.com"
+              :validation="validation.contacts.email"
+            />
+          </div>
+        </div>
+      </div>
+
+      <SectionHeader
+        title="Abteilung"
+        description="Abteilung zuweisen (optional)"
+      />
+
+      <div class="w-11/12 mx-auto">
+        <div class="container mx-auto">
+          <div class="mx-auto my-8 xl:w-full xl:mx-0">
+            <KSelect
+              v-model="department.department"
+              :options="availableDepartments"
+              label="Abteilung"
+              class="mb-4"
+              :validation="validation.department.department"
+            />
+
+            <KInput
+              v-model="department.entryDate"
+              type="date"
+              label="Eintrittsdatum"
+              class="mb-4"
+              :validation="validation.department.entryDate"
+            />
+
+            <KRadioGroup
+              v-model="department.memberStatus"
+              label="Mitgliedstatus"
+              :options="memberStatusOptions"
+              :validation="validation.department.status"
+            />
+          </div>
+        </div>
+      </div>
+
+      <SectionHeader
+        title="Mitgliedsbeitrag"
+        description="Mitgliedsbeitrag und Zahlungsdaten"
+      />
+
+      <div class="w-11/12 mx-auto">
+        <div class="container mx-auto">
+          <div class="mx-auto my-8 xl:w-full xl:mx-0">
+            <KSelect
+              v-model="paymentDetails.paymentMethod"
+              :options="availablePaymentMethods"
+              label="Zahlungsmethode"
+              class="mb-4"
+              :validation="validation.paymentDetails.paymentMethod"
+            />
+
+            <div v-if="isDirectDebit">
+              <KInput
+                v-model="paymentDetails.accountOwnerFirstName"
+                label="Vorname"
+                placeholder="Paul"
+                class="mb-4"
+                :validation="validation.paymentDetails.accountOwnerFirstName"
+              />
+
+              <KInput
+                v-model="paymentDetails.accountOwnerLastName"
+                label="Nachname"
+                placeholder="Schmidt"
+                class="mb-4"
+                :validation="validation.paymentDetails.accountOwnerLastName"
+              />
+
+              <KIban
+                v-model="paymentDetails.iban"
+                class="mb-4"
+                label="IBAN"
+                placeholder="DE74 5001 0517 4238 1497 32"
+                :validation="validation.paymentDetails.iban"
+              />
+
+              <KInput
+                v-model="paymentDetails.bic"
+                class="mb-4"
+                label="BIC"
+                :validation="validation.paymentDetails.bic"
+              />
+
+              <KInput
+                v-model="paymentDetails.bankName"
+                class="mb-4"
+                label="Bankinstitut"
+                readonly
+              />
+
+              <KUpload label="SEPA Lastschriftmandat" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="flex justify-end w-full px-4 py-4 mt-6 bg-gray-100 rounded-bl rounded-br sm:px-12"
+      >
+        <KSubmit
           :label="$t('members.create.submit.label')"
-          :isBusy="saving"
+          :is-busy="loading"
         />
       </div>
-    </div>
+    </form>
   </div>
 </template>

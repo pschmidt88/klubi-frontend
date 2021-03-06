@@ -6,90 +6,39 @@ import KRadioGroup from '~/components/forms/KlubiRadioGroup.vue'
 import { DepartmentValidation } from '~/components/partials/members/create/validationTypes'
 
 @Component({
-  components: { KInput, KSelect, KRadioGroup }
+  components: { KInput, KSelect, KRadioGroup },
 })
 export default class Department extends Vue {
-  @Prop() readonly validator!: DepartmentValidation
+  // @Prop() readonly validator!: DepartmentValidation
 
   private availableDepartments = [
     { value: '', text: 'Abteilung wählen', disabled: true },
     { value: 'football', text: 'Fußball' },
     { value: 'gymnastics', text: 'Gymnastik' },
     { value: 'running', text: 'Laufen' },
-    { value: 'taekwondo', text: 'Taekwondo' }
+    { value: 'taekwondo', text: 'Taekwondo' },
   ]
 
   private memberStatusOptions = [
     { value: 'active', text: 'Aktiv' },
-    { value: 'passive', text: 'Passiv' }
+    { value: 'passive', text: 'Passiv' },
   ]
-
-  get department(): string {
-    return this.$store.state.members.registration.department
-  }
-
-  set department(value: string) {
-    this.$store.commit('members/registration/updateDepartment', {
-      department: value
-    })
-    this.validator.department.$touch()
-  }
-
-  get status(): string {
-    return this.$store.state.members.registration.member_status
-  }
-
-  set status(value: string) {
-    this.$store.commit('members/registration/updateMemberStatus', {
-      status: value
-    })
-    this.validator.memberStatus.$touch()
-  }
-
-  get entryDate(): string {
-    return this.$store.state.members.registration.entry_date
-  }
-
-  set entryDate(value: string) {
-    this.$store.commit('members/registration/updateEntryDate', {
-      entryDate: value
-    })
-    this.validator.entryDate.$touch()
-  }
 }
 </script>
 
 <template>
-  <div class="flex container">
+  <div class="container flex">
     <div class="w-2/5 mr-5">
-      <h3 class="font-semibold text-lg">Abteilung</h3>
-      <span class="text-sm text-gray-600">
-        Abteilung zuweisen (optional)
-      </span>
+      <h3 class="text-lg font-semibold">Abteilung</h3>
+      <span class="text-sm text-gray-600">Abteilung zuweisen (optional)</span>
     </div>
 
     <div class="container w-3/5">
-      <k-select
-        v-model="department"
-        :validation="validator.department"
-        :options="availableDepartments"
-        label="Abteilung"
-      />
+      <k-select v-model="department" :options="availableDepartments" label="Abteilung" />
 
-      <k-input
-        v-model="entryDate"
-        :validation="validator.entryDate"
-        type="date"
-        label="Eintrittsdatum"
-        wrapper-class="mt-4"
-      />
+      <k-input v-model="entryDate" type="date" label="Eintrittsdatum" wrapper-class="mt-4" />
 
-      <k-radio-group
-        v-model="status"
-        :options="memberStatusOptions"
-        label="Mitgliedstatus"
-        wrapper-class="mt-4"
-      />
+      <k-radio-group v-model="status" label="Mitgliedstatus" wrapper-class="mt-4" />
     </div>
   </div>
 </template>

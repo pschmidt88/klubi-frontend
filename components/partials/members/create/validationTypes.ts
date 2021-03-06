@@ -28,3 +28,10 @@ export interface PaymentDetailsValidation extends Validation {
   accountOwnerLastName: Validation
   iban: Validation
 }
+
+export interface MemberRegistrationValidation extends Validation {
+  personalDetails: PersonalDetailsValidation
+  contacts: ContactsValidation
+  department: DepartmentValidation
+  paymentDetails: PaymentDetailsValidation
+}
