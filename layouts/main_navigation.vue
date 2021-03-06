@@ -4,8 +4,8 @@ import { ref, defineComponent } from '@vue/composition-api'
 import NavigationLink from '~/components/partials/layouts/MainNavigationLink.vue'
 
 export default defineComponent({
-  mixins: [clickaway],
   components: { NavigationLink },
+  mixins: [clickaway],
   setup() {
     const profileMenuVisibility = ref(false)
     const mobileMenuVisibility = ref(false)
@@ -47,8 +47,8 @@ export default defineComponent({
           </div>
           <div class="hidden md:block">
             <div class="flex items-baseline ml-10">
-              <navigation-link to="/" exact>Dashboard</navigation-link>
-              <navigation-link to="/members">Mitglieder</navigation-link>
+              <NavigationLink to="/" exact>Dashboard</NavigationLink>
+              <NavigationLink to="/members">Mitglieder</NavigationLink>
             </div>
           </div>
         </div>
