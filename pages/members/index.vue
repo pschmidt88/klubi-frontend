@@ -2,10 +2,10 @@
 import { defineComponent, reactive } from '@vue/composition-api'
 import { Member } from '~/types/member'
 import { rawUsers } from '~/utility/fake_members.js'
-import MemberTable from '~/components/members/datatable/MemberTable.vue'
+import MemberList from '~/components/members/datatable/MemberList.vue'
 
 export default defineComponent({
-  components: { MemberTable },
+  components: { MemberList },
   setup() {
     const users: Array<Member> = reactive(rawUsers)
 
@@ -33,7 +33,7 @@ export default defineComponent({
       </div>
 
       <div class="w-full overflow-x-scroll sm:overflow-x-hidden">
-        <MemberTable :members="users" />
+        <MemberList :members="users" />
       </div>
     </div>
   </div>
