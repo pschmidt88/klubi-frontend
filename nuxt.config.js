@@ -22,6 +22,8 @@ module.exports = {
       { rel: 'icon', sizes: '32x32', href: '/img/favicon-32x32.png' },
       { rel: 'icon', sizes: '16x16', href: '/img/favicon-16x16.png' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Lato&display=swap' } 
     ],
   },
 
