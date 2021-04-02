@@ -1,10 +1,9 @@
-// tsconfig.json
 {
   "compilerOptions": {
-    "target": "ES2018",
-    "module": "ESNext",
+    "target": "es2018",
+    "module": "esnext",
     "moduleResolution": "Node",
-    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
+    "lib": ["esnext", "ESNext.AsyncIterable", "DOM"],
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "allowJs": true,
@@ -21,7 +20,6 @@
       "@nuxt/types",
       "@types/vue-the-mask",
       "@types/shortid",
-      "@nuxt/axios",
       "nuxt-i18n"
     ]
   },
