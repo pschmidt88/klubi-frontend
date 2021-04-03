@@ -33,13 +33,7 @@ export default defineComponent({
 
 <template>
   <tr class="h-24 border-b border-gray-300">
-    <td
-      class="pl-8 pr-6 text-sm leading-4 tracking-normal text-gray-800 whitespace-no-wrap"
-    >
-      {{ member.id }}
-    </td>
-
-    <td class="py-4 whitespace-nowrap">
+    <td class="py-4 pl-8 whitespace-nowrap">
       <div class="flex items-center">
         <div class="flex-shrink-0 w-10 h-10">
           <img
@@ -49,7 +43,12 @@ export default defineComponent({
           />
         </div>
         <div class="ml-4">
-          <div class="text-sm font-medium text-gray-900">Jane Cooper</div>
+          <div class="text-sm font-semibold text-gray-900">
+            <nuxt-link :to="`/members/${member.id}`">{{
+              member.name
+            }}</nuxt-link>
+            <span class="text-gray-700">(#{{ member.id }})</span>
+          </div>
           <div class="text-sm text-gray-500">{{ member.contact.email }}</div>
         </div>
       </div>
@@ -57,7 +56,10 @@ export default defineComponent({
 
     <td class="text-sm text-gray-800 whitespace-nowrap">
       <div class="text-sm font-medium">{{ member.address }}</div>
-      <div class="text-sm">{{ member.city }}</div>
+    </td>
+
+    <td class="text-sm text-gray-800 whitespace-nowrap">
+      <div class="text-sm">{{ member.postcode }} {{ member.city }}</div>
     </td>
 
     <td class="relative pr-8">
