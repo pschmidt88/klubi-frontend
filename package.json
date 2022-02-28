@@ -11,7 +11,8 @@
     "eslint-config-prettier": "^8.3.0",
     "maska": "^1.5.0",
     "nuxt3": "latest",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "vue-clickaway": "github:crisp-dev/vue-clickaway"
   },
   "dependencies": {
     "@vuelidate/core": "^2.0.0-alpha.34",

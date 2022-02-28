@@ -1,31 +1,21 @@
-<script lang="ts">
+<script lang="ts" setup>
+import { directive as clickaway } from 'vue-clickaway'
 
-export default defineComponent({
-  setup() {
-    const profileMenuVisibility = ref(false)
-    const mobileMenuVisibility = ref(false)
+const vOnClickAway = clickaway
+const profileMenuVisibility = ref(false)
+const mobileMenuVisibility = ref(false)
 
-    function closeProfileMenu() {
-      profileMenuVisibility.value = false
-    }
+function closeProfileMenu() {
+  profileMenuVisibility.value = false
+}
 
-    function toggleProfileMenu() {
-      profileMenuVisibility.value = !profileMenuVisibility.value
-    }
+function toggleProfileMenu() {
+  profileMenuVisibility.value = !profileMenuVisibility.value
+}
 
-    function toggleMobileMenu() {
-      mobileMenuVisibility.value = !mobileMenuVisibility.value
-    }
-
-    return {
-      mobileMenuVisibility,
-      profileMenuVisibility,
-      closeProfileMenu,
-      toggleProfileMenu,
-      toggleMobileMenu,
-    }
-  },
-})
+function toggleMobileMenu() {
+  mobileMenuVisibility.value = !mobileMenuVisibility.value
+}
 </script>
 
 <template>
@@ -69,6 +59,7 @@ export default defineComponent({
             <div class="relative ml-3">
               <div>
                 <button
+                  v-on-click-away="closeProfileMenu"
                   class="flex items-center max-w-xs text-sm text-white rounded-full focus:outline-none focus:shadow-solid"
                   @click="toggleProfileMenu()"
                 >
