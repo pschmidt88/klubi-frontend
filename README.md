@@ -1,29 +1,29 @@
-# klubi Frontend
+# Nuxt 3 Minimal Starter
 
-_TODO_ Description
+We recommend to look at the [documentation](https://v3.nuxtjs.org).
 
-### Installation
+## Setup
 
-``` bash
-# install dependencies
-$ npm install # Or yarn install
+Make sure to install the dependencies
+
+```bash
+yarn install
 ```
 
-> Make sure to use a version of vue-cli >= 2.1 (`vue -V`).
+## Development
 
-### Development
+Start the development server on http://localhost:3000
 
-``` bash
-# serve with hot reloading at localhost:3000
-$ npm run dev # Or yarn dev
+```bash
+yarn dev
 ```
 
-Go to [http://localhost:3000](http://localhost:3000)
+## Production
 
-### Production
+Build the application for production:
 
-``` bash
-# build for production and launch the server
-$ npm run build
-$ npm start
+```bash
+yarn build
 ```
+
+Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).

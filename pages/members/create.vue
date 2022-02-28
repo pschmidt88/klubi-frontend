@@ -1,76 +1,118 @@
-<script lang="ts">
-import { defineComponent, onMounted } from '@vue/composition-api'
-import useMemberRegistration from '~/composables/useMemberRegistration.ts'
-import KInput from '~/components/forms/KlubiInput.vue'
-import KSelect from '~/components/forms/KlubiSelect.vue'
-import KRadioGroup from '~/components/forms/KlubiRadioGroup.vue'
-import KIban from '~/components/forms/KlubiIban.vue'
-import KUpload from '~/components/forms/KlubiUpload.vue'
-import SectionHeader from '~/components/partials/members/create/SectionHeader.vue'
-import KEmail from '~/components/forms/KEmail.vue'
-import KSubmit from '~/components/forms/KlubiSubmit.vue'
+<script lang="ts" setup>
+import useVuelidate from "@vuelidate/core";
+import { computed, onMounted, ref, reactive } from "vue";
+import { required, email, requiredIf } from "@vuelidate/validators";
 
-export default defineComponent({
-  components: {
-    KInput,
-    KSelect,
-    KRadioGroup,
-    KIban,
-    KUpload,
-    SectionHeader,
-    KEmail,
-    KSubmit,
+const loading = ref(false);
+
+const state = reactive({
+  memberId: "",
+  firstName: "",
+  lastName: "",
+  birthday: "",
+  streetAddress: "",
+  streetNumber: "",
+  postcode: "",
+  city: "",
+  phone: "",
+  email: "",
+  department: "",
+  entryDate: "",
+  memberStatus: "active",
+  paymentMethod: "",
+  accountOwnerFirstName: "",
+  accountOwnerLastName: "",
+  iban: "",
+  bic: "",
+  bankName: "",
+});
+
+const rules = computed(() => ({
+  firstName: { required },
+  lastName: { required },
+  birthday: { required },
+  streetAddress: { required },
+  streetNumber: { required },
+  postcode: { required },
+  phone: {},
+  city: { required },
+  email: { email },
+  department: { required },
+  entryDate: { required },
+  memberStatus: { required },
+  paymentMethod: { required },
+  accountOwnerFirstName: {
+    requiredIf: requiredIf(() => state.paymentMethod === "debit"),
   },
-  setup() {
-    const {
-      loading,
-      demoMember,
-      availableDepartments,
-      memberStatusOptions,
-      availablePaymentMethods,
-      validation,
-      personalDetails,
-      paymentDetails,
-      contacts,
-      department,
-      createMember,
-    } = useMemberRegistration()
+  accountOwnerLastName: {
+    requiredIf: requiredIf(() => state.paymentMethod === "debit"),
+  },
+  iban: {
+    requiredIf: requiredIf(() => state.paymentMethod === "debit"),
+  },
+}));
 
-    function onSubmit() {
-      validation.value.$touch()
-      console.log(paymentDetails.value.paymentMethod)
-      console.log('Creating member...')
-      // createMember()
+const v$ = useVuelidate(rules, state);
+
+const onSubmit = async function () {
+  const isValid = await v$.value.$validate()
+
+  if (!isValid) return
+
+  console.log("Creating member...");
+  // createMember()
+};
+
+const isDirectDebit = computed(() => {
+  return state.paymentMethod === "debit";
+});
+
+const availableDepartments = ref([
+  { value: "", text: "Abteilung wählen", disabled: true },
+  { value: "football", text: "Fußball" },
+  { value: "gymnastics", text: "Gymnastik" },
+  { value: "running", text: "Laufen" },
+  { value: "taekwondo", text: "Taekwondo" },
+]);
+
+const memberStatusOptions = ref([
+  { value: "active", text: "Aktiv" },
+  { value: "passive", text: "Passiv" },
+]);
+
+const availablePaymentMethods = ref([
+  { value: "", text: "Zahlungsart auswählen", disabled: true },
+  { value: "transfer", text: "Überweisung" },
+  { value: "debit", text: "Lastschrift" },
+]);
+
+const fillDemoData = function () {
+  state.firstName = "Paul"
+  state.lastName = "Schmidt"
+  state.birthday = "1988-06-16"
+  state.streetAddress = "Herlebergweg"
+  state.streetNumber = "20"
+  state.postcode = "34130"
+  state.city = "Kassel"
+  state.email = "rookian@gmail.com"
+  state.phone = "+49 171 7693796"
+  state.department = "football"
+  state.entryDate = "2020-07-01"
+  state.memberStatus = "active"
+  state.paymentMethod = "debit"
+  state.accountOwnerFirstName = "Paul"
+  state.accountOwnerLastName = "Schmidt"
+  state.iban = "DE78500105175419262594"
+}
+
+onMounted(() => {
+  document.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "F" && e.shiftKey) {
+      e.preventDefault();
+      fillDemoData();
     }
-
-    onMounted(() => {
-      document.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'F' && e.shiftKey) {
-          e.preventDefault()
-          demoMember()
-        }
-      })
-    })
-
-    return {
-      loading,
-      onSubmit,
-      availableDepartments,
-      memberStatusOptions,
-      availablePaymentMethods,
-      department,
-      personalDetails,
-      paymentDetails,
-      contacts,
-      validation,
-    }
-  },
-  computed: {
-    isDirectDebit(): boolean {
-      return this.paymentDetails.paymentMethod === 'debit'
-    },
-  },
-})
+  });
+});
 </script>
 
 <template>
@@ -85,35 +127,35 @@ export default defineComponent({
       <div class="w-11/12 mx-auto">
         <div class="container mx-auto">
           <div class="mx-auto my-8 xl:w-full xl:mx-0">
-            <KInput
-              v-model="personalDetails.memberId"
+            <KlubiInput
+              v-model="state.memberId"
               label="Mitgliedsnummer"
               placeholder="Leer lassen um automatisch zu generieren"
               class="mb-4"
             />
 
-            <KInput
-              v-model="personalDetails.firstName"
+            <KlubiInput
+              v-model="state.firstName"
               label="Vorname"
               placeholder="Paul"
               class="mb-4"
-              :validation="validation.personalDetails.firstName"
+              :error="v$.firstName"
+              @blur="v$.firstName.$touch()"
             />
 
-            <KInput
-              v-model="personalDetails.lastName"
+            <KlubiInput
+              v-model="state.lastName"
               label="Nachname"
               placeholder="Schmidt"
               class="mb-4"
-              :validation="validation.personalDetails.lastName"
+              :error="v$.lastName"
             />
 
-            <KInput
-              v-model="personalDetails.birthday"
+            <KlubiInput
+              v-model="state.birthday"
               type="date"
               label="Geburtstag"
               placeholder="06/16/1988"
-              :validation="validation.personalDetails.birthday"
             />
           </div>
         </div>
@@ -128,54 +170,48 @@ export default defineComponent({
         <div class="container mx-auto">
           <div class="mx-auto my-8 xl:w-full xl:mx-0">
             <div class="flex mb-4 xl:w-full">
-              <KInput
-                v-model="contacts.streetAddress"
+              <KlubiInput
+                v-model="state.streetAddress"
                 label="Straße"
                 placeholder="Herlebergweg"
                 class="w-4/5"
                 label-class="text-xs"
-                :validation="validation.contacts.streetAddress"
               />
-              <KInput
-                v-model="contacts.streetNumber"
+              <KlubiInput
+                v-model="state.streetNumber"
                 label="Hausnr."
                 placeholder="20"
                 class="w-1/5 ml-2"
                 label-class="text-xs"
-                :validation="validation.contacts.streetNumber"
               />
             </div>
 
             <div class="flex mb-4">
-              <KInput
-                v-model="contacts.postcode"
+              <KlubiInput
+                v-model="state.postcode"
                 label="Postleitzahl"
                 placeholder="34130"
                 class="w-2/5"
                 label-class="text-xs"
-                :validation="validation.contacts.postcode"
               />
-              <KInput
-                v-model="contacts.city"
+              <KlubiInput
+                v-model="state.city"
                 label="Ort"
                 placeholder="Kassel"
                 class="w-3/5 ml-2"
                 label-class="text-xs"
-                :validation="validation.contacts.city"
               />
             </div>
-            <KInput
-              v-model="contacts.phone"
+            <KlubiInput
+              v-model="state.phone"
               placeholder="0123 456789"
               class="mb-4"
               label="Telefon"
-              :validation="validation.contacts.phone"
             />
-            <KEmail
-              v-model="contacts.email"
+            <KlubiEmail
+              v-model="state.email"
               label="E-Mail"
               placeholder="email@example.com"
-              :validation="validation.contacts.email"
             />
           </div>
         </div>
@@ -189,27 +225,24 @@ export default defineComponent({
       <div class="w-11/12 mx-auto">
         <div class="container mx-auto">
           <div class="mx-auto my-8 xl:w-full xl:mx-0">
-            <KSelect
-              v-model="department.department"
+            <KlubiSelect
+              v-model="state.department"
               :options="availableDepartments"
               label="Abteilung"
               class="mb-4"
-              :validation="validation.department.department"
             />
 
-            <KInput
-              v-model="department.entryDate"
+            <KlubiInput
+              v-model="state.entryDate"
               type="date"
               label="Eintrittsdatum"
               class="mb-4"
-              :validation="validation.department.entryDate"
             />
 
-            <KRadioGroup
-              v-model="department.memberStatus"
+            <KlubiRadioGroup
+              v-model="state.memberStatus"
               label="Mitgliedstatus"
               :options="memberStatusOptions"
-              :validation="validation.department.status"
             />
           </div>
         </div>
@@ -223,54 +256,45 @@ export default defineComponent({
       <div class="w-11/12 mx-auto">
         <div class="container mx-auto">
           <div class="mx-auto my-8 xl:w-full xl:mx-0">
-            <KSelect
-              v-model="paymentDetails.paymentMethod"
+            <KlubiSelect
+              v-model="state.paymentMethod"
               :options="availablePaymentMethods"
               label="Zahlungsmethode"
               class="mb-4"
-              :validation="validation.paymentDetails.paymentMethod"
             />
 
             <div v-if="isDirectDebit">
-              <KInput
-                v-model="paymentDetails.accountOwnerFirstName"
+              <KlubiInput
+                v-model="state.accountOwnerFirstName"
                 label="Vorname"
                 placeholder="Paul"
                 class="mb-4"
-                :validation="validation.paymentDetails.accountOwnerFirstName"
               />
 
-              <KInput
-                v-model="paymentDetails.accountOwnerLastName"
+              <KlubiInput
+                v-model="state.accountOwnerLastName"
                 label="Nachname"
                 placeholder="Schmidt"
                 class="mb-4"
-                :validation="validation.paymentDetails.accountOwnerLastName"
               />
 
-              <KIban
-                v-model="paymentDetails.iban"
+              <KlubiIban
+                v-model="state.iban"
                 class="mb-4"
                 label="IBAN"
                 placeholder="DE74 5001 0517 4238 1497 32"
-                :validation="validation.paymentDetails.iban"
               />
 
-              <KInput
-                v-model="paymentDetails.bic"
-                class="mb-4"
-                label="BIC"
-                :validation="validation.paymentDetails.bic"
-              />
+              <KlubiInput v-model="state.bic" class="mb-4" label="BIC" />
 
-              <KInput
-                v-model="paymentDetails.bankName"
+              <KlubiInput
+                v-model="state.bankName"
                 class="mb-4"
                 label="Bankinstitut"
                 readonly
               />
 
-              <KUpload label="SEPA Lastschriftmandat" />
+              <KlubiUpload label="SEPA Lastschriftmandat" />
             </div>
           </div>
         </div>
@@ -279,10 +303,10 @@ export default defineComponent({
       <div
         class="flex justify-end w-full px-4 py-4 mt-6 bg-gray-100 rounded-bl rounded-br sm:px-12"
       >
-        <KSubmit
+        <!--<KSubmit
           :label="$t('members.create.submit.label')"
-          :is-busy="loading"
-        />
+          :is-busy="loading"-->
+        <KlubiSubmit label="Create" :is-busy="loading" />
       </div>
     </form>
   </div>
