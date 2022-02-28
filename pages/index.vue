@@ -1,7 +1,3 @@
-<script>
-export default {}
-</script>
-
 <template>
-  <div>Startseite</div>
+    <div>Startseite</div>
 </template>

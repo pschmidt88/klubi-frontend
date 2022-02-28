@@ -1,27 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "es2018",
-    "module": "esnext",
-    "moduleResolution": "Node",
-    "lib": ["esnext", "ESNext.AsyncIterable", "DOM"],
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "allowJs": true,
-    "sourceMap": true,
-    "strict": true,
-    "noEmit": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./*"]
-    },
-    "types": [
-      "@types/node",
-      "@nuxt/types",
-      "@types/vue-the-mask",
-      "@types/shortid",
-      "nuxt-i18n"
-    ]
-  },
-  "exclude": ["node_modules"]
+  // https://v3.nuxtjs.org/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json"
 }
