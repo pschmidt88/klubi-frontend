@@ -14,13 +14,13 @@
   "dependencies": {
     "@headlessui/vue": "^1.5.0",
     "@heroicons/vue": "^1.0.6",
-    "@pinia/nuxt": "^0.1.8",
-    "@vuelidate/core": "^2.0.0-alpha.34",
-    "@vuelidate/validators": "^2.0.0-alpha.26",
+    "@pinia/nuxt": "^0.1.9",
     "maska": "^1.5.0",
     "nanoid": "^3.3.1",
     "nuxt": "^3.0.0-rc.1",
     "pinia": "^2.0.13",
-    "vue-clickaway": "github:crisp-dev/vue-clickaway"
+    "vee-validate": "^4.5.11",
+    "vue-clickaway": "github:crisp-dev/vue-clickaway",
+    "yup": "^1.0.0-beta.4"
   }
 }

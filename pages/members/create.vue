@@ -1,71 +1,74 @@
 <script lang="ts" setup>
-import useVuelidate from "@vuelidate/core";
-import { computed, onMounted, ref, reactive } from "vue";
-import { required, email, requiredIf } from "@vuelidate/validators";
+import { onMounted, ref } from "vue";
+import * as Yup from "yup";
+import { useForm } from 'vee-validate';
 
 const loading = ref(false);
 
-const state = reactive({
-  memberId: "",
-  firstName: "",
-  lastName: "",
-  birthday: "",
-  streetAddress: "",
-  streetNumber: "",
-  postcode: "",
-  city: "",
-  phone: "",
-  email: "",
-  department: "",
-  entryDate: "",
-  memberStatus: "active",
-  paymentMethod: "",
-  accountOwnerFirstName: "",
-  accountOwnerLastName: "",
-  iban: "",
-  bic: "",
-  bankName: "",
+// const state = reactive({
+//   memberId: "",
+//   firstName: "",
+//   lastName: "",
+//   birthday: "",
+//   streetAddress: "",
+//   streetNumber: "",
+//   postcode: "",
+//   city: "",
+//   phone: "",
+//   email: "",
+//   department: "",
+//   entryDate: "",
+//   memberStatus: "active",
+//   paymentMethod: "",
+//   accountOwnerFirstName: "",
+//   accountOwnerLastName: "",
+//   iban: "",
+//   bic: "",
+//   bankName: "",
+// });
+
+const schema = Yup.object({
+  firstName: Yup.string().required(),
+  lastName: Yup.string().required(),
+  birthday: Yup.string().required(),
+  streetAddress: Yup.string().required(),
+  streetNumber: Yup.string().required(),
+  postcode: Yup.string().required(),
+  phone: Yup.string().optional(),
+  city: Yup.string().required(),
+  email: Yup.string().email().required(),
+  department: Yup.string().required(),
+  entryDate: Yup.date().required(),
+  memberStatus: Yup.string().required(),
+  paymentMethod: Yup.string().required(),
+  accountOwnerFirstName: Yup.string().when('paymentMethod', {
+    is: "debit",
+    then: (schema) => schema.required(),
+    otherwise: (schema) => schema.optional()
+  }),
+  accountOwnerLastName: Yup.string().when('paymentMethod', {
+    is: "debit",
+    then: (schema) => schema.required(),
+    otherwise: (schema) => schema.optional()
+  }),
+  iban: Yup.string().when('paymentMethod', {
+    is: "debit",
+    then: (schema) => schema.required(),
+    otherwise: (schema) => schema.optional()
+  }),
 });
 
-const rules = computed(() => ({
-  firstName: { required },
-  lastName: { required },
-  birthday: { required },
-  streetAddress: { required },
-  streetNumber: { required },
-  postcode: { required },
-  phone: {},
-  city: { required },
-  email: { email },
-  department: { required },
-  entryDate: { required },
-  memberStatus: { required },
-  paymentMethod: { required },
-  accountOwnerFirstName: {
-    requiredIf: requiredIf(() => state.paymentMethod === "debit"),
-  },
-  accountOwnerLastName: {
-    requiredIf: requiredIf(() => state.paymentMethod === "debit"),
-  },
-  iban: {
-    requiredIf: requiredIf(() => state.paymentMethod === "debit"),
-  },
-}));
-
-const v$ = useVuelidate(rules, state);
+// const v$ = useVuelidate(schema, state);
 
 const onSubmit = async function () {
-  const isValid = await v$.value.$validate()
-
-  if (!isValid) return
 
   console.log("Creating member...");
   // createMember()
 };
 
-const isDirectDebit = computed(() => {
-  return state.paymentMethod === "debit";
-});
+// const isDirectDebit = computed(() => {
+//   return state.paymentMethod === "debit";
+// });
 
 const availableDepartments = ref([
   { value: "", text: "Abteilung wählen", disabled: true },
@@ -86,33 +89,40 @@ const availablePaymentMethods = ref([
   { value: "debit", text: "Lastschrift" },
 ]);
 
-const fillDemoData = function () {
-  state.firstName = "Paul"
-  state.lastName = "Schmidt"
-  state.birthday = "1988-06-16"
-  state.streetAddress = "Herlebergweg"
-  state.streetNumber = "20"
-  state.postcode = "34130"
-  state.city = "Kassel"
-  state.email = "rookian@gmail.com"
-  state.phone = "+49 171 7693796"
-  state.department = "football"
-  state.entryDate = "2020-07-01"
-  state.memberStatus = "active"
-  state.paymentMethod = "debit"
-  state.accountOwnerFirstName = "Paul"
-  state.accountOwnerLastName = "Schmidt"
-  state.iban = "DE78500105175419262594"
-}
+// const fillDemoData = function () {
+//   state.firstName = "Paul"
+//   state.lastName = "Schmidt"
+//   state.birthday = "1988-06-16"
+//   state.streetAddress = "Herlebergweg"
+//   state.streetNumber = "20"
+//   state.postcode = "34130"
+//   state.city = "Kassel"
+//   state.email = "rookian@gmail.com"
+//   state.phone = "+49 171 7693796"
+//   state.department = "football"
+//   state.entryDate = "2020-07-01"
+//   state.memberStatus = "active"
+//   state.paymentMethod = "debit"
+//   state.accountOwnerFirstName = "Paul"
+//   state.accountOwnerLastName = "Schmidt"
+//   state.iban = "DE78500105175419262594"
+// }
 
 onMounted(() => {
   document.addEventListener("keydown", (e: KeyboardEvent) => {
     if (e.key === "F" && e.shiftKey) {
       e.preventDefault();
-      fillDemoData();
+
+      // fillDemoData();
     }
   });
 });
+
+const { handleSubmit, values } = useForm({
+  validationSchema: schema
+})
+
+
 </script>
 
 <template>

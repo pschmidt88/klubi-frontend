@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { Validation } from "@vuelidate/core";
 import { PropType } from "vue";
 
 const props = defineProps({
@@ -20,7 +19,7 @@ const props = defineProps({
     default: "",
   },
   validation: {
-    type: Object as PropType<Validation>,
+    type: Object,
     default: {
       $error: false,
     },

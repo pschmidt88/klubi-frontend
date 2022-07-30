@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { computed, PropType } from 'vue'
-import { Validation } from '@vuelidate/core'
 
 const props = defineProps({
   label: {
@@ -9,7 +8,7 @@ const props = defineProps({
   },
   type: {
     type: String,
-    default: "text",
+    default: 'text',
   },
   readonly: {
     type: Boolean,
@@ -21,15 +20,13 @@ const props = defineProps({
   },
   modelValue: {
     type: String,
-    default: "",
+    default: '',
   },
-  error: {
-    type: Object as PropType<Validation>,
-    default: {
-      $error: false
-    }
+  errors: {
+    type: Array,
+    default: []
   }
-});
+})
 
 const emit = defineEmits(['update:modelValue', 'blur'])
 
@@ -39,11 +36,11 @@ const value = computed({
   },
   set(value) {
     emit('update:modelValue', value)
-  }
+  },
 })
 
 const hasValidationError = computed(() => {
-  return props.error.$error
+  return props.errors.length > 0
 })
 
 const errorClassForInput = computed(() => {
@@ -53,7 +50,6 @@ const errorClassForInput = computed(() => {
 const errorClassForLabel = computed(() => {
   return hasValidationError.value ? 'border-red-600' : ''
 })
-
 </script>
 
 <template>
@@ -83,25 +79,8 @@ const errorClassForLabel = computed(() => {
     />
 
     <div v-if="hasValidationError" class="text-xs text-red-600">
-      <template v-for="(err, index) in error.$errors">
-        <span v-if="err.$validator === 'required'" :key="index">
-          <!-- {{ $t("form.text.validation.required.error") }} -->
-          TODO TRANSLATE REQUIRED ERROR
-        </span>
-
-        <span v-if="err.$validator === 'requiredIf'" :key="index">
-        TODO TRANSLATE REQUIRED IF ERROR
-          <!-- {{ $t("form.text.validation.required.error") }} -->
-        </span>
-
-        <span v-if="err.$validator === 'minLength'" :key="index">
-        TODO REQUIRED MIN LENGTH ERROR
-          <!-- {{
-            $t("form.text.validation.minLength.error", {
-              length: err.$params.min,
-            })
-          }} -->
-        </span>
+      <template v-for="(message, index) in errors">
+        <span>{{ message }}</span>
       </template>
     </div>
   </div>
