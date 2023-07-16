@@ -9,7 +9,7 @@ import {
   MenuItems,
 } from '@headlessui/vue'
 
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/vue/outline'
+import { BellIcon, Bars3Icon as MenuIcon, XMarkIcon as XIcon } from '@heroicons/vue/24/outline'
 
 const user = {
   name: 'Tom Cook',
